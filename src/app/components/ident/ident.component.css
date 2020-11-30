@@ -1,0 +1,9 @@
+.titulo{
+    text-align: center;
+    letter-spacing: 4px;
+}
+
+hr{
+    border: 1px solid;
+    width: 300px;
+}

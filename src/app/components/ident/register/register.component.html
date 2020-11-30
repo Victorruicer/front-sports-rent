@@ -1,0 +1,61 @@
+<!-- TÍTULO -->
+<div class="ident-title">
+    <span style="padding-left: 30px;">¿AÚN NO TIENES CUENTA?</span>
+</div>
+
+<!-- HEADER DEL REGISTRO -->
+<div class="ident-header">
+    <i class="fas fa-user-plus fa-3x" style="padding-right: 35px;"></i><h3 style="font-size: 15px; display: inline;">¿A QUÉ ESPERAS A CREAR LA TUYA?</h3>
+</div>
+
+<!-- FORMULARIO DE REGISTRO -->
+<div class="cont row animate__animated animate__fadeIn">
+    <div class="col">
+        <form autocomplete="off" >
+            <!-- [formGroup]="formulario"  (ngSubmit)="crear()" -->
+            <!--Nombre-->
+            <div class="form-group">
+                <label><b style="color: red;">* </b> NOMBRE</label>
+                <input type="text" class="form-control" formControlName="nombre">
+            </div>
+
+            <!-- Apellidos -->
+            <div class="form-group">
+                <label><b style="color: red;">* </b> APELLIDOS</label>
+                <input type="text" class="form-control" formControlName="apellidos">
+            </div>
+
+            <!--Email-->
+            <div class="form-group">
+                <label><b style="color: red;">* </b> E-MAIL</label>
+                <input type="text" class="form-control" formControlName="email">
+            </div>
+
+            <!--Contraseña-->
+            <div class="form-group">
+                <label><b style="color: red;">* </b> CONTRASEÑA</label>
+                <input type="password" class="form-control" formControlName="password1">
+            </div>
+
+            <!--Repetir Contraseña-->
+            <div class="form-group">
+                <label><b style="color: red;">* </b> REPETIR CONTRASEÑA</label>
+                <input type="password" class="form-control" formControlName="password2">
+            </div>
+
+            <br>
+            <div class="form-group text-center">
+                <button type="submit"
+                        class="btn btn-primary"
+                        style="letter-spacing: 2px; padding-left: 50px;">
+                    CREAR CUENTA                    
+                    <i class="fas fa-play" style="margin-left: 50px;"></i>
+                </button>
+            </div>
+        </form>
+
+        <!-- <div class="text-center" *ngIf="resultado">
+            {{resultado}}
+        </div> -->
+    </div>
+</div>

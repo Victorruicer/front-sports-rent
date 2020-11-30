@@ -1,0 +1,148 @@
+footer{
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: 900;
+    bottom: 0px;
+    background-color: #FF671F;
+    width: 100%;
+}
+
+hr{
+    background-color: white;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+  
+  
+.main-container{
+    margin-top: 20px;
+}
+
+
+/* BOTONES DE BOOTSTRAP */
+
+.btn-primary {
+    color: #fff;
+    background-color: #0C2340;
+    border-color: #0C2340;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #061221;
+    border-color: #030b15;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+    box-shadow: 0 0 0 0.2rem rgba(12, 35, 64, 0.5);
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+    color: #fff;
+    background-color: #0C2340;
+    border-color: #0C2340;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #030b15;
+    border-color: #010408;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(12, 35, 64, 0.5);
+}
+
+.btn-outline-primary {
+    color: #0C2340;
+    background-color: transparent;
+    border-color: #0C2340;
+}
+
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: #0C2340;
+    border-color: #0C2340;
+}
+
+.btn-outline-primary:focus, .btn-outline-primary.focus {
+    box-shadow: 0 0 0 0.2rem rgba(12, 35, 64, 0.5);
+}
+
+.btn-outline-primary.disabled, .btn-outline-primary:disabled {
+    color: #0C2340;
+    background-color: transparent;
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active, .show > .btn-outline-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #0C2340;
+    border-color: #0C2340;
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled):active:focus, .btn-outline-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(12, 35, 64, 0.5);
+}
+
+.btn-secondary {
+    color: #212529;
+    background-color: #FF671F;
+    border-color: #FF671F;
+}
+
+.btn-secondary:hover {
+    color: #212529;
+    background-color: #fa5000;
+    border-color: #eb4b00;
+}
+
+.btn-secondary:focus, .btn-secondary.focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 103, 31, 0.5);
+}
+
+.btn-secondary.disabled, .btn-secondary:disabled {
+    color: #212529;
+    background-color: #FF671F;
+    border-color: #FF671F;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active, .show > .btn-secondary.dropdown-toggle {
+    color: #212529;
+    background-color: #eb4b00;
+    border-color: #db4600;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active:focus, .btn-secondary:not(:disabled):not(.disabled).active:focus, .show > .btn-secondary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 103, 31, 0.5);
+}
+
+.btn-outline-secondary {
+    color: #FF671F;
+    background-color: transparent;
+    border-color: #FF671F;
+}
+
+.btn-outline-secondary:hover {
+    color: #212529;
+    background-color: #FF671F;
+    border-color: #FF671F;
+}
+
+.btn-outline-secondary:focus, .btn-outline-secondary.focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 103, 31, 0.5);
+}
+
+.btn-outline-secondary.disabled, .btn-outline-secondary:disabled {
+    color: #FF671F;
+    background-color: transparent;
+}
+
+.btn-outline-secondary:not(:disabled):not(.disabled):active, .btn-outline-secondary:not(:disabled):not(.disabled).active, .show > .btn-outline-secondary.dropdown-toggle {
+    color: #212529;
+    background-color: #FF671F;
+    border-color: #FF671F;
+}
+
+.btn-outline-secondary:not(:disabled):not(.disabled):active:focus, .btn-outline-secondary:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-secondary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 103, 31, 0.5);
+}

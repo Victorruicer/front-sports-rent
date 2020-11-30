@@ -1,0 +1,42 @@
+<!-- TÍTULO -->
+<div class="ident-title">
+    <span style="padding-left: 30px;">SÍ, YA TENGO UNA CUENTA</span>
+</div>
+
+<!-- HEADER DEL LOGIN -->
+<div class="ident-header">
+    <i class="fas fa-user fa-3x" style="padding-right: 35px;"></i><h3 style="font-size: 15px; display: inline;">¡BIENVENIDO/A DE NUEVO!</h3>
+</div>
+
+<!-- FORMULARIO DEL LOGIN -->
+<div class="cont row animate__animated animate__fadeIn">
+    <div class="col">
+        <form autocomplete="off" [formGroup]="formulario"  (ngSubmit)="login()">
+            <!--Email-->
+            <div class="form-group">
+                <label><b style="color: red;">* </b> E-MAIL</label>
+                <input type="text" class="form-control" formControlName="email">
+            </div>
+
+            <!--Password-->
+            <div class="form-group">
+                <label><b style="color: red;">* </b> CONTRASEÑA</label>
+                <input type="password" class="form-control" formControlName="password">
+            </div>
+
+            <br>
+            <div class="form-group text-center">
+                <button type="submit"
+                        class="btn btn-primary"
+                        style="letter-spacing: 2px; padding-left: 50px;">
+                    LOGIN                  
+                    <i class="fas fa-play" style="margin-left: 50px;"></i>
+                </button>
+            </div>
+        </form>
+
+        <div class="text-center" *ngIf="resultado">
+            {{resultado}}
+        </div>
+    </div>
+</div>

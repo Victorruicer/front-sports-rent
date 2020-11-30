@@ -1,0 +1,61 @@
+<div class="cont">
+    <div class="col">
+        <form autocomplete="off" >
+            <!-- [formGroup]="formulario"  (ngSubmit)="crear()" -->
+            <!--Nombre-->
+            <div class="form-group">
+                <label><b style="color: red;">* </b> NOMBRE</label>
+                <input type="text" class="form-control" formControlName="nombre">
+            </div>
+
+            <!-- Apellidos -->
+            <div class="form-group">
+                <label><b style="color: red;">* </b> APELLIDOS</label>
+                <input type="text" class="form-control" formControlName="apellidos">
+            </div>
+
+            <!--Perfil-->
+            <div class="form-group">
+                <label><b style="color: red;">* </b> PERFIL</label>
+                <select class="form-control" formControlName="perfil" id="perfil">
+                  <option value="0" disabled>Selecciona un tipo de perfil</option>
+                  <option value="1">USUARIO</option>
+                  <option value="2">GESTOR</option>
+                  <option value="3">ADMINISTRADOR</option>
+                </select>
+              </div>
+
+            <!--Email-->
+            <div class="form-group">
+                <label><b style="color: red;">* </b> E-MAIL</label>
+                <input type="text" class="form-control" formControlName="email">
+            </div>
+
+            <!--Contraseña-->
+            <div class="form-group">
+                <label><b style="color: red;">* </b> CONTRASEÑA</label>
+                <input type="password" class="form-control" formControlName="password1">
+            </div>
+
+            <!--Repetir Contraseña-->
+            <div class="form-group">
+                <label><b style="color: red;">* </b> REPETIR CONTRASEÑA</label>
+                <input type="password" class="form-control" formControlName="password2">
+            </div>
+
+            <br>
+            <div class="form-group text-center">
+                <button type="submit"
+                        class="btn btn-primary"
+                        style="letter-spacing: 2px; padding-left: 50px;">
+                    CREAR USUARIO                    
+                    <i class="fas fa-play" style="margin-left: 50px;"></i>
+                </button>
+            </div>
+        </form>
+
+        <!-- <div class="text-center" *ngIf="resultado">
+            {{resultado}}
+        </div> -->
+    </div>
+</div>
