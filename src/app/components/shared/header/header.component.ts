@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DatosLogin } from '../../ident/models/datosLogin';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  imgPerfil: string;
+  userName: string;
+  logado = false;
+
+  constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
+    this.auth.user.subscribe(user => {
+      if(user == null){
+        this.logado = false;
+      }else{
+      this.logado = true;
+      this.userName = user.Nombre + " " + user.Apellido1;
+      this.imgPerfil = user.Imagen;
+      }
+    })
+  }
+
+  logout(){
+    this.auth.logout();
   }
 
 }
