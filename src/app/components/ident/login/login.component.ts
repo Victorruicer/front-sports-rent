@@ -10,23 +10,48 @@ import { DatosLogin } from '../models/datosLogin';
 export class LoginComponent implements OnInit {
 
   formulario: FormGroup;
-  resultado: string = "si";
+  resultado: string;
 
   constructor( private fb: FormBuilder) { 
 
     this.formulario = this.fb.group({
-      email: ['',Validators.required],
-      password: ['',Validators.required],
+      email: ['', Validators.required],
+      password: ['',[Validators.required, Validators.minLength(4)]],
     });
   }
 
   ngOnInit(): void {
   }
 
+  get emailNoValido(){
+    return this.formulario.get('email').invalid && this.formulario.get('email').touched;
+  }
+  get passwordNoValido(){
+    return this.formulario.get('password').invalid && this.formulario.get('password').touched;
+  }
+
   login(){
-    const datosL: DatosLogin = {
-      email: this.formulario.get('email')?.value,
-      password: this.formulario.get('password2')?.value
+
+    //Control de validación del formulario
+    if(this.formulario.invalid){
+
+      return Object.values(this.formulario.controls).forEach( control =>{
+
+        if(control instanceof FormGroup){
+          Object.values(control.controls).forEach(control => control.markAsTouched());
+        }else{
+          control.markAsTouched();
+        }
+
+        control.markAsTouched();
+      });
     }
+
+    //Cargar datos del formulario
+    const datosL: DatosLogin = {
+      Email: this.formulario.get('email')?.value,
+      Password: this.formulario.get('password')?.value
+    }
+
   }
 }

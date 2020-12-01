@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+//Imagen
+import { ImageUploadModule } from 'angular2-image-upload';
 
 //Componentes
 import { GestionUsuariosComponent } from './gestion-usuarios.component';
@@ -25,6 +27,7 @@ import { ListaUsuariosComponent } from './lista-usuarios/lista-usuarios.componen
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    ImageUploadModule.forRoot(),
     GESTION_USUARIOS_ROUTING
   ],
   providers: [

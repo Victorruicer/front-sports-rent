@@ -1,9 +1,31 @@
 <nav class="navbar navbar-light bg-light fixed-top">
+    
+    <!-- LOGO -->
     <a class="navbar-brand" href="#">
         <img src="../../../../assets/logovictor.png" width="296" height="70" alt="Sports Rent">
     </a>
-    <a href="/ident" class=" my-2 my-lg-0 btn btn-outline-secondary">
-        <i class="fas fa-user-plus" style="padding-right: 10px;"></i> ENTRA / REGÍSTRATE
-    </a>
-    <!-- <button class=" my-2 my-lg-0 btn btn-danger">Logout</button> -->
+
+    <!-- AL ESTAR LOGEADO  -->
+    <div>
+        <!-- IMAGEN DE USUARIO -->
+        <a href="">
+            <img src="../../../../assets/logo.png" class="imgPerfil" alt="Imagen de perfil">
+        </a>
+
+        <!-- NOMBRE DE USUARIO -->
+        <b class="username">Nombre de usuario</b>
+
+        <!-- LOGOUT -->
+        <a href="#" class="btn btn-danger" style="margin-right:10px;">
+            <i class="fas fa-sign-out-alt" style="padding-right: 10px;"></i> LOGOUT
+        </a>
+    </div>
+
+    <!-- SIN ESTAR LOGEADO -->
+    <div>
+        <!-- BOTON LOGIN/REGISTER -->
+        <a href="/ident" class="btn btn-outline-secondary" style="margin-right:10px;">
+            <i class="fas fa-user-plus" style="padding-right: 10px;"></i> ENTRA / REGÍSTRATE
+        </a>
+    </div>
 </nav>

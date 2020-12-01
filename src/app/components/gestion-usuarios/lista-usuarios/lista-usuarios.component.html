@@ -1,5 +1,5 @@
 
-<table class="table">
+<table class="table" style="margin-top: 20px;">
     <thead class="thead-dark">
       <tr>
         <th scope="col">ID</th>
@@ -13,14 +13,14 @@
     <tbody>
       <tr *ngFor="let usuario of gestionUsuariosService.lista">
         <th scope="row">{{usuario.ID_Usuario}}</th>
-        <td>{{usuario.Usuario}}</td>
-        <td>{{usuario.Apellidos}}</td>
+        <td>{{usuario.Nombre}}</td>
+        <td>{{usuario.Apellido1}} {{usuario.Apellido2}}</td>
         <td>{{usuario.Perfil}}</td>
         <td>{{usuario.Email}}</td>
-        <!-- <td>
+        <td>
             <button style="margin: 10px;" class="btn btn-success" (click)="editar(usuario)" ><i class="fas fa-edit"></i></button>
             <button style="margin: 10px;" class="btn btn-danger" (click)="delUsuario(usuario.ID_Usuario)"><i class="fas fa-trash-alt"></i></button>
-        </td> -->
+        </td>
       </tr>
     </tbody>
   </table>

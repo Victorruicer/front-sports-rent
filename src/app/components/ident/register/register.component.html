@@ -11,36 +11,54 @@
 <!-- FORMULARIO DE REGISTRO -->
 <div class="cont row animate__animated animate__fadeIn">
     <div class="col">
-        <form autocomplete="off" >
-            <!-- [formGroup]="formulario"  (ngSubmit)="crear()" -->
+        <form autocomplete="off" [formGroup]="formulario"  (ngSubmit)="crear()">
             <!--Nombre-->
             <div class="form-group">
                 <label><b style="color: red;">* </b> NOMBRE</label>
-                <input type="text" class="form-control" formControlName="nombre">
+                <input type="text" class="form-control" formControlName="nombre" [class.is-invalid]="nombreNoValido">
+                <small *ngIf="nombreNoValido" class="text-danger">El nombre ha de tener al menos 4 letras</small>
             </div>
 
-            <!-- Apellidos -->
+            <!-- Apellido1 -->
             <div class="form-group">
-                <label><b style="color: red;">* </b> APELLIDOS</label>
-                <input type="text" class="form-control" formControlName="apellidos">
+                <label><b style="color: red;">* </b> PRIMER APELLIDO</label>
+                <input type="text" class="form-control" formControlName="apellido1" [class.is-invalid]="apellido1NoValido">
+                <small *ngIf="apellido1NoValido" class="text-danger">El primer apellido ha de tener al menos 4 letras</small>
+            </div>
+
+            <!-- Apellido2 -->
+            <div class="form-group">
+                <label><b style="color: red;">* </b> SEGUNDO APELLIDO</label>
+                <input type="text" class="form-control" formControlName="apellido2" [class.is-invalid]="apellido2NoValido">
+                <small *ngIf="apellido2NoValido" class="text-danger">El segundo apellido ha de tener al menos 4 letras</small>
+            </div>
+
+            <!-- DNI -->
+            <div class="form-group">
+                <label><b style="color: red;">* </b> DNI</label>
+                <input type="text" class="form-control" formControlName="dni" [class.is-invalid]="dniNoValido">
+                <small *ngIf="dniNoValido" class="text-danger">El DNI ha de cumplir el patrón</small>
             </div>
 
             <!--Email-->
             <div class="form-group">
                 <label><b style="color: red;">* </b> E-MAIL</label>
-                <input type="text" class="form-control" formControlName="email">
+                <input type="text" class="form-control" formControlName="email" [class.is-invalid]="emailNoValido">
+                <small *ngIf="emailNoValido" class="text-danger">El email ha de cumplir el patrón x@x.xx</small>
             </div>
 
             <!--Contraseña-->
             <div class="form-group">
                 <label><b style="color: red;">* </b> CONTRASEÑA</label>
-                <input type="password" class="form-control" formControlName="password1">
+                <input type="password" class="form-control" formControlName="password1" [class.is-invalid]="password1NoValido">
+                <small *ngIf="password1NoValido" class="text-danger">La contraseña ha de tener al menos 4 caracteres</small>
             </div>
 
             <!--Repetir Contraseña-->
             <div class="form-group">
                 <label><b style="color: red;">* </b> REPETIR CONTRASEÑA</label>
-                <input type="password" class="form-control" formControlName="password2">
+                <input type="password" class="form-control" formControlName="password2" [class.is-invalid]="password2NoValido">
+                <small *ngIf="password2NoValido" class="text-danger">La contraseña debe ser exactamente igual</small>
             </div>
 
             <br>
@@ -54,8 +72,8 @@
             </div>
         </form>
 
-        <!-- <div class="text-center" *ngIf="resultado">
+        <div class="text-center" *ngIf="resultado">
             {{resultado}}
-        </div> -->
+        </div>
     </div>
 </div>

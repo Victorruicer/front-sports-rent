@@ -15,13 +15,15 @@
             <!--Email-->
             <div class="form-group">
                 <label><b style="color: red;">* </b> E-MAIL</label>
-                <input type="text" class="form-control" formControlName="email">
+                <input type="text" class="form-control" formControlName="email" [class.is-invalid]="emailNoValido">
+                <small *ngIf="emailNoValido" class="text-danger">Se ha de rellenar este campo</small>
             </div>
 
             <!--Password-->
             <div class="form-group">
                 <label><b style="color: red;">* </b> CONTRASEÑA</label>
-                <input type="password" class="form-control" formControlName="password">
+                <input type="password" class="form-control" formControlName="password" [class.is-invalid]="passwordNoValido">
+                <small *ngIf="passwordNoValido" class="text-danger">La contraseña ha de tener al menos 4 caracteres</small>
             </div>
 
             <br>
