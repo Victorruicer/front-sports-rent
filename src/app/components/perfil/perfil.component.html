@@ -1,4 +1,3 @@
-
 <div class="animate__animated animate__fadeIn">
     <!-- TITULO -->
     <div class="titulo">
@@ -13,22 +12,22 @@
 
         <!-- DATOS DEL PERFIL -->
         <div class="col-md-6" style="padding-left: 80px;">
-            <!-- IMAGEN -->
-            <div class="row">
-                <img src="../../../assets/defaultPerfilImagen.png" alt="Imagen de perfil" class="imagenperfil">
-            </div>
-
-            <!-- MODIFICAR IMAGEN -->
-            <div class="row">
-                <label for="imgmod" class="custom-file-upload">
-                    <i class="fas fa-upload"></i> Subir imagen
-                </label>
-                <input type="file" id="imgmod" name="imgmod">
-            </div>
-
             <!-- DATOS -->
             <div class="row">
                 <form class="formu" autocomplete="off" [formGroup]="formulario" (ngSubmit)="modificar()">
+                    <!-- IMAGEN -->
+                    <div class="row">
+                        <img [src]="Imagen" formControlName="imagen" id="imagen" alt="Imagen de perfil" class="imagenperfil">
+                    </div>
+
+                    <!-- MODIFICAR IMAGEN -->
+                    <div class="row">
+                        <label for="imgmod" class="custom-file-upload">
+                            <i class="fas fa-upload"></i> Subir imagen
+                        </label>
+                        <input type="file" id="imgmod" name="imgmod" (change)="cambiarImagen($event.target.files)">
+                    </div>
+
                     <!--Nombre-->
                     <div class="form-group">
                         <label>NOMBRE</label>
@@ -69,9 +68,8 @@
 
                     <!-- SUBMIT DATOS -->
                     <div class="form-group text-center" style="margin-top: 50px;">
-                        <button type="submit"
-                                class="gCambios btn btn-primary">
-                            GUARDAR CAMBIOS                   
+                        <button type="submit" class="gCambios btn btn-primary">
+                            GUARDAR CAMBIOS
                             <i class="fas fa-edit" style="margin-left: 50px;"></i>
                         </button>
                     </div>

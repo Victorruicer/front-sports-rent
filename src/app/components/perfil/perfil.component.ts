@@ -16,28 +16,31 @@ export class PerfilComponent implements OnInit {
   IdPerfil: number = 3;
   Imagen: string;
   usuario: DatosLogin;
+  Archivo: File = null;
 
-  constructor(private fb:FormBuilder, private auth:AuthService, private router:Router) { 
+  constructor(private fb:FormBuilder, private auth:AuthService, private router:Router) {
 
-    this.formulario = this.fb.group({
-      nombre   : ['' /*this.usuario.Nombre*/, [Validators.required, Validators.minLength(4)]],
-      apellido1: ['' /*this.usuario.Apellido1*/, [Validators.required, Validators.minLength(2)]],
-      apellido2: ['' /*this.usuario.Apellido2*/, [Validators.required, Validators.minLength(2)]],
-      dni: ['' /*this.usuario.Dni*/, Validators.required],
-      email: ['' /*this.usuario.Email*/, Validators.required]
-    });
   }
 
   ngOnInit(): void {
     this.auth.user.subscribe(user => {
       //Si no hay ningún usuario logado se vuelve al home
       if(user == null){
-        // this.router.navigateByUrl('#');
+        this.router.navigateByUrl('#');
       }else{
         this.usuario = user;
-        this.Imagen = user.Imagen
+        this.Imagen = user.Imagen;
       }
     })
+
+    this.formulario = this.fb.group({
+      nombre   : [this.usuario.Nombre, [Validators.required, Validators.minLength(4)]],
+      apellido1: [this.usuario.Apellido1, [Validators.required, Validators.minLength(2)]],
+      apellido2: [this.usuario.Apellido2, [Validators.required, Validators.minLength(2)]],
+      dni: [this.usuario.Dni, Validators.required],
+      email: [this.usuario.Email, Validators.required],
+      imagen: [this.usuario.Imagen],
+    });
   }
 
   get nombreNoValido(){
@@ -48,6 +51,17 @@ export class PerfilComponent implements OnInit {
   }
   get apellido2NoValido(){
     return this.formulario.get('apellido2').invalid && this.formulario.get('apellido2').touched;
+  }
+
+  cambiarImagen(files: FileList){
+    this.Archivo = files.item(0);
+/*     if (FileReader && files && files.length) {
+        var fr = new FileReader();
+        fr.onload = function () {
+            this.Imagen = fr.result;
+        }
+        fr.readAsDataURL(files[0]);
+    } */
   }
 
   modificar(){

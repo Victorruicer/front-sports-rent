@@ -6,26 +6,26 @@
 <div>
     <table class="table table-striped table-dark" style="margin-top: 20px;">
         <thead class="thead-dark">
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Instalación</th>
-            <th scope="col">Pista</th>
-            <th scope="col">Fecha</th>
-            <th scope="col">Desde</th>
-            <th scope="col">Hasta</th>
-            <th scope="col">Cancelar</th>
-          </tr>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Instalación</th>
+                <th scope="col">Pista</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Desde</th>
+                <th scope="col">Hasta</th>
+                <th scope="col">Cancelar</th>
+            </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td><button class="btn btn-danger"><i class="fas fa-window-close"></i></button></td>
-          </tr>
+            <tr *ngFor="let reserva of listaReservas">
+                <td scope="row">{{reserva.Id_Reserva}}</td>
+                <td>{{reserva.Instalacion}}</td>
+                <td>{{reserva.Pista}}</td>
+                <td>{{reserva.Fecha}}</td>
+                <td>{{reserva.Hora_Inicio}}</td>
+                <td>{{reserva.Hora_Fin}}</td>
+                <td><button class="btn btn-danger"><i class="fas fa-window-close"></i></button></td>
+            </tr>
         </tbody>
     </table>
 </div>

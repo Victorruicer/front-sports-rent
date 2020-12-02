@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ReservasUser } from '../molels/reservasUser.model';
 
 @Component({
   selector: 'app-activos-alquiler',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./activos-alquiler.component.css']
 })
 export class ActivosAlquilerComponent implements OnInit {
+
+  public listaReservas: ReservasUser[] = [];
 
   constructor() { }
 
