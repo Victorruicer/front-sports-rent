@@ -12,14 +12,14 @@
             <div class="form-group">
                 <label><b style="color: red;">* </b> PRIMER APELLIDO</label>
                 <input type="text" class="form-control" formControlName="apellido1" [class.is-invalid]="apellido1NoValido">
-                <small *ngIf="apellido1NoValido" class="text-danger">El primer apellido ha de tener al menos 4 letras</small>
+                <small *ngIf="apellido1NoValido" class="text-danger">El primer apellido ha de tener al menos 2 letras</small>
             </div>
 
             <!-- Apellido2 -->
             <div class="form-group">
                 <label><b style="color: red;">* </b> SEGUNDO APELLIDO</label>
                 <input type="text" class="form-control" formControlName="apellido2" [class.is-invalid]="apellido2NoValido">
-                <small *ngIf="apellido2NoValido" class="text-danger">El segundo apellido ha de tener al menos 4 letras</small>
+                <small *ngIf="apellido2NoValido" class="text-danger">El segundo apellido ha de tener al menos 2 letras</small>
             </div>
 
             <!-- DNI -->
@@ -61,17 +61,6 @@
                 <input type="password" class="form-control" formControlName="password2" [class.is-invalid]="password2NoValido">
                 <small *ngIf="password2NoValido" class="text-danger">La contraseña debe ser exactamente igual</small>
             </div>
-
-            <!-- Imagen -->
-            <image-upload 
-                url="http://mockbin.org/request"
-                [max]="1"
-                [extensions]="['jpeg','jpg','png']"
-                buttonCaption="Selecciona la imagen de perfil"
-                dropBoxMessage="¡O arrastrala hasta aquí!"
-                class="customClass"
-                (uploadFinished)="onUploadFinished($event)"
-            ></image-upload>
 
             <br>
             <div class="form-group text-center">

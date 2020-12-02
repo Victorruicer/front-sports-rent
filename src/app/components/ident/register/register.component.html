@@ -23,14 +23,14 @@
             <div class="form-group">
                 <label><b style="color: red;">* </b> PRIMER APELLIDO</label>
                 <input type="text" class="form-control" formControlName="apellido1" [class.is-invalid]="apellido1NoValido">
-                <small *ngIf="apellido1NoValido" class="text-danger">El primer apellido ha de tener al menos 4 letras</small>
+                <small *ngIf="apellido1NoValido" class="text-danger">El primer apellido ha de tener al menos 2 letras</small>
             </div>
 
             <!-- Apellido2 -->
             <div class="form-group">
                 <label><b style="color: red;">* </b> SEGUNDO APELLIDO</label>
                 <input type="text" class="form-control" formControlName="apellido2" [class.is-invalid]="apellido2NoValido">
-                <small *ngIf="apellido2NoValido" class="text-danger">El segundo apellido ha de tener al menos 4 letras</small>
+                <small *ngIf="apellido2NoValido" class="text-danger">El segundo apellido ha de tener al menos 2 letras</small>
             </div>
 
             <!-- DNI -->

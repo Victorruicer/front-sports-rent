@@ -18,6 +18,7 @@ import { HomeComponent } from './components/shared/home/home.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { AboutfooterComponent } from './components/shared/aboutfooter/aboutfooter.component';
 
 //AUTH GUARD
 
@@ -29,6 +30,7 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
     FooterComponent,
     HeaderComponent,
     NavbarComponent,
+    AboutfooterComponent,
   ],
   imports: [
     BrowserModule,

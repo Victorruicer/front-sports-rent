@@ -1,1 +1,93 @@
-<p>perfil works!</p>
+
+<div class="animate__animated animate__fadeIn">
+    <!-- TITULO -->
+    <div class="titulo">
+        <hr>
+        <h1 style="font-weight: 700; font-size: 2em;">MI PERFIL</h1>
+        <hr>
+    </div>
+
+    <br>
+    <!-- CONTENIDO -->
+    <div class="row">
+
+        <!-- DATOS DEL PERFIL -->
+        <div class="col-md-6" style="padding-left: 80px;">
+            <!-- IMAGEN -->
+            <div class="row">
+                <img src="../../../assets/defaultPerfilImagen.png" alt="Imagen de perfil" class="imagenperfil">
+            </div>
+
+            <!-- MODIFICAR IMAGEN -->
+            <div class="row">
+                <label for="imgmod" class="custom-file-upload">
+                    <i class="fas fa-upload"></i> Subir imagen
+                </label>
+                <input type="file" id="imgmod" name="imgmod">
+            </div>
+
+            <!-- DATOS -->
+            <div class="row">
+                <form class="formu" autocomplete="off" [formGroup]="formulario" (ngSubmit)="modificar()">
+                    <!--Nombre-->
+                    <div class="form-group">
+                        <label>NOMBRE</label>
+                        <input type="text" class="form-control" formControlName="nombre" [class.is-invalid]="nombreNoValido">
+                        <small *ngIf="nombreNoValido" class="text-danger">El nombre ha de tener al menos 4 letras</small>
+                    </div>
+
+                    <!-- Apellido1 -->
+                    <div class="form-group">
+                        <label>PRIMER APELLIDO</label>
+                        <input type="text" class="form-control" formControlName="apellido1" [class.is-invalid]="apellido1NoValido">
+                        <small *ngIf="apellido1NoValido" class="text-danger">El primer apellido ha de tener al menos 4 letras</small>
+                    </div>
+
+                    <!-- Apellido2 -->
+                    <div class="form-group">
+                        <label>SEGUNDO APELLIDO</label>
+                        <input type="text" class="form-control" formControlName="apellido2" [class.is-invalid]="apellido2NoValido">
+                        <small *ngIf="apellido2NoValido" class="text-danger">El segundo apellido ha de tener al menos 4 letras</small>
+                    </div>
+
+                    <!-- DNI -->
+                    <div class="form-group">
+                        <label>DNI</label>
+                        <input type="text" class="form-control" formControlName="dni" disabled>
+                    </div>
+
+                    <!--Email-->
+                    <div class="form-group">
+                        <label>E-MAIL</label>
+                        <input type="text" class="form-control" formControlName="email" disabled>
+                    </div>
+
+                    <!-- RESULTADO -->
+                    <div class="text-center" *ngIf="resultado">
+                        {{resultado}}
+                    </div>
+
+                    <!-- SUBMIT DATOS -->
+                    <div class="form-group text-center" style="margin-top: 50px;">
+                        <button type="submit"
+                                class="gCambios btn btn-primary">
+                            GUARDAR CAMBIOS                   
+                            <i class="fas fa-edit" style="margin-left: 50px;"></i>
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <!-- DATOS ALQUILERES -->
+        <div class="col-md-6">
+            <div class="row">
+                <app-activos-alquiler></app-activos-alquiler>
+            </div>
+            <div class="row">
+                <app-historial-alquiler></app-historial-alquiler>
+            </div>
+        </div>
+    </div>
+</div>

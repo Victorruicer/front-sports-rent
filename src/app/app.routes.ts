@@ -5,6 +5,7 @@ const APP_ROUTES: Routes = [
     { path: 'home', component: HomeComponent},
     { path: 'ident', loadChildren: () => import('./components/ident/ident.module').then(m => m.IdentModule) },
     { path: 'gestionUsuarios', loadChildren: () => import('./components/gestion-usuarios/gestion-usuarios.module').then(m => m.GestionUsuariosModule) },
+    { path: 'perfil', loadChildren: () => import('./components/perfil/perfil.module').then(m => m.PerfilModule) },
     
     { path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];

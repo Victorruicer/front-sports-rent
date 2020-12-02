@@ -1,0 +1,11 @@
+.titulo{
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+table{
+    width: 100%;
+    table-layout: fixed;
+    text-align: center;
+    border-radius: 20px;
+}
