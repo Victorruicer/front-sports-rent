@@ -13,10 +13,9 @@ export class PerfilComponent implements OnInit {
 
   formulario: FormGroup;
   resultado: string;
-  IdPerfil: number = 3;
-  Imagen: string;
+  Imagen;
   usuario: DatosLogin;
-  Archivo: File = null;
+  mensaje: string = null;
 
   constructor(private fb:FormBuilder, private auth:AuthService, private router:Router) {
 
@@ -37,9 +36,9 @@ export class PerfilComponent implements OnInit {
       nombre   : [this.usuario.Nombre, [Validators.required, Validators.minLength(4)]],
       apellido1: [this.usuario.Apellido1, [Validators.required, Validators.minLength(2)]],
       apellido2: [this.usuario.Apellido2, [Validators.required, Validators.minLength(2)]],
-      dni: [this.usuario.Dni, Validators.required],
-      email: [this.usuario.Email, Validators.required],
-      imagen: [this.usuario.Imagen],
+      dni      : [this.usuario.Dni, Validators.required],
+      email    : this.usuario.Email,
+      imagen   : this.usuario.Imagen
     });
   }
 
@@ -53,15 +52,28 @@ export class PerfilComponent implements OnInit {
     return this.formulario.get('apellido2').invalid && this.formulario.get('apellido2').touched;
   }
 
-  cambiarImagen(files: FileList){
-    this.Archivo = files.item(0);
-/*     if (FileReader && files && files.length) {
-        var fr = new FileReader();
-        fr.onload = function () {
-            this.Imagen = fr.result;
-        }
-        fr.readAsDataURL(files[0]);
-    } */
+  cambiarImagen(event){
+    //Comprobamos que solo haya 1 fichero
+    const files = event.target.files;
+    if(files.length === 0){
+      return
+    }
+
+    //Comprobamos que el fichero sea una imagen
+    const mimeType = files[0].type;
+    if(mimeType.match(/image\/*/) == null){
+      this.mensaje = "¡Solo se pueden introducir imágenes!";
+      return;
+    }else{
+      this.mensaje = null;
+    }
+
+    //Cargamos la imagen
+    const reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.Imagen = reader.result;
+    }
   }
 
   modificar(){

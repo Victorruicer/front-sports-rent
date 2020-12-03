@@ -25,7 +25,8 @@
                         <label for="imgmod" class="custom-file-upload">
                             <i class="fas fa-upload"></i> Subir imagen
                         </label>
-                        <input type="file" id="imgmod" name="imgmod" (change)="cambiarImagen($event.target.files)">
+                        <input type="file" id="imgmod" name="imgmod" (change)="cambiarImagen($event)">
+                        <span *ngIf="mensaje" class="errormsg">{{mensaje}}</span>
                     </div>
 
                     <!--Nombre-->

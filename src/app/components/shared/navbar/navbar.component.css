@@ -1,6 +1,8 @@
 .nav{
-    background-color: white;
-    margin: 0px;
-    width: 100%;
-    padding-top: 150px;
+    margin-top: 96px;
+    background-image: url('../../../../assets/fondoheader2.png');
+    background-repeat: no-repeat;
+    background-size: 100% 200px;
+    background-position: center;
+    height: 200px;
 }

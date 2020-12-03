@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ReservasUser } from '../molels/reservasUser.model';
+import { ReservasUser } from '../models/reservasUser';
 
 @Component({
   selector: 'app-activos-alquiler',

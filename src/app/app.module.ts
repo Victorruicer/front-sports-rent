@@ -19,6 +19,7 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { AboutfooterComponent } from './components/shared/aboutfooter/aboutfooter.component';
+import { CardInstalacionComponent } from './components/instalaciones/card-instalacion/card-instalacion.component';
 
 //AUTH GUARD
 
@@ -31,6 +32,7 @@ import { AboutfooterComponent } from './components/shared/aboutfooter/aboutfoote
     HeaderComponent,
     NavbarComponent,
     AboutfooterComponent,
+    CardInstalacionComponent,
   ],
   imports: [
     BrowserModule,
