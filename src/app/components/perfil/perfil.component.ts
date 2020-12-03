@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ImageUploadService } from 'angular2-image-upload/lib/image-upload.service';
 import { AuthService } from '../auth/auth.service';
 import { DatosLogin } from '../ident/models/datosLogin';
+import { PerfilService } from './perfil.service';
 
 @Component({
   selector: 'app-perfil',
@@ -17,7 +19,10 @@ export class PerfilComponent implements OnInit {
   usuario: DatosLogin;
   mensaje: string = null;
 
-  constructor(private fb:FormBuilder, private auth:AuthService, private router:Router) {
+  constructor(private fb:FormBuilder,
+             private auth:AuthService,
+             private router:Router,
+             private perfilService: PerfilService) {
 
   }
 
@@ -93,14 +98,32 @@ export class PerfilComponent implements OnInit {
       });
     }
 
+
     //Cargar datos del formulario
     const datosM: DatosLogin = {
+      Id_Usuario: this.usuario.Id_Usuario,
       Nombre: this.formulario.get('nombre')?.value,
       Apellido1: this.formulario.get('apellido1')?.value,
       Apellido2: this.formulario.get('apellido2')?.value,
+      Id_Perfil: this.usuario.Id_Perfil,
       Imagen: this.Imagen
     }
 
+    this.perfilService.updateUser(datosM).subscribe(datos => {
+      if(datos['Email'] != null){
+        console.log("usuario actualizado = "+datos['Email']);
+        var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        currentUser[0].Nombre = datosM.Nombre;
+        currentUser[0].Apellido1 = datosM.Apellido1;
+        currentUser[0].Apellido2 = datosM.Apellido2;
+        currentUser[0].Imagen = datosM.Imagen;
+        localStorage.setItem("currentUser",JSON.stringify(currentUser));
+        this.resultado = datos['Email'] + " actualizado correctamente.";
+      }else{
+        this.resultado = datos['Mensaje'];
+      }
+
+    })
     // this.auth.registro(datosR).subscribe(data => {
     //   if(data.Nombre != null){
     //     this.resultado = data.Nombre + " te has registrado correctamente, ya puedes inciar sesión"

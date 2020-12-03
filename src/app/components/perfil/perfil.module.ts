@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PerfilComponent } from './perfil.component';
 import { ActivosAlquilerComponent } from './activos-alquiler/activos-alquiler.component';
 import { HistorialAlquilerComponent } from './historial-alquiler/historial-alquiler.component';
+import { PerfilService } from './perfil.service';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { HistorialAlquilerComponent } from './historial-alquiler/historial-alqui
     ReactiveFormsModule,
     HttpClientModule,
     PERFIL_ROUTING
-  ]
+  ],
+  providers: [PerfilService]
 })
 export class PerfilModule { }
