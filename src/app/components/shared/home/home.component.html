@@ -1,5 +1,5 @@
 <!-- CARRUSEL -->
-<div id="carruselhome" class="carousel slide" data-ride="carousel" data-interval="4500">
+<div id="carruselhome" class="carousel slide" data-ride="carousel" data-interval="4000" style="margin-bottom: 50px;">
 
     <!-- INDICADORES -->
     <ol class="carousel-indicators">
@@ -34,4 +34,48 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
+</div>
+
+<!-- CARACTERISTICAS -->
+<div class="parallaxBG">
+  <div class="fondoCont">
+    Texto
+  </div>
+</div>
+
+<!-- CONTÁCTANOS -->
+<div id="contacto">
+  <h1 style="text-align: center;">CONTÁCTANOS</h1>
+  <hr style="border: 1px solid #FF671F; text-align: center; width: 700px;">
+  <div class="parallaxBG2">
+    <div class="formcontacto">
+      <form autocomplete="off" [formGroup]="formulario"  (ngSubmit)="enviar()">
+        <div class="row">
+          <div class="col-4">
+            <div class="form-group row">
+              <h3>Nombre / Apellidos</h3>
+              <input type="text" class="form-control" formControlName="nombre" [class.is-invalid]="nombreNoValido">
+              <small *ngIf="nombreNoValido" class="text-danger">El nombre ha de tener al menos 4 letras</small>
+            </div>
+            <div class="row">
+              <h3>Email</h3>
+              <input type="text" class="form-control" formControlName="email" [class.is-invalid]="emailNoValido">
+              <small *ngIf="emailNoValido" class="text-danger">El email ha de cumplir el patrón x@x.xx</small>
+            </div>
+          </div>
+          <div class="col-8">
+            <div class="">
+              <h3>Mensaje</h3>
+              <textarea class="form-control" formControlName="mensaje" cols="60" rows="8" [class.is-invalid]="mensajeNoValido"></textarea>
+              <small *ngIf="mensajeNoValido" class="text-danger">Has de enviar algún mensaje</small>
+              <button type="submit" value="Enviar" class="botonenviar btn btn-primary">Enviar</button>
+            </div>
+          </div>
+          <div class="text-center" *ngIf="resultado">
+            {{resultado}}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

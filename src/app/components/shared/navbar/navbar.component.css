@@ -1,8 +1,18 @@
 .nav{
     margin-top: 96px;
-    height: 200px;
+    margin-bottom: 50px;
+    height: 120px;
     background-image: url('../../../../assets/fondoheader2.png');
     background-repeat: no-repeat;
-    background-size: 100% 200px;
+    background-size: 100% 150px;
     background-position: center;
+}
+
+.botones{
+    margin-top: 50px;
+    margin-left: 45%;
+}
+
+.box{
+    padding: 0;
 }

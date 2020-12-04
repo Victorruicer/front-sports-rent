@@ -12,14 +12,13 @@ import { CommonModule } from '@angular/common';
 import { ImageUploadModule } from 'angular2-image-upload';
 
 
-//COMPONENTS
+//COMPONENTS SHARED
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/shared/home/home.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { AboutfooterComponent } from './components/shared/aboutfooter/aboutfooter.component';
-import { CardInstalacionComponent } from './components/instalaciones/card-instalacion/card-instalacion.component';
 
 //AUTH GUARD
 
@@ -32,7 +31,6 @@ import { CardInstalacionComponent } from './components/instalaciones/card-instal
     HeaderComponent,
     NavbarComponent,
     AboutfooterComponent,
-    CardInstalacionComponent,
   ],
   imports: [
     BrowserModule,

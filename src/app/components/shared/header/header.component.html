@@ -2,7 +2,7 @@
 
     <!-- LOGO -->
     <a class="navbar-brand" href="#">
-        <img src="../../../../assets/logovictor.png" width="296" height="70" alt="Sports Rent">
+        <img src="../../../../assets/logovictor.png" width="296" height="70" style="margin-left:50px ;" alt="Sports Rent">
     </a>
 
     <!-- AL ESTAR LOGEADO  -->
@@ -16,7 +16,7 @@
         <b class="username">{{userName}}</b>
 
         <!-- LOGOUT -->
-        <button class="btn btn-danger" style="margin-right:10px;" (click)="logout()">
+        <button class="btn btn-danger" style="margin-right:60px;" (click)="logout()">
             <i class="fas fa-sign-out-alt" style="padding-right: 10px;"></i> LOGOUT
         </button>
     </div>
@@ -24,7 +24,7 @@
     <!-- SIN ESTAR LOGEADO -->
     <div *ngIf="!logado">
         <!-- BOTON LOGIN/REGISTER -->
-        <a href="/ident" class="btn btn-outline-secondary" style="margin-right:10px;">
+        <a href="/ident" class="btn btn-outline-secondary" style="margin-right:60px;">
             <i class="fas fa-user-plus" style="padding-right: 10px;"></i> ENTRA / REGÍSTRATE
         </a>
     </div>

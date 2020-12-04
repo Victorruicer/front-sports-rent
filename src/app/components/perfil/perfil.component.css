@@ -9,6 +9,13 @@ hr{
     width: 300px;
 }
 
+.cont{
+    margin-left:120px;
+    margin-right:120px;
+    margin-bottom:100px;
+    margin-top:60px;
+}
+
 .imagenperfil{
     border-radius: 100%;
     border: 0.2px solid;
