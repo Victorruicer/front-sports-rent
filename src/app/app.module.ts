@@ -8,6 +8,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
+//TOASTR
+import { ToastrModule } from 'ngx-toastr';
+
 //IMAGEN
 import { ImageUploadModule } from 'angular2-image-upload';
 
@@ -19,6 +22,13 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { AboutfooterComponent } from './components/shared/aboutfooter/aboutfooter.component';
+import { environment } from '../environments/environment';
+
+//REDUX
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { appReducers, metaReducers } from './app.reducer';
+
 
 //AUTH GUARD
 
@@ -39,7 +49,10 @@ import { AboutfooterComponent } from './components/shared/aboutfooter/aboutfoote
     ReactiveFormsModule,
     CommonModule,
     ImageUploadModule.forRoot(),
-    APP_ROUTING
+    APP_ROUTING,
+    StoreModule.forRoot(appReducers, {metaReducers}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
