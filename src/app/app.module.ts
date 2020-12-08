@@ -2,11 +2,12 @@
 import { APP_ROUTING } from './app.routes';
 
 //@ANGULAR
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 //TOASTR
 import { ToastrModule } from 'ngx-toastr';
@@ -31,6 +32,7 @@ import { appReducers, metaReducers } from './app.reducer';
 
 
 //AUTH GUARD
+import { TokenInterceptor } from './components/auth/token.interceptor';
 
 
 @NgModule({
@@ -53,8 +55,12 @@ import { appReducers, metaReducers } from './app.reducer';
     StoreModule.forRoot(appReducers, {metaReducers}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     ToastrModule.forRoot(),
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

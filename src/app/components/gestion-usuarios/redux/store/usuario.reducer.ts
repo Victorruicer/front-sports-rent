@@ -1,5 +1,5 @@
-import { UserModel } from '../../models/userModel';
 import { UserActions, UserActionTypes } from './usuario.actions';
+import { UserModel } from '../../models/UserModel';
 
 
 
@@ -24,12 +24,12 @@ export function userReducer(state = initialState, action: UserActions): UserStat
       return {
         ...state,
         users: state.users.filter(
-          user => user.ID_Usuario !== action.payload.id)
+          user => user.Id_Usuario !== action.payload.id)
       };
     }
     case UserActionTypes.EDITAR: {
       //buscamos posición del user a modificar
-      const index = state.users.findIndex(item => item.ID_Usuario === action.payload.ID_Usuario);
+      const index = state.users.findIndex(item => item.Id_Usuario === action.payload.ID_Usuario);
       const array = [...state.users]; //copiamos users a nuevo array
       array[index] = action.payload;
       return {//devolvemos nuevo state
@@ -43,10 +43,8 @@ export function userReducer(state = initialState, action: UserActions): UserStat
         users: action.payload.lista
       }
     }
-    case UserActionTypes.VER_USERS: {
-      return {
-        ...state
-      }
+    case UserActionTypes.INICIALIZA: {
+      return initialState
     }
     default: {
       return state;

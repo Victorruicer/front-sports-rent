@@ -5,6 +5,12 @@ import { environment } from '../../../environments/environment';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { DatosLogin } from '../ident/models/datosLogin';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../app.reducer';
+import { LoginFailure, LoginSuccess, Logout } from '../ident/redux/store/login.actions';
+import { InicializaUsers } from '../gestion-usuarios/redux/store/usuario.actions';
+import { RegistroSuccess, RegistroFailure } from '../ident/redux/store/registro.actions';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -18,6 +24,7 @@ export class AuthService {
 
  constructor(private http: HttpClient,
              private router: Router,
+             private store: Store<AppState>,
              ) {
     this.userSubject = new BehaviorSubject<DatosLogin>(JSON.parse(localStorage.getItem('currentUser')));
     this.user = this.userSubject.asObservable();
@@ -31,12 +38,11 @@ export class AuthService {
         //creamos datos user en localstorage
         localStorage.setItem('currentUser', JSON.stringify(data));
         //lanzamos accion de login correcto
-        //this.store.dispatch(new LoginSuccess({token: data['Token'], email: data['Email']}));
+        this.store.dispatch(new LoginSuccess({token: data['Token'], email: data['Email']}));
         this.userSubject.next(data);
       }else{
-        data["mensaje"] = "Error en las credenciales;";
-        //this.store.dispatch(new LoginFailure({message: data["mensaje"]}));
-
+        //data["mensaje"] = "Error en las credenciales;";
+        this.store.dispatch(new LoginFailure({message: data["mensaje"]}));
       }
       return data;
       }));
@@ -45,7 +51,11 @@ export class AuthService {
     registro(datosRegistro: DatosLogin): Observable<any> {
     const url = `${environment.apiUrl}/api/usuario/registro`;
     return this.http.post(url, datosRegistro).pipe(map(data => {
-      console.log("datos recibidos: "+ data['nombre']);
+      if(data['Retcode'] === 0){
+        this.store.dispatch(new RegistroSuccess({Nombre: data['Nombre'], Apellido1: data['Apellido1'], Email: data['Email']}));
+      }else{
+        this.store.dispatch(new RegistroFailure({message: data["Mensaje"]}));
+      }
       return data;
       }));
   }
@@ -53,7 +63,9 @@ export class AuthService {
   logout(){
     localStorage.removeItem('currentUser');
     console.log("se han limpiado los datos del user: " );
-    //this.store.dispatch(new Logout());
+    //reseteamos datos
+    this.store.dispatch(new Logout());
+    this.store.dispatch(new InicializaUsers());
     this.userSubject.next(null);
     this.router.navigate(['/home']);
   }

@@ -3,6 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatosLogin } from '../models/datosLogin';
 import { AuthService } from '../../auth/auth.service';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState, selectLoginState } from '../../../app.reducer';
+import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -13,9 +17,16 @@ export class LoginComponent implements OnInit {
 
   formulario: FormGroup;
   resultado: string;
+  user: DatosLogin;
+  getState: Observable<any>;
+  isAuthenticated: boolean = false;
 
-  constructor( private fb: FormBuilder, private auth: AuthService, private router: Router) {
-
+  constructor( private fb: FormBuilder,
+               private auth: AuthService,
+               private router: Router,
+               private store: Store<AppState>,
+               private toastr: ToastrService) {
+    this.getState = this.store.select(selectLoginState);
     this.formulario = this.fb.group({
       email: ['', Validators.required],
       password: ['',[Validators.required, Validators.minLength(4)]],
@@ -23,6 +34,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getState.subscribe((state) => {
+      this.isAuthenticated = state.isAuthenticated;
+      this.user = state.user;
+    });
   }
 
   get emailNoValido(){
@@ -55,11 +70,14 @@ export class LoginComponent implements OnInit {
       Password: this.formulario.get('password')?.value
     }
     this.auth.comprobarLogin(datosL).subscribe(data => {
-      if(data.Token != null){
+      console.log(data);
+      if(data.Token != null && data.Email == datosL.Email){//login correcto
+        this.toastr.success("Logado correctamente");
         this.resultado = "Usuario logado: " + data.Email;
         this.router.navigateByUrl('/home');
       }else{
-        this.resultado = data.mensaje;
+        this.resultado = data.Mensaje;
+        this.toastr.error(data.Mensaje);
       }
 
       this.formulario.reset();

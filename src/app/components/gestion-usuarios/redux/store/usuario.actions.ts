@@ -5,7 +5,7 @@ export enum UserActionTypes {
   ELIMINAR = '[User] Eliminar User',
   EDITAR = '[User] Editar User',
   CARGA_USERS = '[User] Carga Users',
-  VER_USERS = '[User] Ver Users'
+  INICIALIZA = '[User] reset Users'
 }
 
 export class CrearUser implements Action {
@@ -28,8 +28,8 @@ export class CargaUsers implements Action {
   constructor(public payload: any) {}
 }
 
-export class VerUsers implements Action {
-  readonly type = UserActionTypes.VER_USERS;
+export class InicializaUsers implements Action {
+  readonly type = UserActionTypes.INICIALIZA;
   constructor() {}
 }
 
@@ -38,4 +38,4 @@ export type UserActions =
   | EditarUser
   | EliminarUser
   | CargaUsers
-  | VerUsers;
+  | InicializaUsers;

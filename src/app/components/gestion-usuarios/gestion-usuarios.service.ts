@@ -29,9 +29,7 @@ export class GestionUsuariosService {
   }
 
   borrarUsuario(id: number): Observable<UserModel>{
-    const userID = {
-      ID_Usuario: id
-    };
+    const userID = { ID_Usuario: id };
     return this.http.post<UserModel>(environment.apiUrl + this.deleteUrl, userID);
   }
 

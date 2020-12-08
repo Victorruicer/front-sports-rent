@@ -3,6 +3,7 @@ import { GestionUsuariosService } from './gestion-usuarios.service';
 import { AppState } from '../../app.reducer';
 import { Store } from '@ngrx/store';
 import { CargaUsers } from './redux/store/usuario.actions';
+import { UserModel } from './models/userModel';
 
 @Component({
   selector: 'app-gestion-usuarios',
@@ -15,10 +16,6 @@ export class GestionUsuariosComponent implements OnInit {
               private store: Store<AppState>) { }
 
   ngOnInit(): void {
-    this.gestionUsuariosService.getUsuarios().subscribe(usuarios => {
-      console.log(usuarios);
-    this.store.dispatch(new CargaUsers({lista: usuarios}))
-    })
-  }
 
+  }
 }

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../app.reducer';
+import { GestionUsuariosService } from '../../gestion-usuarios/gestion-usuarios.service';
+import { CargaUsers } from '../../gestion-usuarios/redux/store/usuario.actions';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +15,9 @@ export class HomeComponent implements OnInit {
   formulario: FormGroup;
   resultado: string;
 
-  constructor(private fb:FormBuilder) { 
+  constructor(private fb:FormBuilder,
+              private store: Store<AppState>,
+              private gestionUsuariosService: GestionUsuariosService) {
 
     this.formulario = this.fb.group({
       nombre   : ['', [Validators.required, Validators.minLength(4)]],
@@ -21,6 +27,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+  this.gestionUsuariosService.getUsuarios().subscribe(usuarios => {
+    console.log("lista de usuarios: ->> " + usuarios);
+    this.store.dispatch(new CargaUsers({lista: usuarios}));
+    })
   }
 
   get nombreNoValido(){
@@ -55,6 +66,6 @@ export class HomeComponent implements OnInit {
       Email: this.formulario.get('email')?.value,
       Mensaje: this.formulario.get('mensaje')?.value
     }
-    
+
   }
 }
