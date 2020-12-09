@@ -1,0 +1,65 @@
+<!-- DATOS -->
+<div class="row">
+    <form class="formu" autocomplete="off" [formGroup]="formulario" (ngSubmit)="modificar()">
+        <!-- IMAGEN -->
+        <div class="row">
+            <img [src]="Imagen" formControlName="imagen" id="imagen" alt="Imagen de perfil" class="imagenperfil">
+        </div>
+
+        <!-- MODIFICAR IMAGEN -->
+        <div class="row">
+            <label for="imgmod" class="custom-file-upload">
+                <i class="fas fa-upload"></i> Subir imagen
+            </label>
+            <input type="file" id="imgmod" name="imgmod" (change)="cambiarImagen($event)">
+            <span *ngIf="mensaje" class="errormsg">{{mensaje}}</span>
+        </div>
+
+        <!--Nombre-->
+        <div class="form-group">
+            <label>NOMBRE</label>
+            <input type="text" class="form-control" formControlName="nombre" [class.is-invalid]="nombreNoValido">
+            <small *ngIf="nombreNoValido" class="text-danger">El nombre ha de tener al menos 4 letras</small>
+        </div>
+
+        <!-- Apellido1 -->
+        <div class="form-group">
+            <label>PRIMER APELLIDO</label>
+            <input type="text" class="form-control" formControlName="apellido1" [class.is-invalid]="apellido1NoValido">
+            <small *ngIf="apellido1NoValido" class="text-danger">El primer apellido ha de tener al menos 4 letras</small>
+        </div>
+
+        <!-- Apellido2 -->
+        <div class="form-group">
+            <label>SEGUNDO APELLIDO</label>
+            <input type="text" class="form-control" formControlName="apellido2" [class.is-invalid]="apellido2NoValido">
+            <small *ngIf="apellido2NoValido" class="text-danger">El segundo apellido ha de tener al menos 4 letras</small>
+        </div>
+
+        <!-- DNI -->
+        <div class="form-group">
+            <label>DNI</label>
+            <input type="text" class="form-control" formControlName="dni" disabled>
+        </div>
+
+        <!--Email-->
+        <div class="form-group">
+            <label>E-MAIL</label>
+            <input type="text" class="form-control" formControlName="email" disabled>
+        </div>
+
+        <!-- RESULTADO -->
+        <div class="text-center" *ngIf="resultado">
+            {{resultado}}
+        </div>
+
+        <!-- SUBMIT DATOS -->
+        <div class="form-group text-center" style="margin-top: 50px;">
+            <button type="submit" class="gCambios btn btn-primary">
+                GUARDAR CAMBIOS
+                <i class="fas fa-edit" style="margin-left: 50px;"></i>
+            </button>
+        </div>
+
+    </form>
+</div>

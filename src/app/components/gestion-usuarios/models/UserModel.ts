@@ -6,7 +6,7 @@ export class UserModel{
   Email: string;
   Password?: string;
   Dni: string;
-  Imagen: string;
+  Imagen?: string;
   Perfil?: string;
   Id_Perfil: number;
 }
