@@ -8,5 +8,7 @@ export class DatosLogin {
     Password?: string;
     Id_Perfil?: number;
     Imagen?: string;
+    ImgTemp?: string;
+    Mensaje?: string;
     Token?: string;
 }

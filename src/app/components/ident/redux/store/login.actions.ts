@@ -5,7 +5,7 @@ export enum AuthenticationActionTypes {
   LOGIN_SUCCESS = '[Authentication] Login Success',
   LOGIN_FAILURE = '[Authentication] Login Failure',
   LOGOUT = '[Authentication] Logout',
-  UNSET_LOGIN = '[Authentication] Unset login',
+  UPDATE_CURRENT_USER = '[Authentication] update current user',
   GET_STATUS = '[Authentication] GetStatus',
 }
 
@@ -24,6 +24,11 @@ export class LoginFailure implements Action {
   constructor(public payload: any) {}
 }
 
+export class UpdateCurrentUser implements Action {
+  readonly type = AuthenticationActionTypes.UPDATE_CURRENT_USER;
+  constructor(public payload: any) {}
+}
+
 export class Logout implements Action {
   readonly type = AuthenticationActionTypes.LOGOUT;
 }
@@ -37,5 +42,6 @@ export type AuthenticationActions =
   | Login
   | LoginSuccess
   | LoginFailure
+  | UpdateCurrentUser
   | Logout
   | GetStatus;

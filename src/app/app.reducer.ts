@@ -4,6 +4,7 @@ import { userReducer, UserState } from './components/gestion-usuarios/redux/stor
 import { localStorageSync, LocalStorageConfig } from 'ngrx-store-localstorage';
 import { loginReducer, LoginState } from './components/ident/redux/store/login.reducer';
 import { registroReducer, RegistroState } from './components/ident/redux/store/registro.reducer';
+import { PerfilState, perfilReducer } from './components/perfil/redux/store/perfil.reducer';
 
 
 
@@ -12,14 +13,16 @@ export interface AppState {
   //loading: LoadingState;
   login: LoginState,
   users: UserState,
-  registro: RegistroState
+  registro: RegistroState,
+  perfil: PerfilState
 }
 
 export const appReducers: ActionReducerMap<any> = {
   //loading: loadingReducer,
   login: loginReducer,
   users: userReducer,
-  registro: registroReducer
+  registro: registroReducer,
+  perfil: perfilReducer
 };
 
 export const selectLoginState = createFeatureSelector<AppState>('login');
@@ -31,6 +34,7 @@ export function persitsData(reducer: ActionReducer<any>): ActionReducer<any> {
       {'login': { encrypt: (message:string) => {return message;}, decrypt: (message:string) => {return message;}}},
       {'users': { encrypt: (message:string) => {return message;}, decrypt: (message:string) => {return message;}}},
       {'registro': { encrypt: (message:string) => {return message;}, decrypt: (message:string) => {return message;}}},
+      {'perfil': { encrypt: (message:string) => {return message;}, decrypt: (message:string) => {return message;}}},
     ],
     rehydrate: true,
     removeOnUndefined: true,

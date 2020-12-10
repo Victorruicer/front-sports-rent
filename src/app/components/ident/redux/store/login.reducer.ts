@@ -11,9 +11,16 @@ export interface LoginState {
 export const initialState: LoginState = {
   isAuthenticated: false,
   user: {
-          Token: null,
-          Email: null
-        },
+    Id_Usuario: null,
+    Nombre: null,
+    Apellido1: null,
+    Apellido2: null,
+    Dni: null,
+    Email: null,
+    Id_Perfil: null,
+    Imagen: null,
+    Token: null
+  },
   errorMessage: null
 };
 
@@ -23,10 +30,7 @@ export function loginReducer(state = initialState, action: AuthenticationActions
       return {
         ...state,
         isAuthenticated: true,
-        user: {
-          Token: action.payload.token,
-          Email: action.payload.email
-        },
+        user: action.payload.user,
         errorMessage: null
       };
     }
@@ -34,6 +38,17 @@ export function loginReducer(state = initialState, action: AuthenticationActions
       return {
         ...state,
         errorMessage: action.payload.message
+      };
+    }
+    case AuthenticationActionTypes.UPDATE_CURRENT_USER:{
+      var objetoUser = {...state.user};
+      objetoUser.Nombre = action.payload.user.Nombre;
+      objetoUser.Apellido1 = action.payload.user.Apellido1;
+      objetoUser.Apellido2 = action.payload.user.Apellido2;
+      objetoUser.Imagen = action.payload.user.Imagen;
+      return{
+        ...state,
+        user: objetoUser
       };
     }
     case AuthenticationActionTypes.LOGOUT: {

@@ -36,9 +36,11 @@ export class AuthService {
       console.log("datos recibidos: "+ data['Token']);
       if(data['Token'] != null && data['Id_Usuario'] > 0){
         //creamos datos user en localstorage
-        localStorage.setItem('currentUser', JSON.stringify(data));
+        //localStorage.setItem('currentUser', JSON.stringify(data));
+        console.log("dataPerfil es: "+data['Id_Perfil']);
         //lanzamos accion de login correcto
-        this.store.dispatch(new LoginSuccess({token: data['Token'], email: data['Email']}));
+        this.store.dispatch(new LoginSuccess({user: data}));
+        //this.store.dispatch(new LoginSuccess({token: data['Token'], email: data['Email'], id_perfil: data['Id_Perfil']}));
         this.userSubject.next(data);
       }else{
         //data["mensaje"] = "Error en las credenciales;";

@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ImageUploadService } from 'angular2-image-upload/lib/image-upload.service';
-import { AuthService } from '../auth/auth.service';
+import { Store } from '@ngrx/store';
 import { DatosLogin } from '../ident/models/datosLogin';
 import { PerfilService } from './perfil.service';
+import { AppState } from '../../app.reducer';
+import { UpdateCurrentUser } from '../ident/redux/store/login.actions';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-perfil',
@@ -15,27 +18,32 @@ export class PerfilComponent implements OnInit {
 
   formulario: FormGroup;
   resultado: string;
-  Imagen;
+  Imagen: any;
   usuario: DatosLogin;
   mensaje: string = null;
 
   constructor(private fb:FormBuilder,
-             private auth:AuthService,
              private router:Router,
-             private perfilService: PerfilService) {
+             private perfilService: PerfilService,
+             private store: Store<AppState>,
+             private toastr: ToastrService) {
 
   }
 
   ngOnInit(): void {
-    this.auth.user.subscribe(user => {
-      //Si no hay ningún usuario logado se vuelve al home
-      if(user == null){
-        this.router.navigateByUrl('#');
+    //Nos subscribimos a la propiedad login del AppState para mantener la vista actualizada
+    this.store.select('login').subscribe(currentUser => {
+      //si hay usuario logado
+      if(currentUser.isAuthenticated){
+        //Cargamos datos del usuario
+        this.usuario = currentUser.user;
+        this.Imagen = currentUser.user.Imagen;
       }else{
-        this.usuario = user;
-        this.Imagen = user.Imagen;
+        //Si no hay ningún usuario logado se vuelve al home
+        this.router.navigateByUrl('#');
       }
-    })
+    });
+
 
     this.formulario = this.fb.group({
       nombre   : [this.usuario.Nombre, [Validators.required, Validators.minLength(4)]],
@@ -109,28 +117,20 @@ export class PerfilComponent implements OnInit {
       Imagen: this.Imagen
     }
 
+    //Servicio que actualiza los datos del perfil
     this.perfilService.updateUser(datosM).subscribe(datos => {
-      if(datos['Email'] != null){
-        console.log("usuario actualizado = "+datos['Email']);
-        var currentUser = JSON.parse(localStorage.getItem("currentUser"));
-        currentUser[0].Nombre = datosM.Nombre;
-        currentUser[0].Apellido1 = datosM.Apellido1;
-        currentUser[0].Apellido2 = datosM.Apellido2;
-        currentUser[0].Imagen = datosM.Imagen;
-        localStorage.setItem("currentUser",JSON.stringify(currentUser));
+      //Si update correcto
+      if(datos['Retcode'] === 0){
+        //Actializamos el state
+        this.store.dispatch(new UpdateCurrentUser({user: datosM}));
+        //Mostramos mensaje
+        this.toastr.success(datos['Email'] + " actualizado correctamente.");
         this.resultado = datos['Email'] + " actualizado correctamente.";
       }else{
+        //Mostramos error
+        this.toastr.error("Error: " + datos['Mensaje']);
         this.resultado = datos['Mensaje'];
       }
-
     })
-    // this.auth.registro(datosR).subscribe(data => {
-    //   if(data.Nombre != null){
-    //     this.resultado = data.Nombre + " te has registrado correctamente, ya puedes inciar sesión"
-    //   }else{
-    //     this.resultado = data.Mensaje;
-    //   }
-    // })
-
   }
 }
