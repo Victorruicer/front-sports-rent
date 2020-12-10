@@ -4,9 +4,6 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../app.reducer';
 import { GestionUsuariosService } from '../../gestion-usuarios/gestion-usuarios.service';
 import { CargaUsers } from '../../gestion-usuarios/redux/store/usuario.actions';
-import { DatosLogin } from '../../ident/models/datosLogin';
-import { HistorialReservas } from '../../perfil/redux/store/perfil.actions';
-import { PerfilService } from '../../perfil/perfil.service';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +17,6 @@ export class HomeComponent implements OnInit {
 
   constructor(private fb:FormBuilder,
               private store: Store<AppState>,
-              private perfilService: PerfilService,
               private gestionUsuariosService: GestionUsuariosService) {
 
     this.formulario = this.fb.group({
@@ -33,20 +29,14 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     var currentUser = JSON.parse(sessionStorage.getItem('login'));
 
-    if(currentUser.isAuthenticated){
-      if(currentUser.user.Id_Perfil === 1){
+    if(currentUser != null){
+      if(currentUser.isAuthenticated && currentUser.user.Id_Perfil === 1){
         console.log("Cargamos usuarios");
         this.gestionUsuariosService.getUsuarios().subscribe(usuarios => {
         console.log("lista de usuarios: ->> " + usuarios);
         this.store.dispatch(new CargaUsers({lista: usuarios}));
         })
       }
-      //recuperamos historico del usuario y las cargamos en el store
-      this.perfilService.historicoReservas(currentUser.user.Email, "finalizada").subscribe(
-        listaReservas => {
-          console.log("lista de reservas : "+ listaReservas[0].Id_Reserva)
-          this.store.dispatch(new HistorialReservas({lista: listaReservas}));
-      })
     }
   }
 

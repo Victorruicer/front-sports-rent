@@ -1,6 +1,6 @@
 <div class="cont">
     <div class="col">
-        <form autocomplete="off" [formGroup]="formulario"  (ngSubmit)="crear()">
+        <form autocomplete="off" [formGroup]="formulario"  (ngSubmit)="actualizar()">
             <!--Nombre-->
             <div class="form-group">
                 <label><b style="color: red;">* </b> NOMBRE</label>
@@ -48,26 +48,12 @@
                 <small *ngIf="emailNoValido" class="text-danger">El email ha de cumplir el patrón x@x.xx</small>
             </div>
 
-            <!--Contraseña-->
-            <div class="form-group">
-                <label><b style="color: red;">* </b> CONTRASEÑA</label>
-                <input type="password" class="form-control" formControlName="password1" [class.is-invalid]="password1NoValido">
-                <small *ngIf="password1NoValido" class="text-danger">La contraseña ha de tener al menos 4 caracteres</small>
-            </div>
-
-            <!--Repetir Contraseña-->
-            <div class="form-group">
-                <label><b style="color: red;">* </b> REPETIR CONTRASEÑA</label>
-                <input type="password" class="form-control" formControlName="password2" [class.is-invalid]="password2NoValido">
-                <small *ngIf="password2NoValido" class="text-danger">La contraseña debe ser exactamente igual</small>
-            </div>
-
             <br>
             <div class="form-group text-center">
                 <button type="submit"
                         class="btn btn-primary"
                         style="letter-spacing: 2px; padding-left: 50px;">
-                    CREAR USUARIO                    
+                    ACTUALIZAR USUARIO                    
                     <i class="fas fa-play" style="margin-left: 50px;"></i>
                 </button>
             </div>

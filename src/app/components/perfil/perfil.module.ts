@@ -12,6 +12,8 @@ import { PerfilComponent } from './perfil.component';
 import { ActivosAlquilerComponent } from './activos-alquiler/activos-alquiler.component';
 import { HistorialAlquilerComponent } from './historial-alquiler/historial-alquiler.component';
 import { PerfilService } from './perfil.service';
+import { DatosComponent } from './datos/datos.component';
+import { PassComponent } from './pass/pass.component';
 
 
 @NgModule({
@@ -19,6 +21,8 @@ import { PerfilService } from './perfil.service';
     PerfilComponent,
     HistorialAlquilerComponent,
     ActivosAlquilerComponent,
+    DatosComponent,
+    PassComponent,
   ],
   imports: [
     CommonModule,

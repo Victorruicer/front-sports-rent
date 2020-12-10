@@ -1,0 +1,39 @@
+<!-- DATOS -->
+<div class="row">
+    <form class="formu" autocomplete="off" [formGroup]="formulario" (ngSubmit)="resetear()">
+
+        <!-- Antigua contraseña -->
+        <div class="form-group">
+            <label>ANTIGUA CONTRASEÑA</label>
+            <input type="password" class="form-control" formControlName="oldpass">
+        </div>
+
+        <!-- Nueva contraseña -->
+        <div class="form-group">
+            <label>NUEVA CONTRASEÑA</label>
+            <input type="password" class="form-control" formControlName="newpass1" [class.is-invalid]="newpass1NoValido">
+            <small *ngIf="newpass1NoValido" class="text-danger">La contraseña ha de tener al menos 4 letras</small>
+        </div>
+
+        <!-- Repetir contraseña -->
+        <div class="form-group">
+            <label>REPETIR CONTRASEÑA</label>
+            <input type="password" class="form-control" formControlName="newpass2" [class.is-invalid]="newpass2NoValido">
+            <small *ngIf="newpass2NoValido" class="text-danger">La contraseña debe ser exactamente igual</small>
+        </div>
+
+        <!-- RESULTADO -->
+        <div class="text-center" *ngIf="resultado">
+            {{resultado}}
+        </div>
+
+        <!-- SUBMIT DATOS -->
+        <div class="form-group text-center" style="margin-top: 50px;">
+            <button type="submit" class="gCambios btn btn-primary">
+                RESTABLECER CONTRASEÑA
+                <i class="fas fa-edit" style="margin-left: 30px;"></i>
+            </button>
+        </div>
+
+    </form>
+</div>
