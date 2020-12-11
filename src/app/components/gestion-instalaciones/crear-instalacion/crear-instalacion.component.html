@@ -5,14 +5,14 @@
             <!-- Nombre -->
             <div class="form-group">
                 <label><b style="color: red;">* </b> NOMBRE</label>
-                <input type="text" class="form-control" formControlName="tarifa" [class.is-invalid]="nombreNoValido">
+                <input type="text" class="form-control" formControlName="nombre" [class.is-invalid]="nombreNoValido">
                 <small *ngIf="nombreNoValido" class="text-danger">El nombre de la instalación ha de tener al menos 4 letras</small>
             </div>
 
             <!-- Dirección -->
             <div class="form-group">
                 <label><b style="color: red;">* </b> DIRECCIÓN</label>
-                <input type="text" class="form-control" formControlName="valor" [class.is-invalid]="direccionNoValido">
+                <input type="text" class="form-control" formControlName="direccion" [class.is-invalid]="direccionNoValido">
                 <small *ngIf="direccionNoValido" class="text-danger">La dirección es necesaria</small>
             </div>
 
@@ -48,7 +48,7 @@
             </div>
 
             <!-- IMAGEN -->
-            <div class="row" *ngif="Imagen">
+            <div class="row" *ngIf="Imagen">
                 <img [src]="Imagen" alt="Imagen de la instalación" class="imageninstalacion">
             </div>
             

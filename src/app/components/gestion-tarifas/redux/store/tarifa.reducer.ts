@@ -22,12 +22,12 @@ export function tarifaReducer(state = initialState, action: TarifaActions): Tari
       return {
         ...state,
         tarifas: state.tarifas.filter(
-          user => user.Id_Tarifa !== action.payload.id)
+          user => user.Id_tarifa !== action.payload.id)
       };
     }
     case TarifaActionTypes.EDITAR: {
       //Buscamos la posicion de la tarifa a modificar
-      const index = state.tarifas.findIndex(item => item.Id_Tarifa === action.payload.ID_Usuario);
+      const index = state.tarifas.findIndex(item => item.Id_tarifa === action.payload.Id_tarifa);
       const array = [...state.tarifas]; //Copiamos tarifas a nuevo array
       array[index] = action.payload;
       return {//Devolvemos el nuevo state

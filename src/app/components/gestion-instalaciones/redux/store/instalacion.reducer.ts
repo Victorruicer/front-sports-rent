@@ -27,7 +27,7 @@ export function instalacionReducer(state = initialState, action: InstalacionActi
     }
     case InstalacionActionTypes.EDITAR: {
       //Buscamos la posicion de la instalacion a modificar
-      const index = state.instalaciones.findIndex(item => item.Id_Instalacion === action.payload.ID_Usuario);
+      const index = state.instalaciones.findIndex(item => item.Id_Instalacion === action.payload.Id_Instalacion);
       const array = [...state.instalaciones]; //Copiamos instalaciones a nuevo array
       array[index] = action.payload;
       return {//Devolvemos el nuevo state

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.reducer';
+import { GestionInstalacionesService } from './gestion-instalaciones.service';
+import { CargaInstalaciones } from './redux/store/instalaciones.actions';
 
 @Component({
   selector: 'app-gestion-instalaciones',
@@ -7,9 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GestionInstalacionesComponent implements OnInit {
 
-  constructor() { }
+  constructor(public gestionInstalacionesService: GestionInstalacionesService, private store: Store<AppState>) { }
 
   ngOnInit(): void {
+    this.gestionInstalacionesService.getInstalaciones().subscribe(data => {
+      this.store.dispatch(new CargaInstalaciones({lista: data}))
+    })
   }
 
 }
