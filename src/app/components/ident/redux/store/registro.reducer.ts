@@ -38,7 +38,7 @@ export function registroReducer(state = initialState, action: RegistroActions): 
         errorMessage: action.payload.message
       };
     }
-    case RegistroActionTypes.RESET: {
+    case RegistroActionTypes.INICIALIZA: {
       return initialState;
     }
     default: {

@@ -1,13 +1,9 @@
 import { Action } from '@ngrx/store';
 
 export enum RegistroActionTypes {
-  RESET = '[Registro] Signup',
   REGISTRO_SUCCESS = '[Registro] Signup Success',
   REGISTRO_FAILURE = '[Registro] Signup Failure',
-}
-
-export class Registro implements Action {
-  readonly type = RegistroActionTypes.RESET;
+  INICIALIZA = '[Registro] Limpia Registro',
 }
 
 export class RegistroSuccess implements Action {
@@ -20,9 +16,13 @@ export class RegistroFailure implements Action {
   constructor(public payload: any) {}
 }
 
+export class InicializaRegistro implements Action {
+  readonly type = RegistroActionTypes.INICIALIZA;
+}
+
 
 //export type AccionesLogin = SetLoginAction | UnsetLoginAction;
 export type RegistroActions =
-  | Registro
   | RegistroSuccess
-  | RegistroFailure;
+  | RegistroFailure
+  | InicializaRegistro;

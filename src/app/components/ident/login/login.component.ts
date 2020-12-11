@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { AppState, selectLoginState } from '../../../app.reducer';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { LoginFailure, LoginSuccess } from '../redux/store/login.actions';
 
 @Component({
   selector: 'app-login',
@@ -73,11 +74,13 @@ export class LoginComponent implements OnInit {
       console.log(data);
       if(data.Token != null && data.Email == datosL.Email){//login correcto
         this.toastr.success("Logado correctamente");
-        this.resultado = "Usuario logado: " + data.Email;
+        this.store.dispatch(new LoginSuccess({user: data}));
+        //this.resultado = "Usuario logado: " + data.Email;
         this.router.navigateByUrl('/home');
       }else{
         this.resultado = data.Mensaje;
         this.toastr.error(data.Mensaje);
+        this.store.dispatch(new LoginFailure({message: data["Mensaje"]}));
       }
 
       this.formulario.reset();

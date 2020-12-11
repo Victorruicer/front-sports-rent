@@ -18,7 +18,6 @@ export class HistorialReservas implements Action {
 
 export class InicializaPerfil implements Action {
   readonly type = PerfilActionTypes.INICIALIZA;
-  constructor(public payload: any) {}
 }
 
 export type PerfilActions =

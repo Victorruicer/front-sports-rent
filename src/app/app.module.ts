@@ -35,6 +35,7 @@ import { appReducers, metaReducers } from './app.reducer';
 import { TokenInterceptor } from './components/auth/token.interceptor';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,7 @@ import { TokenInterceptor } from './components/auth/token.interceptor';
     FooterComponent,
     HeaderComponent,
     NavbarComponent,
-    AboutfooterComponent,
+    AboutfooterComponent
   ],
   imports: [
     BrowserModule,

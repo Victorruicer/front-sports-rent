@@ -30,8 +30,13 @@ export class PerfilComponent implements OnInit {
     //recuperamos historico del usuario y las cargamos en el store
     this.perfilService.historicoReservas(currentUser.user.Email, "finalizada").subscribe(
       listaReservas => {
-        console.log("lista de reservas : "+ listaReservas[0].Id_Reserva)
-        this.store.dispatch(new HistorialReservas({lista: listaReservas}));
+        if(listaReservas.length > 0){
+          console.log("lista de reservas : "+ listaReservas[0].Id_Reserva)
+          this.store.dispatch(new HistorialReservas({lista: listaReservas}));
+        }else{
+          console.log("borramos historial");
+          this.store.dispatch(new HistorialReservas({lista: null}));
+        }
       })
     }else{
       //Si no hay ningún usuario logado se vuelve al home
