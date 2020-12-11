@@ -1,1 +1,29 @@
-<p>lista-instalaciones works!</p>
+<table class="table table-striped" style="margin-top: 20px;">
+    <thead class="thead">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Operativa</th>
+            <th scope="col">Horario</th>
+            <th scope="col-2">Gestión</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let instalacion of instalaciones">
+            <td scope="row">{{instalacion.Id_Instalacion}}</td>
+            <td>{{instalacion.Nombre}}</td>
+            <td>{{instalacion.Direccion}}</td>
+            <td>{{instalacion.Operativa}}</td>
+            <td>{{instalacion.Horario}}</td>
+            <td>
+                <button style="margin: 10px;" class="btn btn-success" (click)="editar(instalacion)"><i class="fas fa-edit"></i></button>
+                <button style="margin: 10px;" class="btn btn-danger" (click)="delInstalacion(instalacion.Id_Instalacion)"><i class="fas fa-trash-alt"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="text-center" *ngIf="resultado">
+    Resultado: {{resultado.Mensaje}}
+</div>

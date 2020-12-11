@@ -1,0 +1,30 @@
+.imageninstalacion{
+    border-radius: 100%;
+    border: 0.2px solid;
+    height: 250px;
+    width: 250px;
+    margin-bottom: 25px;
+    margin-left: 53px;
+}
+
+/* IMAGEN */
+input[type="file"]{
+    display: none;
+}
+.custom-file-upload{
+    border: 1px solid;
+    border-radius: 25px;
+    display: inline-block;
+    cursor: pointer;
+    padding: 6px 12px;
+    background-color: #0C2340;
+    color: white;
+    margin-left: 105px;
+    margin-bottom: 20px;
+}
+
+.errormsg{
+    color: red;
+    margin-left: 45px;
+    margin-bottom: 20px;
+}

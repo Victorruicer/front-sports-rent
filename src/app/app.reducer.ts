@@ -6,6 +6,7 @@ import { loginReducer, LoginState } from './components/ident/redux/store/login.r
 import { registroReducer, RegistroState } from './components/ident/redux/store/registro.reducer';
 import { PerfilState, perfilReducer } from './components/perfil/redux/store/perfil.reducer';
 import { tarifaReducer, TarifaState } from './components/gestion-tarifas/redux/store/tarifa.reducer';
+import { instalacionReducer, InstalacionState } from './components/gestion-instalaciones/redux/store/instalacion.reducer';
 
 
 
@@ -16,7 +17,8 @@ export interface AppState {
   users: UserState,
   registro: RegistroState,
   perfil: PerfilState,
-  tarifa: TarifaState
+  tarifa: TarifaState,
+  instalacion: InstalacionState
 }
 
 export const appReducers: ActionReducerMap<any> = {
@@ -25,7 +27,8 @@ export const appReducers: ActionReducerMap<any> = {
   users: userReducer,
   registro: registroReducer,
   perfil: perfilReducer,
-  tarifa: tarifaReducer
+  tarifa: tarifaReducer,
+  instalacion: instalacionReducer
 };
 
 export const selectLoginState = createFeatureSelector<AppState>('login');
@@ -39,6 +42,7 @@ export function persitsData(reducer: ActionReducer<any>): ActionReducer<any> {
       {'registro': { encrypt: (message:string) => {return message;}, decrypt: (message:string) => {return message;}}},
       {'perfil': { encrypt: (message:string) => {return message;}, decrypt: (message:string) => {return message;}}},
       {'tarifa': { encrypt: (message:string) => {return message;}, decrypt: (message:string) => {return message;}}},
+      {'instalacion': { encrypt: (message:string) => {return message;}, decrypt: (message:string) => {return message;}}},
     ],
     rehydrate: true,
     removeOnUndefined: true,
