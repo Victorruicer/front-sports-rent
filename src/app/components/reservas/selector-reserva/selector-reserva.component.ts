@@ -2,6 +2,7 @@ import { Component, OnInit, Pipe, PipeTransform, ViewChild } from '@angular/core
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {NgbDateStruct, NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import { ActividadModel } from '../models/actividadModel';
+import { ReservasService } from '../reservas.service';
 
 @Component({
   selector: 'app-selector-reserva',
@@ -13,7 +14,7 @@ export class SelectorReservaComponent implements OnInit {
 
   formulario: FormGroup;
   resultado: any;
-  actividades: ActividadModel[];
+  actividades: [];
 
   fechaddmmyy: any;
   displayMonths = 1;
@@ -22,7 +23,7 @@ export class SelectorReservaComponent implements OnInit {
   outsideDays = 'visible'
   @ViewChild('dp') dp: NgbDatepicker;
 
-  constructor(private fb: FormBuilder,) {
+  constructor(private fb: FormBuilder,private reservasService: ReservasService) {
     this.formulario = this.fb.group({
       selectActividad: ['', Validators.required],
       dp: ''
@@ -30,7 +31,14 @@ export class SelectorReservaComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.reservasService.getActividades().subscribe(
+      actividades => {
+        if(actividades.length > 0){
+            this.actividades = [...new Set(actividades['actividad'])];
 
+        }
+      }
+    )
   }
 
   get aelectActividadNoValido(){

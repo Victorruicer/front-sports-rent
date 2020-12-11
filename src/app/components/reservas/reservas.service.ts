@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment';
 })
 export class ReservasService {
 
-  getActividadesUrl = "/api/actividad/listactividades";
+  getActividadesUrl = "/api/actividad/listActividades";
 
   constructor(private http: HttpClient) { }
 
