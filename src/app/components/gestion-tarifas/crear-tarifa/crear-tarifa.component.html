@@ -1,1 +1,33 @@
-<p>crear-tarifa works!</p>
+<div class="cont">
+    <div class="col">
+        <form autocomplete="off" [formGroup]="formulario"  (ngSubmit)="actualizar()">
+
+            <!-- Tarifa -->
+            <div class="form-group">
+                <label><b style="color: red;">* </b> NOMBRE</label>
+                <input type="text" class="form-control" formControlName="tarifa" [class.is-invalid]="tarifaNoValido">
+                <small *ngIf="tarifaNoValido" class="text-danger">El nombre de la tarifa ha de tener al menos 4 letras</small>
+            </div>
+
+            <!-- Valor -->
+            <div class="form-group">
+                <label><b style="color: red;">* </b> PRECIO</label>
+                <input type="text" class="form-control" formControlName="valor">
+            </div>
+
+            <br>
+            <div class="form-group text-center">
+                <button type="submit"
+                        class="btn btn-primary"
+                        style="letter-spacing: 2px; padding-left: 50px;">
+                    CONFIRMAR                    
+                    <i class="fas fa-play" style="margin-left: 50px;"></i>
+                </button>
+            </div>
+        </form>
+
+        <div class="text-center" *ngIf="resultado">
+            {{resultado}}
+        </div>
+    </div>
+</div>

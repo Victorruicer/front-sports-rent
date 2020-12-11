@@ -5,6 +5,7 @@ import { localStorageSync, LocalStorageConfig } from 'ngrx-store-localstorage';
 import { loginReducer, LoginState } from './components/ident/redux/store/login.reducer';
 import { registroReducer, RegistroState } from './components/ident/redux/store/registro.reducer';
 import { PerfilState, perfilReducer } from './components/perfil/redux/store/perfil.reducer';
+import { tarifaReducer, TarifaState } from './components/gestion-tarifas/redux/store/tarifa.reducer';
 
 
 
@@ -14,7 +15,8 @@ export interface AppState {
   login: LoginState,
   users: UserState,
   registro: RegistroState,
-  perfil: PerfilState
+  perfil: PerfilState,
+  tarifa: TarifaState
 }
 
 export const appReducers: ActionReducerMap<any> = {
@@ -22,7 +24,8 @@ export const appReducers: ActionReducerMap<any> = {
   login: loginReducer,
   users: userReducer,
   registro: registroReducer,
-  perfil: perfilReducer
+  perfil: perfilReducer,
+  tarifa: tarifaReducer
 };
 
 export const selectLoginState = createFeatureSelector<AppState>('login');
@@ -35,6 +38,7 @@ export function persitsData(reducer: ActionReducer<any>): ActionReducer<any> {
       {'users': { encrypt: (message:string) => {return message;}, decrypt: (message:string) => {return message;}}},
       {'registro': { encrypt: (message:string) => {return message;}, decrypt: (message:string) => {return message;}}},
       {'perfil': { encrypt: (message:string) => {return message;}, decrypt: (message:string) => {return message;}}},
+      {'tarifa': { encrypt: (message:string) => {return message;}, decrypt: (message:string) => {return message;}}},
     ],
     rehydrate: true,
     removeOnUndefined: true,

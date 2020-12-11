@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.reducer';
+import { GestionTarifasService } from './gestion-tarifas.service';
 
 @Component({
   selector: 'app-gestion-tarifas',
@@ -7,9 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GestionTarifasComponent implements OnInit {
 
-  constructor() { }
+  constructor(private gestionTarifasService: GestionTarifasService, private store: Store<AppState>) { }
 
   ngOnInit(): void {
+    
   }
 
 }

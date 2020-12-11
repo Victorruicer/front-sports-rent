@@ -105,10 +105,10 @@ export class CrearUsuarioComponent implements OnInit {
       data => {
         if(data['Id_Usuario'] > 0 && data['Retcode'] === 0){
           console.log("creado ok");
-          this.toastr.success("Usuario creado correctamente");
+          this.toastr.success("Usuario actualizado correctamente");
           this.store.dispatch(new CrearUser(data));
         }else{
-          this.toastr.error("No se ha podido crear el usuario");
+          this.toastr.error("No se ha podido actualizar el usuario");
         }
         this.formulario.reset();
       })
