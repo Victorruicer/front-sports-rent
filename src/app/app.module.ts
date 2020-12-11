@@ -15,7 +15,6 @@ import { ToastrModule } from 'ngx-toastr';
 //IMAGEN
 import { ImageUploadModule } from 'angular2-image-upload';
 
-
 //COMPONENTS SHARED
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/shared/home/home.component';
@@ -35,7 +34,6 @@ import { appReducers, metaReducers } from './app.reducer';
 import { TokenInterceptor } from './components/auth/token.interceptor';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +41,7 @@ import { TokenInterceptor } from './components/auth/token.interceptor';
     FooterComponent,
     HeaderComponent,
     NavbarComponent,
-    AboutfooterComponent
+    AboutfooterComponent,
   ],
   imports: [
     BrowserModule,
