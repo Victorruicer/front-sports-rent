@@ -32,6 +32,7 @@ import { appReducers, metaReducers } from './app.reducer';
 
 //AUTH GUARD
 import { TokenInterceptor } from './components/auth/token.interceptor';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { TokenInterceptor } from './components/auth/token.interceptor';
     StoreModule.forRoot(appReducers, {metaReducers}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

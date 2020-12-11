@@ -11,7 +11,9 @@ const APP_ROUTES: Routes = [
     { path: 'gestionTarifas', loadChildren: () => import('./components/gestion-tarifas/gestion-tarifas.module').then(m => m.GestionTarifasModule) },
     { path: 'gestionHorarios', loadChildren: () => import('./components/gestion-horarios/gestion-horarios.module').then(m => m.GestionHorariosModule) },
     { path: 'listadoReservas', loadChildren: () => import('./components/listado-reservas/listado-reservas.module').then(m => m.ListadoReservasModule) },
-    
+
+    { path: 'reservas', loadChildren: () => import('./components/reservas/reservas.module').then(m => m.ReservasModule) },
+
     { path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];
 

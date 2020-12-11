@@ -4,6 +4,8 @@ import { ReservasComponent } from './reservas.component';
 import { RESERVAS_ROUTING } from './reservas.routes';
 import { CardReservaComponent } from './card-reserva/card-reserva.component';
 import { SelectorReservaComponent } from './selector-reserva/selector-reserva.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -11,10 +13,13 @@ import { SelectorReservaComponent } from './selector-reserva/selector-reserva.co
   declarations: [
     ReservasComponent,
     CardReservaComponent,
-    SelectorReservaComponent
+    SelectorReservaComponent,
     ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule,
     RESERVAS_ROUTING
   ]
 })
