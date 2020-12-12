@@ -1,0 +1,27 @@
+<div class="cont">
+    <div class="col">
+        <form autocomplete="off" [formGroup]="formulario"  (ngSubmit)="actualizar()">
+
+            <!-- Actividad -->
+            <div class="form-group">
+                <label><b style="color: red;">* </b> ACTIVIDAD</label>
+                <input type="text" class="form-control" formControlName="actividad" [class.is-invalid]="actividadNoValido">
+                <small *ngIf="actividadNoValido" class="text-danger">El nombre de la actividad es necesario</small>
+            </div>
+
+            <br>
+            <div class="form-group text-center">
+                <button type="submit"
+                        class="btn btn-primary"
+                        style="letter-spacing: 2px; padding-left: 50px;">
+                    CONFIRMAR                    
+                    <i class="fas fa-play" style="margin-left: 50px;"></i>
+                </button>
+            </div>
+        </form>
+
+        <div class="text-center" *ngIf="resultado">
+            {{resultado}}
+        </div>
+    </div>
+</div>

@@ -2,7 +2,7 @@ import { Component, OnInit, Pipe, PipeTransform, ViewChild } from '@angular/core
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {NgbDateStruct, NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { ActividadModel } from '../models/actividadModel';
+import { ActividadModel } from '../../gestion-actividades/models/actividadModel';
 import { ReservasService } from '../reservas.service';
 
 @Component({
