@@ -1,6 +1,7 @@
 import { Component, OnInit, Pipe, PipeTransform, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {NgbDateStruct, NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { ActividadModel } from '../models/actividadModel';
 import { ReservasService } from '../reservas.service';
 
@@ -14,7 +15,7 @@ export class SelectorReservaComponent implements OnInit {
 
   formulario: FormGroup;
   resultado: any;
-  actividades: [];
+  actividades: ActividadModel[];
 
   fechaddmmyy: any;
   displayMonths = 1;
@@ -23,7 +24,7 @@ export class SelectorReservaComponent implements OnInit {
   outsideDays = 'visible'
   @ViewChild('dp') dp: NgbDatepicker;
 
-  constructor(private fb: FormBuilder,private reservasService: ReservasService) {
+  constructor(private fb: FormBuilder,private reservasService: ReservasService, private toastr: ToastrService) {
     this.formulario = this.fb.group({
       selectActividad: ['', Validators.required],
       dp: ''
@@ -34,7 +35,7 @@ export class SelectorReservaComponent implements OnInit {
     this.reservasService.getActividades().subscribe(
       actividades => {
         if(actividades.length > 0){
-            this.actividades = [...new Set(actividades['actividad'])];
+            this.actividades = actividades;
 
         }
       }
@@ -58,7 +59,20 @@ export class SelectorReservaComponent implements OnInit {
   buscaPistas(){
     var objetoFecha = this.formulario.get('dp').value;
     var fecha = objetoFecha.day+"/"+objetoFecha.month+"/"+objetoFecha.year;
-    console.log("la fecha es "+ fecha);
+    var actividadID = (this.formulario.get('selectActividad').value).split('-');
+    var actividad = actividadID[1];
+    console.log(actividad);
+    this.reservasService.getPistasReserva(actividad, fecha).subscribe(
+      pistas => {
+        if(pistas[0].Mensaje != "No existen pistas disponibles."){
+
+
+
+        }else{
+          this.toastr.warning(pistas[0].Mensaje + " para " + actividad);
+        }
+      }
+    )
    }
 
 
