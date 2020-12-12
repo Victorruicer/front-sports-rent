@@ -1,9 +1,10 @@
-import { Component, OnInit, Pipe, PipeTransform, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {NgbDateStruct, NgbDatepicker } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { ActividadModel } from '../models/actividadModel';
+import { ActividadModel } from '../../gestion-actividades/models/actividadModel';
 import { ReservasService } from '../reservas.service';
+import { PistaReservaModel } from '../models/pistaReservaModel';
 
 @Component({
   selector: 'app-selector-reserva',
@@ -16,6 +17,7 @@ export class SelectorReservaComponent implements OnInit {
   formulario: FormGroup;
   resultado: any;
   actividades: ActividadModel[];
+  pistas: PistaReservaModel[];
 
   fechaddmmyy: any;
   displayMonths = 1;
@@ -36,7 +38,6 @@ export class SelectorReservaComponent implements OnInit {
       actividades => {
         if(actividades.length > 0){
             this.actividades = actividades;
-
         }
       }
     )
@@ -61,15 +62,13 @@ export class SelectorReservaComponent implements OnInit {
     var fecha = objetoFecha.day+"/"+objetoFecha.month+"/"+objetoFecha.year;
     var actividadID = (this.formulario.get('selectActividad').value).split('-');
     var actividad = actividadID[1];
-    console.log(actividad);
+    console.log(actividad + " " + fecha);
     this.reservasService.getPistasReserva(actividad, fecha).subscribe(
       pistas => {
-        if(pistas[0].Mensaje != "No existen pistas disponibles."){
-
-
-
+        if(pistas.length > 0){
+          this.pistas = pistas;
         }else{
-          this.toastr.warning(pistas[0].Mensaje + " para " + actividad);
+          this.toastr.warning("No hay pistas disponibles para " + actividad + " el " + fecha);
         }
       }
     )

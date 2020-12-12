@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ActividadModel } from './models/actividadModel';
 import { environment } from '../../../environments/environment';
+import { ActividadModel } from '../gestion-actividades/models/actividadModel';
 import { PistaReservaModel } from './models/pistaReservaModel';
 
 
