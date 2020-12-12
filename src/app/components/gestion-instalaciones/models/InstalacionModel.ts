@@ -1,8 +1,10 @@
 export class InstalacionModel {
-    Id_Instalacion?: number;
-    Nombre: string;
     Direccion: string;
-    Operativa: boolean;
     Id_Horario?: number;
+    Horario?: string;
     Imagen?: string;
+    Id_Instalacion?: number;
+    Mensaje?: string;
+    Instalacion: string;
+    Operativa: boolean;
 }

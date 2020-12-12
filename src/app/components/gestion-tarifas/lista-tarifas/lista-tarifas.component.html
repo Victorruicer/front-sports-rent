@@ -9,12 +9,12 @@
     </thead>
     <tbody>
         <tr *ngFor="let tarifa of tarifas">
-            <td scope="row">{{tarifa.Id_Tarifa}}</td>
+            <td scope="row">{{tarifa.Id_tarifa}}</td>
             <td>{{tarifa.Tarifa}}</td>
             <td>{{tarifa.Valor}}</td>
             <td>
                 <button style="margin: 10px;" class="btn btn-success" (click)="editar(tarifa)"><i class="fas fa-edit"></i></button>
-                <button style="margin: 10px;" class="btn btn-danger" (click)="delTarifa(tarifa.Id_Tarifa)"><i class="fas fa-trash-alt"></i></button>
+                <button style="margin: 10px;" class="btn btn-danger" (click)="delTarifa(tarifa.Id_tarifa)"><i class="fas fa-trash-alt"></i></button>
             </td>
         </tr>
     </tbody>

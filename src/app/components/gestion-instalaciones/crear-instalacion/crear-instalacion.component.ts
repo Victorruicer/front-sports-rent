@@ -92,7 +92,7 @@ export class CrearInstalacionComponent implements OnInit {
 
     //Cargar datos del formulario
     const datosI: InstalacionModel = {
-      Nombre: this.formulario.get('nombre')?.value,
+      Instalacion: this.formulario.get('nombre')?.value,
       Direccion: this.formulario.get('direccion')?.value,
       Operativa: this.formulario.get('op')?.value,
       Id_Horario: this.formulario.get('horario').value,
@@ -101,7 +101,7 @@ export class CrearInstalacionComponent implements OnInit {
 
     this.gestionInstalacionesService.crearInstalacion(datosI).subscribe(
       data => {
-        if(data['Id_Instalacion'] > 0 && data['Retcode'] === 0){
+        if(data['Retcode'] === 0){
           console.log("creado ok");
           this.toastr.success("Instalación creada correctamente");
           this.store.dispatch(new CrearInstalacion(data));

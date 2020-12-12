@@ -63,7 +63,7 @@ export class CrearTarifaComponent implements OnInit {
 
     this.gestionTarifasService.crearTarifa(datosT).subscribe(
       data => {
-        if(data['Id_Tarifa'] > 0 && data['Retcode'] === 0){
+        if(data['Retcode'] === 0){
           console.log("creado ok");
           this.toastr.success("Tarifa creada correctamente");
           this.store.dispatch(new CrearTarifa(data));

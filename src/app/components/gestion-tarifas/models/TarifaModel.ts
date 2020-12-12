@@ -1,5 +1,6 @@
 export class TarifaModel {
-    Id_Tarifa?:number;
+    Id_tarifa?:number;
     Tarifa:string;
     Valor:number;
+    Mensaje?:string;
 }
