@@ -1,0 +1,23 @@
+<table class="table table-striped" style="margin-top: 20px;">
+    <thead class="thead">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Actividad</th>
+            <th scope="col-2">Gestión</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let actividad of actividades">
+            <td scope="row">{{actividad.Id_actividad}}</td>
+            <td>{{actividad.Actividad}}</td>
+            <td>
+                <button style="margin: 10px;" class="btn btn-success" (click)="editar(actividad)"><i class="fas fa-edit"></i></button>
+                <button style="margin: 10px;" class="btn btn-danger" (click)="delActividad(actividad.Id_actividad)"><i class="fas fa-trash-alt"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="text-center" *ngIf="resultado">
+    Resultado: {{resultado.Mensaje}}
+</div>

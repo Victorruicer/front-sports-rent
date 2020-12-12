@@ -22,7 +22,7 @@ export function tarifaReducer(state = initialState, action: TarifaActions): Tari
       return {
         ...state,
         tarifas: state.tarifas.filter(
-          user => user.Id_tarifa !== action.payload.id)
+          tarifa => tarifa.Id_tarifa !== action.payload.id)
       };
     }
     case TarifaActionTypes.EDITAR: {
