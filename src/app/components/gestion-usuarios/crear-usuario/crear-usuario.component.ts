@@ -43,6 +43,7 @@ export class CrearUsuarioComponent implements OnInit, OnDestroy {
       });
       this.idUsuario = this.upUsuario.Id_Usuario;
 
+      //Para la primera vez que carga el formulario
       if(this.idUsuario === undefined){
         this.formulario.patchValue({
           id_perfil: 0,

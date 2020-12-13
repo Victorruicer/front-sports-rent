@@ -17,24 +17,28 @@
             </div>
 
             <!-- Operativa -->
-            <div class="form-check">
-                <input class="form-check-input" type="radio" value="true" name="op" id="operativa" checked>
-                <label class="form-check-label" for="operativa">
-                  Operativa
-                </label>
-                <input class="form-check-input" type="radio" value="false" name="op" id="inoperativa">
-                <label class="form-check-label" for="inoperativa">
-                  No operativa
-                </label>
+            <div class="radios form-group" style="padding-right: 20px;">
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" value="true" name="op" id="operativa" checked>
+                    <label class="form-check-label" for="operativa">
+                      Operativa
+                    </label>
+                </div>
+                <div class="form-check-inline" style="padding-left: 20px;">
+                    <input class="form-check-input" type="radio" value="false" name="op" id="inoperativa">
+                    <label class="form-check-label" for="inoperativa">
+                      No operativa
+                    </label>
+                </div>
             </div>
 
             <!-- Horario -->
-            <div class="form-group">
+            <div class="form-group" style="padding-bottom: 20px;">
                 <label><b style="color: red;">* </b> HORARIO</label>
-                <!-- <select class="form-control" formControlName="horario" id="horario" [class.is-invalid]="horarioNoValido">
+                <select class="form-control" formControlName="horario" id="horario" [class.is-invalid]="horarioNoValido">
                   <option value="0" disabled>Selecciona un horario</option>
-                  <option *ngFor="let horario of horarios" value="{{horario.Id_Horario}}">{{horario.Nombre}}</option>
-                </select> -->
+                  <option *ngFor="let horario of gestionHorariosService.lista" value="{{horario.Id_Horario}}">{{horario.Nombre}}</option>
+                </select>
                 <small *ngIf="horarioNoValido" class="text-danger">Se ha de especificar un horario para la instalación</small>
             </div>
 

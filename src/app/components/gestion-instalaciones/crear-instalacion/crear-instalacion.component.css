@@ -1,9 +1,7 @@
 .imageninstalacion{
     border: 0.2px solid;
-    height: 100px;
-    width: 150px;
-    margin-bottom: 25px;
-    margin-left: 53px;
+    height: 200px;
+    width: 3750px;
 }
 
 /* IMAGEN */
@@ -26,4 +24,9 @@ input[type="file"]{
     color: red;
     margin-left: 45px;
     margin-bottom: 20px;
+}
+
+.radios{
+    padding-top: 10px;
+    text-align: center;
 }

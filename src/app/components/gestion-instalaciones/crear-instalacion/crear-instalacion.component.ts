@@ -1,41 +1,70 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 import { AppState } from 'src/app/app.reducer';
+import { GestionHorariosService } from '../../gestion-horarios/gestion-horarios.service';
 import { GestionInstalacionesService } from '../gestion-instalaciones.service';
 import { InstalacionModel } from '../models/InstalacionModel';
-import { CrearInstalacion } from '../redux/store/instalaciones.actions';
+import { CrearInstalacion, EditarInstalacion } from '../redux/store/instalaciones.actions';
 
 @Component({
   selector: 'app-crear-instalacion',
   templateUrl: './crear-instalacion.component.html',
   styleUrls: ['./crear-instalacion.component.css']
 })
-export class CrearInstalacionComponent implements OnInit {
+export class CrearInstalacionComponent implements OnInit, OnDestroy {
 
   formulario: FormGroup;
   resultado: string;
   Imagen: any;
   instalacion: InstalacionModel;
   mensaje: string = null;
+  subscription: Subscription;
+  upInstalacion: InstalacionModel;
+  idInstalacion = 0;
 
   constructor(private fb:FormBuilder,
-             private gestionInstalacionesService: GestionInstalacionesService,
+             public gestionInstalacionesService: GestionInstalacionesService,
+             public gestionHorariosService: GestionHorariosService,
              private store: Store<AppState>,
              private toastr: ToastrService) {
     this.formulario = this.fb.group({
       nombre    : ['', [Validators.required, Validators.minLength(4)]],
       direccion : ['', Validators.required],
       op        : ['', Validators.required],
-      horario   : ['', Validators.required],
+      horario   : [0, Validators.required],
       imagen    : ['']
     });
 
   }
 
   ngOnInit(): void {
+    this.gestionHorariosService.getListaHorarios();
+    this.subscription = this.gestionInstalacionesService.obtenerInstalacion$().subscribe(data =>{
+      this.upInstalacion = data;
 
+      this.formulario.patchValue({
+        nombre: this.upInstalacion.Instalacion,
+        direccion: this.upInstalacion.Direccion,
+        op: this.upInstalacion.Operativa,
+        horario: this.upInstalacion.Id_Horario,
+        imagen: this.upInstalacion.Imagen
+      });
+      this.idInstalacion = this.upInstalacion.Id_Instalacion;
+
+      //Para la primera vez que carga el formulario
+      if(this.idInstalacion === undefined){
+        this.formulario.patchValue({
+          horario: 0,
+        });
+      }
+    });
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
   get nombreNoValido(){
@@ -99,6 +128,14 @@ export class CrearInstalacionComponent implements OnInit {
       Imagen: this.Imagen
     }
 
+    if(this.idInstalacion === undefined){
+      this.crear(datosI);
+    }else{
+      this.editar(datosI);
+    }
+  }
+    
+  crear(datosI: InstalacionModel){
     this.gestionInstalacionesService.crearInstalacion(datosI).subscribe(
       data => {
         if(data['Retcode'] === 0){
@@ -108,8 +145,25 @@ export class CrearInstalacionComponent implements OnInit {
         }else{
           this.toastr.error("No se ha podido crear la instalación!");
         }
+        this.gestionInstalacionesService.getListaInstalaciones();
         this.formulario.reset();
-      })
-
+      }
+    )
   }
+
+  editar(datosI: InstalacionModel){
+    datosI.Id_Instalacion = this.idInstalacion;
+    this.gestionInstalacionesService.actualizarInstalacion(datosI).subscribe(data =>{
+      if(data['Retcode'] === 0){
+        this.toastr.success("Instalación modificada correctamente");
+        this.store.dispatch(new EditarInstalacion(data));
+      }else{
+        this.toastr.error("No se ha podido modificar la instalación!");
+      }
+      this.gestionInstalacionesService.getListaInstalaciones();
+      this.formulario.reset();
+      this.idInstalacion = undefined;
+    });
+  }
+
 }
