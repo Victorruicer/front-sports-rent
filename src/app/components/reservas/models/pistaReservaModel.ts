@@ -2,7 +2,7 @@ export class PistaReservaModel{
   Pista?: string;
   Horario?: string;
   Instalacion?: string;
-  Precio_hora?: string;
+  Precio_hora?: number;
   LibresReservadas?: string[];
   Fecha?: string;
   H_ini?: string;

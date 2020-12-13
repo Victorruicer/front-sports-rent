@@ -73,6 +73,7 @@ export class SelectorReservaComponent implements OnInit {
     this.reservasService.getPistasReserva(actividad, fecha).subscribe(
       pistas => {
         if(pistas.length > 0){
+                console.log(pistas);
           this.pistas = pistas;
           this.store.dispatch(new PistasDisponibles({lista: pistas}));
         }else{

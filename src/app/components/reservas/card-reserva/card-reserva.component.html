@@ -15,26 +15,9 @@
         <div class="row mx-2 px-3">
             <form autocomplete="off" [formGroup]="formulario" (ngSubmit)="reservar()">
                 <div class="row text-center">
-                    <!--                     <div class="col-6">
-                        <div class="form-group">
-                            <label><b style="color: green;">* </b> 1ª Hora</label>
-                            <select class="form-control" formControlName="horaUno" id="horaUno">
-                              <option *ngFor="let hora of horarios">{{hora}}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label><b style="color: green;">* </b> 2ª Hora</label>
-                            <select class="form-control" formControlName="horaDos" id="horaDos">
-                              <option *ngFor="let hora of horarios">{{hora}}</option>
-                            </select>
-
-                        </div>
-                    </div> -->
                     <!-- TEXTO -->
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><span class="titulo">¿Cuanto tiempo quieres reservar?</span></li>
+                        <li class="list-group-item"><span class="titulo">¿Cuantas horas quieres reservar?</span></li>
                         <li class="list-group-item">
                             <!-- SELECCION HORAS -->
                             <div class="form-check form-check-inline">
@@ -50,7 +33,8 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <div class="container form-group" *ngIf="cambia; else doshoras">
-                                <select class="form-control" formControlName="horaDos" id="horaDos">
+                                <select class="form-control" formControlName="horaUno" id="horaUno">
+                                  <option value="0" selected>Selecciona una hora</option>
                                   <option *ngFor="let hora of horarios">{{hora}}</option>
                                 </select>
                             </div>
@@ -60,8 +44,9 @@
                     <ng-template #doshoras>
                         <div class="container form-group">
                             <select class="form-control" formControlName="horaDos" id="horaDos">
-                          <option *ngFor="let hora of horarios">{{hora}}</option>
-                        </select>
+                            <option value="0" selected>Selecciona una hora</option>
+                            <option *ngFor="let hora of horarios">{{hora}}</option>
+                          </select>
                         </div>
                     </ng-template>
                     <ul class="list-group list-group-flush">
