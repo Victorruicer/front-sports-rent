@@ -8,7 +8,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let tarifa of tarifas">
+        <tr *ngFor="let tarifa of gestionTarifasService.lista">
             <td scope="row">{{tarifa.Id_tarifa}}</td>
             <td>{{tarifa.Tarifa}}</td>
             <td>{{tarifa.Valor}}</td>

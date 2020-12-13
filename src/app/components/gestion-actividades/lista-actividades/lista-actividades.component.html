@@ -7,7 +7,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let actividad of actividades">
+        <tr *ngFor="let actividad of gestionActividadesService.lista">
             <td scope="row">{{actividad.Id_actividad}}</td>
             <td>{{actividad.Actividad}}</td>
             <td>
