@@ -1,21 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserModel } from '../models/UserModel';
 import { GestionUsuariosService } from '../gestion-usuarios.service';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../app.reducer';
 import { ToastrService } from 'ngx-toastr';
-import { CrearUser } from '../redux/store/usuario.actions';
+import { CrearUser, EditarUser } from '../redux/store/usuario.actions';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-crear-usuario',
   templateUrl: './crear-usuario.component.html',
   styleUrls: ['./crear-usuario.component.css']
 })
-export class CrearUsuarioComponent implements OnInit {
+export class CrearUsuarioComponent implements OnInit, OnDestroy {
 
   formulario: FormGroup;
   resultado: string;
+  subscription: Subscription;
+  upUsuario: UserModel;
+  idUsuario = 0;
 
   constructor( private fb: FormBuilder,
               private store: Store<AppState>,
@@ -26,7 +30,29 @@ export class CrearUsuarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.subscription = this.gestionUsuariosService.obtenerUsuario$().subscribe(data =>{
+      this.upUsuario = data;
 
+      this.formulario.patchValue({
+        nombre   : this.upUsuario.Nombre,
+        apellido1: this.upUsuario.Apellido1,
+        apellido2: this.upUsuario.Apellido2,
+        dni      : this.upUsuario.Dni,
+        id_perfil: this.upUsuario.Id_Perfil,
+        email    : this.upUsuario.Email,
+      });
+      this.idUsuario = this.upUsuario.Id_Usuario;
+
+      if(this.idUsuario === undefined){
+        this.formulario.patchValue({
+          id_perfil: 0,
+        });
+      }
+    });
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
   get nombreNoValido(){
@@ -101,16 +127,20 @@ export class CrearUsuarioComponent implements OnInit {
       Id_Perfil: this.formulario.get('id_perfil')?.value,
     }
 
-    this.gestionUsuariosService.crearUsuario(datosL).subscribe(
-      data => {
-        if(data['Id_Usuario'] > 0 && data['Retcode'] === 0){
-          console.log("creado ok");
-          this.toastr.success("Usuario actualizado correctamente");
-          this.store.dispatch(new CrearUser(data));
-        }else{
-          this.toastr.error("No se ha podido actualizar el usuario");
-        }
-        this.formulario.reset();
-      })
+    datosL.Id_Usuario = this.idUsuario;
+    this.gestionUsuariosService.actualizarUsuario(datosL).subscribe(data =>{
+      if(data['Retcode'] === 0){
+        this.toastr.success("Usuario actualizado correctamente");
+        this.store.dispatch(new EditarUser(data));
+      }else{
+        this.toastr.error("No se ha podido actualizar el usuario!");
+      }
+      this.gestionUsuariosService.getListaUsuarios();
+      this.formulario.reset();
+      this.idUsuario = undefined;
+      this.formulario.patchValue({
+        id_perfil: 0,
+      });
+    });
   }
 }

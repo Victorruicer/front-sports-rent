@@ -1,21 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../../app.reducer';
 import { ToastrService } from 'ngx-toastr';
 import { TarifaModel } from '../models/TarifaModel';
 import { GestionTarifasService } from '../gestion-tarifas.service';
-import { CrearTarifa } from '../redux/store/tarifas.actions';
+import { CrearTarifa, EditarTarifa } from '../redux/store/tarifas.actions';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-crear-tarifa',
   templateUrl: './crear-tarifa.component.html',
   styleUrls: ['./crear-tarifa.component.css']
 })
-export class CrearTarifaComponent implements OnInit {
+export class CrearTarifaComponent implements OnInit, OnDestroy {
 
   formulario: FormGroup;
   resultado: string;
+  subscription: Subscription;
+  upTarifa: TarifaModel;
+  idTarifa = 0;
 
   constructor( private fb: FormBuilder,
               private store: Store<AppState>,
@@ -30,7 +34,19 @@ export class CrearTarifaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.subscription = this.gestionTarifasService.obtenerTarifa$().subscribe(data =>{
+      this.upTarifa = data;
 
+      this.formulario.patchValue({
+        tarifa: this.upTarifa.Tarifa,
+        valor: this.upTarifa.Valor
+      });
+      this.idTarifa = this.upTarifa.Id_tarifa;
+    });
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
   get tarifaNoValido(){
@@ -61,6 +77,14 @@ export class CrearTarifaComponent implements OnInit {
       Valor: this.formulario.get('valor')?.value,
     }
 
+    if(this.idTarifa === undefined){
+      this.crear(datosT);
+    }else{
+      this.editar(datosT);
+    }
+  }
+    
+  crear(datosT: TarifaModel){
     this.gestionTarifasService.crearTarifa(datosT).subscribe(
       data => {
         if(data['Retcode'] === 0){
@@ -70,7 +94,24 @@ export class CrearTarifaComponent implements OnInit {
         }else{
           this.toastr.error("No se ha podido crear la tarifa!");
         }
+        this.gestionTarifasService.getListaTarifas();
         this.formulario.reset();
-      })
+      }
+    )
+  }
+
+  editar(datosT: TarifaModel){
+    datosT.Id_tarifa = this.idTarifa;
+    this.gestionTarifasService.actualizarTarifa(datosT).subscribe(data =>{
+      if(data['Retcode'] === 0){
+        this.toastr.success("Tarifa modificada correctamente");
+        this.store.dispatch(new EditarTarifa(data));
+      }else{
+        this.toastr.error("No se ha podido modificar la tarifa!");
+      }
+      this.gestionTarifasService.getListaTarifas();
+      this.formulario.reset();
+      this.idTarifa = undefined;
+    });
   }
 }

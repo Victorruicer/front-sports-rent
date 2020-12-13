@@ -21,10 +21,11 @@ export class ListaTarifasComponent implements OnInit {
               private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.store.select('tarifa').subscribe(
-      listaTarifas =>{
-        this.tarifas = listaTarifas.tarifas
-      })
+    // this.store.select('tarifa').subscribe(
+    //   listaTarifas =>{
+    //     this.tarifas = listaTarifas.tarifas
+    //   })
+    this.gestionTarifasService.getListaTarifas();
   }
 
   delTarifa(id: number){

@@ -21,10 +21,11 @@ export class ListaActividadesComponent implements OnInit {
               private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.store.select('actividad').subscribe(
-      listActividades =>{
-        this.actividades = listActividades.actividades
-      })
+    // this.store.select('actividad').subscribe(
+    //   listActividades =>{
+    //     this.actividades = listActividades.actividades
+    //   })
+    this.gestionActividadesService.getListaActividades();
   }
 
   delActividad(id: number){
@@ -41,5 +42,9 @@ export class ListaActividadesComponent implements OnInit {
         }
       })
     }
+  }
+
+  editar(actividad: ActividadModel){
+    this.gestionActividadesService.actualizar(actividad);
   }
 }

@@ -21,11 +21,11 @@ export class ListaUsuariosComponent implements OnInit {
               private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    //this.gestionUsuariosService.getListaUsuarios();
-    this.store.select('users').subscribe(
-      listaUsers =>{
-        this.usuarios = listaUsers.users
-      })
+    // this.store.select('users').subscribe(
+      //   listaUsers =>{
+      //     this.usuarios = listaUsers.users
+    //   })
+    this.gestionUsuariosService.getListaUsuarios();
   }
 
   delUsuario(id: number){
