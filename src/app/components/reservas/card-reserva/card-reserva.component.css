@@ -1,0 +1,10 @@
+.titulo {
+    color: black;
+    font-weight: bold;
+    padding-right: 1em;
+}
+
+.comment {
+    color: rgb(23, 112, 23);
+    font-style: italic;
+}

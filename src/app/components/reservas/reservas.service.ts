@@ -13,6 +13,7 @@ export class ReservasService {
 
   getActividadesUrl = "/api/actividad/listActividades";
   getPistaReservaUrl = "/api/pista/pistasReserva";
+  createReservaUrl = "/api/reserva/createReserva";
 
   constructor(private http: HttpClient) { }
 
@@ -22,6 +23,10 @@ export class ReservasService {
 
   getPistasReserva(actividad: string, fecha: string):Observable<PistaReservaModel[]>{
     return this.http.post<PistaReservaModel[]>(environment.apiUrl + this.getPistaReservaUrl, {Actividad: actividad, Fecha: fecha});
+  }
+
+  createReserva(reserva: PistaReservaModel):Observable<PistaReservaModel[]>{
+    return this.http.post<PistaReservaModel[]>(environment.apiUrl + this.createReservaUrl, reserva);
   }
 
 }

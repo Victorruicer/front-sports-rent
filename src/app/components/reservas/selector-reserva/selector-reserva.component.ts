@@ -5,6 +5,9 @@ import { ToastrService } from 'ngx-toastr';
 import { ActividadModel } from '../../gestion-actividades/models/actividadModel';
 import { ReservasService } from '../reservas.service';
 import { PistaReservaModel } from '../models/pistaReservaModel';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.reducer';
+import { PistasDisponibles } from '../redux/store/reserva.actions';
 
 @Component({
   selector: 'app-selector-reserva',
@@ -26,7 +29,10 @@ export class SelectorReservaComponent implements OnInit {
   outsideDays = 'visible'
   @ViewChild('dp') dp: NgbDatepicker;
 
-  constructor(private fb: FormBuilder,private reservasService: ReservasService, private toastr: ToastrService) {
+  constructor(private fb: FormBuilder,
+              private reservasService: ReservasService,
+              private toastr: ToastrService,
+              private store: Store<AppState>) {
     this.formulario = this.fb.group({
       selectActividad: ['', Validators.required],
       dp: ''
@@ -38,6 +44,7 @@ export class SelectorReservaComponent implements OnInit {
       actividades => {
         if(actividades.length > 0){
             this.actividades = actividades;
+            console.log(actividades)
         }
       }
     )
@@ -67,6 +74,7 @@ export class SelectorReservaComponent implements OnInit {
       pistas => {
         if(pistas.length > 0){
           this.pistas = pistas;
+          this.store.dispatch(new PistasDisponibles({lista: pistas}));
         }else{
           this.toastr.warning("No hay pistas disponibles para " + actividad + " el " + fecha);
         }

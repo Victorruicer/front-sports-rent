@@ -11,11 +11,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { GestionActividadesComponent } from './gestion-actividades.component';
 import { ListaActividadesComponent } from './lista-actividades/lista-actividades.component';
 import { CrearActividadComponent } from './crear-actividad/crear-actividad.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    GestionActividadesComponent, 
-    ListaActividadesComponent, 
+    GestionActividadesComponent,
+    ListaActividadesComponent,
     CrearActividadComponent
   ],
   imports: [
