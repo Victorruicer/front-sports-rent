@@ -43,6 +43,8 @@ export class CrearInstalacionComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
+    //this.formulario.setValue(this.formulario.get('op'));
     this.store.select('horario').subscribe(
       horarios => {
         this.horarios = horarios.horario
@@ -59,7 +61,7 @@ export class CrearInstalacionComponent implements OnInit, OnDestroy {
         horario: this.upInstalacion.Id_Horario,
         imagen: this.upInstalacion.Imagen
       });
-      this.idInstalacion = this.upInstalacion.Id_Instalacion;
+      this.idInstalacion = this.upInstalacion.Id_instalacion;
 
       //Para la primera vez que carga el formulario
       if(this.idInstalacion === undefined){
@@ -109,7 +111,6 @@ export class CrearInstalacionComponent implements OnInit, OnDestroy {
   }
 
   actualizar(){
-    console.log("hola")
 
     //Control de validación del formulario
      if(this.formulario.invalid){
@@ -126,7 +127,6 @@ export class CrearInstalacionComponent implements OnInit, OnDestroy {
       });
     }
 
-
     //Cargar datos del formulario
     const datosI: InstalacionModel = {
       Instalacion: this.formulario.get('nombre')?.value,
@@ -135,8 +135,7 @@ export class CrearInstalacionComponent implements OnInit, OnDestroy {
       Id_Horario: this.formulario.get('horario').value,
       Imagen: this.Imagen
     }
-  console.log("datosI = "+ datosI)
-
+    console.log("id "+ datosI.Operativa)
     if(this.idInstalacion === undefined){
       this.crear(datosI);
     }else{
@@ -145,6 +144,7 @@ export class CrearInstalacionComponent implements OnInit, OnDestroy {
   }
 
   crear(datosI: InstalacionModel){
+
     this.gestionInstalacionesService.crearInstalacion(datosI).subscribe(
       data => {
         if(data['Retcode'] === 0){
@@ -156,13 +156,16 @@ export class CrearInstalacionComponent implements OnInit, OnDestroy {
         }
         this.gestionInstalacionesService.getListaInstalaciones();
         this.formulario.reset();
+        this.formulario.patchValue({
+          horario: 0
+        })
       })
     }
 
 
 
   editar(datosI: InstalacionModel){
-    datosI.Id_Instalacion = this.idInstalacion;
+    datosI.Id_instalacion = this.idInstalacion;
     this.gestionInstalacionesService.actualizarInstalacion(datosI).subscribe(data =>{
       if(data['Retcode'] === 0){
         this.toastr.success("Instalación modificada correctamente");
@@ -172,6 +175,9 @@ export class CrearInstalacionComponent implements OnInit, OnDestroy {
       }
       this.gestionInstalacionesService.getListaInstalaciones();
       this.formulario.reset();
+      this.formulario.patchValue({
+          horario: 0
+        })
       this.idInstalacion = undefined;
     });
   }

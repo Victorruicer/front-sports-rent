@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { AppState } from 'src/app/app.reducer';
+import { HorarioModel } from '../../gestion-horarios/models/HorarioModel';
 import { GestionInstalacionesService } from '../gestion-instalaciones.service';
 import { InstalacionModel } from '../models/InstalacionModel';
 import { EliminarInstalacion } from '../redux/store/instalaciones.actions';
@@ -14,6 +15,7 @@ import { EliminarInstalacion } from '../redux/store/instalaciones.actions';
 export class ListaInstalacionesComponent implements OnInit {
 
   instalaciones: InstalacionModel[] = [];
+//  horarios: HorarioModel[] = [];
   resultado: any;
 
   constructor(public gestionInstalacionesService: GestionInstalacionesService,
@@ -21,11 +23,20 @@ export class ListaInstalacionesComponent implements OnInit {
               private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    // this.store.select('instalacion').subscribe(
-    //   listaInstalaciones =>{
-    //     this.instalaciones = listaInstalaciones.instalaciones
-    // })
-    this.gestionInstalacionesService.getListaInstalaciones();
+     this.gestionInstalacionesService.getListaInstalaciones();
+     /*
+    this.store.select('horario').subscribe(
+      horarios => {
+        if(horarios.horario.length > 0){
+          this.horarios = horarios.horario
+        }
+      }) */
+      this.store.subscribe(
+        store => {
+//          this.horarios = store.horario.horario,
+          this.instalaciones = store.instalacion.instalaciones
+        }
+      )
   }
 
   delInstalacion(id: number){

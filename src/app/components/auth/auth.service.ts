@@ -10,6 +10,10 @@ import { InicializaUsers } from '../gestion-usuarios/redux/store/usuario.actions
 import { InicializaRegistro } from '../ident/redux/store/registro.actions';
 import { InicializaPerfil } from '../perfil/redux/store/perfil.actions';
 import { Observable } from 'rxjs';
+import { InicializaInstalaciones } from '../gestion-instalaciones/redux/store/instalaciones.actions';
+import { InicializaActividades } from '../gestion-actividades/redux/store/actividades.actions';
+import { InicializaHorarios } from '../gestion-horarios/redux/store/horario.actions';
+import { InicializaTarifas } from '../gestion-tarifas/redux/store/tarifas.actions';
 
 
 
@@ -42,6 +46,10 @@ export class AuthService {
     this.store.dispatch(new InicializaUsers());
     this.store.dispatch(new InicializaPerfil());
     this.store.dispatch(new InicializaRegistro());
+    this.store.dispatch(new InicializaInstalaciones());
+    this.store.dispatch(new InicializaActividades());
+    this.store.dispatch(new InicializaHorarios());
+    this.store.dispatch(new InicializaTarifas());
     this.router.navigate(['/home']);
   }
 

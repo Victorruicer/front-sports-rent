@@ -20,7 +20,7 @@ export class GestionInstalacionesComponent implements OnInit {
   ngOnInit(): void {
     this.gestionInstalacionesService.getInstalaciones().subscribe(data => {
       this.store.dispatch(new CargaInstalaciones({lista: data}))
-     this.gestionInstalacionesService.getHorarios().subscribe(
+      this.gestionInstalacionesService.getHorarios().subscribe(
       horarios => {
         if(horarios.length > 0){
           this.store.dispatch(new CargaHorarios({lista: horarios}));

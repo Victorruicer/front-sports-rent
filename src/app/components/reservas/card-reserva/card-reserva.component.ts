@@ -22,7 +22,7 @@ export class CardReservaComponent implements OnInit {
   precioFinal: number;
   totalHoras: number;
   cambia = true;
-
+  radios = false;
 
   constructor(private fb: FormBuilder,
               private store: Store<AppState>,
@@ -50,9 +50,11 @@ export class CardReservaComponent implements OnInit {
       if(evt.target.value == "option1"){
         this.totalHoras = 1;
         this.cambia = true;
+        this.radios = true;
         this.precioFinal = this.datosPista.Precio_hora;
       }else{
         this.totalHoras = 2;
+        this.radios = true;
         this.cambia = false;
         this.precioFinal = this.datosPista.Precio_hora * this.totalHoras;
       }
@@ -112,6 +114,8 @@ export class CardReservaComponent implements OnInit {
 
   reservar(){
 
+    if(this.formulario.get('op') != null){
+
     var datosUser = JSON.parse(sessionStorage.getItem('login'));
     var h_ini: string;
     var h_fin: string;
@@ -140,6 +144,10 @@ export class CardReservaComponent implements OnInit {
 
     this.store.dispatch(new EnReserva({reserva: datosR}));
     this.router.navigate(['gestionPago/resumen']);
+
+    }else{
+      this.toastr.warning("debes seleccionar el tiempo de reserva");
+    }
 
     //RESERVA DE PRUEBA , DEBE RESERVARSE DESDE LA PASARELA DE PAGO
 

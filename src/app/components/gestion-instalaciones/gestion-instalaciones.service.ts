@@ -11,7 +11,7 @@ import { InstalacionModel } from './models/InstalacionModel';
 })
 export class GestionInstalacionesService {
 
-  private listUrl = "/api/instalacion/listInst";
+  private listUrl = "/api/instalacion/listInstVista";
   private deleteUrl = "/api/instalacion/deleteInst";
   private updateUrl = "/api/instalacion/updateInst";
   private createUrl = "/api/instalacion/createInst";

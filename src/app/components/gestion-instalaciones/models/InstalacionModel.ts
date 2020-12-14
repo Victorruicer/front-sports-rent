@@ -3,7 +3,7 @@ export class InstalacionModel {
     Id_Horario?: number;
     Horario?: string;
     Imagen?: string;
-    Id_Instalacion?: number;
+    Id_instalacion?: number;
     Mensaje?: string;
     Instalacion: string;
     Operativa: boolean;
