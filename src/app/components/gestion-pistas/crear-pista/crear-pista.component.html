@@ -1,0 +1,57 @@
+<div class="cont">
+    <div class="col">
+        <form autocomplete="off" [formGroup]="formulario"  (ngSubmit)="actualizar()">
+
+            <!-- Nombre -->
+            <div class="form-group">
+                <label><b style="color: red;">* </b> NOMBRE</label>
+                <input type="text" class="form-control" formControlName="nombre" [class.is-invalid]="nombreNoValido">
+                <small *ngIf="nombreNoValido" class="text-danger">El nombre de la pista ha de tener al menos 4 letras</small>
+            </div>
+
+            <!-- Instalación -->
+            <div class="form-group">
+                <label><b style="color: red;">* </b> INSTALACIÓN</label>
+                <select class="form-control" formControlName="instalacion" id="instalacion" [class.is-invalid]="instalacionNoValido">
+                    <option value="0" disabled>Selecciona una instalación</option>
+                    <option *ngFor="let inst of gestionInstalacionesService.lista" value="{{inst.Id_Instalacion}}">{{inst.Instalacion}}</option>
+                </select>
+                <small *ngIf="instalacionNoValido" class="text-danger">Es necesario especificar una instalación</small>
+            </div>
+            
+            <!-- Tarifa -->
+            <div class="form-group">
+                <label><b style="color: red;">* </b> TARIFA</label>
+                <select class="form-control" formControlName="tarifa" id="tarifa" [class.is-invalid]="tarifaNoValido">
+                    <option value="0" disabled>Selecciona una tarifa</option>
+                    <option *ngFor="let tarifa of gestionTarifasService.lista" value="{{inst.Id_tarifa}}">{{inst.Tarifa}}</option>
+                </select>
+                <small *ngIf="tarifaNoValido" class="text-danger">Es necesario especificar una tarifa</small>
+            </div>
+            
+            <!-- Actividad -->
+            <div class="form-group">
+                <label><b style="color: red;">* </b> ACTIVIDAD</label>
+                <select class="form-control" formControlName="actividad" id="actividad" [class.is-invalid]="actividadNoValido">
+                    <option value="0" disabled>Selecciona una actividad</option>
+                    <option *ngFor="let actividad of gestionActividadesService.lista" value="{{actividad.Id_actividad}}">{{actividad.Actividad}}</option>
+                </select>
+                <small *ngIf="actividadNoValido" class="text-danger">Es necesario especificar una actividad</small>
+            </div>
+            
+            <br>
+            <div class="form-group text-center">
+                <button type="submit"
+                        class="btn btn-primary"
+                        style="letter-spacing: 2px; padding-left: 50px;">
+                    CONFIRMAR                    
+                    <i class="fas fa-play" style="margin-left: 50px;"></i>
+                </button>
+            </div>
+        </form>
+
+        <div class="text-center" *ngIf="resultado">
+            {{resultado}}
+        </div>
+    </div>
+</div>
