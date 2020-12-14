@@ -10,7 +10,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let instalacion of instalaciones">
+        <tr *ngFor="let instalacion of gestionInstalacionesService.lista">
             <td scope="row">{{instalacion.Id_Instalacion}}</td>
             <td>{{instalacion.Instalacion}}</td>
             <td>{{instalacion.Direccion}}</td>

@@ -21,10 +21,11 @@ export class ListaInstalacionesComponent implements OnInit {
               private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.store.select('instalacion').subscribe(
-      listaInstalaciones =>{
-        this.instalaciones = listaInstalaciones.instalaciones
-    })
+    // this.store.select('instalacion').subscribe(
+    //   listaInstalaciones =>{
+    //     this.instalaciones = listaInstalaciones.instalaciones
+    // })
+    this.gestionInstalacionesService.getListaInstalaciones();
   }
 
   delInstalacion(id: number){

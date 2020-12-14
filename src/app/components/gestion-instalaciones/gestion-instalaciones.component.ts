@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';
+import { GestionHorariosService } from '../gestion-horarios/gestion-horarios.service';
 import { GestionInstalacionesService } from './gestion-instalaciones.service';
 import { CargaInstalaciones } from './redux/store/instalaciones.actions';
 import { CrearHorario, CargaHorarios } from '../gestion-horarios/redux/store/horario.actions';
@@ -12,7 +13,9 @@ import { CrearHorario, CargaHorarios } from '../gestion-horarios/redux/store/hor
 })
 export class GestionInstalacionesComponent implements OnInit {
 
-  constructor(public gestionInstalacionesService: GestionInstalacionesService, private store: Store<AppState>) { }
+  constructor(public gestionInstalacionesService: GestionInstalacionesService,
+              public gestionHorariosService: GestionHorariosService,
+              private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.gestionInstalacionesService.getInstalaciones().subscribe(data => {

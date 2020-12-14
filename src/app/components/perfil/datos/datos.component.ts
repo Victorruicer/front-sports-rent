@@ -118,13 +118,6 @@ export class DatosComponent implements OnInit {
       }
 
     })
-    // this.auth.registro(datosR).subscribe(data => {
-    //   if(data.Nombre != null){
-    //     this.resultado = data.Nombre + " te has registrado correctamente, ya puedes inciar sesión"
-    //   }else{
-    //     this.resultado = data.Mensaje;
-    //   }
-    // })
 
   }
 }

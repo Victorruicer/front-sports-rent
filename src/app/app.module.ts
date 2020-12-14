@@ -8,6 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 //TOASTR
 import { ToastrModule } from 'ngx-toastr';
@@ -32,7 +33,6 @@ import { appReducers, metaReducers } from './app.reducer';
 
 //AUTH GUARD
 import { TokenInterceptor } from './components/auth/token.interceptor';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthServiceCanloadGuard } from './components/auth/auth-service-canload.guard';
 import { AuthServiceCanActivateGuard } from './components/auth/auth-service-canactivate.guard';
 

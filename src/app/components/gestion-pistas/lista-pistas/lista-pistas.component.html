@@ -1,0 +1,34 @@
+<table class="table table-striped" style="margin-top: 20px;">
+    <thead class="thead">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Pista</th>
+            <th scope="col">Instalación</th>
+            <th scope="col">Tarifa</th>
+            <th scope="col">Actividad</th>
+            <th scope="col">Operativa</th>
+            <th scope="col">Precio/Hora</th>
+            <th scope="col-2">Gestión</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pista of gestionPistasService.lista">
+            <td scope="row">{{pista.Id_pista}}</td>
+            <td>{{pista.Nombre}}</td>
+            <td>{{pista.Instalacion}}</td>
+            <td>{{pista.Tarifa}}</td>
+            <td>{{pista.Actividad}}</td>
+            <td>{{pista.Operativa}}</td>
+            <td>{{pista.Precio_hora}}</td>
+            <td>
+                <button style="margin: 10px;" class="btn btn-secondary" (click)="habilitar(pista)"><i class="fas fa-arrows-alt-v"></i></button>
+                <button style="margin: 10px;" class="btn btn-success" (click)="editar(pista)"><i class="fas fa-edit"></i></button>
+                <button style="margin: 10px;" class="btn btn-danger" (click)="delista(pista.Id_pista)"><i class="fas fa-trash-alt"></i></button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="text-center" *ngIf="resultado">
+    Resultado: {{resultado.Mensaje}}
+</div>
