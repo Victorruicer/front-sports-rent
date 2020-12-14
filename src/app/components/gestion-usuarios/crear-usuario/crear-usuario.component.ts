@@ -134,6 +134,7 @@ export class CrearUsuarioComponent implements OnInit, OnDestroy {
         this.store.dispatch(new EditarUser(data));
       }else{
         this.toastr.error("No se ha podido actualizar el usuario!");
+        this.resultado = data['Mensaje'];
       }
       this.gestionUsuariosService.getListaUsuarios();
       this.formulario.reset();

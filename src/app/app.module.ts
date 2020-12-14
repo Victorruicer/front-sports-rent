@@ -33,6 +33,8 @@ import { appReducers, metaReducers } from './app.reducer';
 //AUTH GUARD
 import { TokenInterceptor } from './components/auth/token.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthServiceCanloadGuard } from './components/auth/auth-service-canload.guard';
+import { AuthServiceCanActivateGuard } from './components/auth/auth-service-canactivate.guard';
 
 
 @NgModule({
@@ -60,7 +62,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-
+    AuthServiceCanloadGuard,
+    AuthServiceCanActivateGuard,
   ],
   bootstrap: [AppComponent]
 })

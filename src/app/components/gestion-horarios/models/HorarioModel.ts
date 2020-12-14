@@ -1,5 +1,5 @@
 export class HorarioModel {
-    Id_Horario?: number;
+    Id_horario?: number;
     Nombre: string;
     Horario: string;
 }

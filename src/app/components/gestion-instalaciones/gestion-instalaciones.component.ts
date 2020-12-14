@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';
 import { GestionInstalacionesService } from './gestion-instalaciones.service';
 import { CargaInstalaciones } from './redux/store/instalaciones.actions';
+import { CrearHorario, CargaHorarios } from '../gestion-horarios/redux/store/horario.actions';
 
 @Component({
   selector: 'app-gestion-instalaciones',
@@ -16,7 +17,14 @@ export class GestionInstalacionesComponent implements OnInit {
   ngOnInit(): void {
     this.gestionInstalacionesService.getInstalaciones().subscribe(data => {
       this.store.dispatch(new CargaInstalaciones({lista: data}))
-    })
+     this.gestionInstalacionesService.getHorarios().subscribe(
+      horarios => {
+        if(horarios.length > 0){
+          this.store.dispatch(new CargaHorarios({lista: horarios}));
+        }
+      });
+    });
+
   }
 
 }

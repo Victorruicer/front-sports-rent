@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { HorarioModel } from '../gestion-horarios/models/HorarioModel';
 import { InstalacionModel } from './models/InstalacionModel';
 
 
@@ -14,6 +15,8 @@ export class GestionInstalacionesService {
   private deleteUrl = "/api/instalacion/deleteInst";
   private updateUrl = "/api/instalacion/updateInst";
   private createUrl = "/api/instalacion/createInst";
+  private listHorariosUrl = "/api/horario/listHorarios";
+
 
   lista: InstalacionModel[] = [];
   private actualizarFormulario = new BehaviorSubject<InstalacionModel>({} as any);
@@ -39,6 +42,10 @@ export class GestionInstalacionesService {
 
   actualizarInstalacion(instalacion: InstalacionModel): Observable<InstalacionModel>{
     return this.http.post<InstalacionModel>(environment.apiUrl + this.updateUrl, instalacion);
+  }
+
+  getHorarios(){
+    return this.http.get<HorarioModel[]>(environment.apiUrl + this.listHorariosUrl);
   }
 
 

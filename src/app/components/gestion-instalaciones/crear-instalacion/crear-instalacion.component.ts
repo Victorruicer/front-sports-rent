@@ -6,6 +6,7 @@ import { AppState } from 'src/app/app.reducer';
 import { GestionInstalacionesService } from '../gestion-instalaciones.service';
 import { InstalacionModel } from '../models/InstalacionModel';
 import { CrearInstalacion } from '../redux/store/instalaciones.actions';
+import { HorarioModel } from '../../gestion-horarios/models/HorarioModel';
 
 @Component({
   selector: 'app-crear-instalacion',
@@ -19,6 +20,7 @@ export class CrearInstalacionComponent implements OnInit {
   Imagen: any;
   instalacion: InstalacionModel;
   mensaje: string = null;
+  horarios: HorarioModel[];
 
   constructor(private fb:FormBuilder,
              private gestionInstalacionesService: GestionInstalacionesService,
@@ -35,7 +37,12 @@ export class CrearInstalacionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.store.select('horario').subscribe(
+      horarios => {
+        this.horarios = horarios.horario
+        console.log(this.horarios)
+      }
+    )
   }
 
   get nombreNoValido(){
@@ -73,9 +80,10 @@ export class CrearInstalacionComponent implements OnInit {
   }
 
   actualizar(){
+    console.log("hola")
 
     //Control de validación del formulario
-    if(this.formulario.invalid){
+     if(this.formulario.invalid){
 
       return Object.values(this.formulario.controls).forEach( control =>{
 
@@ -98,8 +106,9 @@ export class CrearInstalacionComponent implements OnInit {
       Id_Horario: this.formulario.get('horario').value,
       Imagen: this.Imagen
     }
+  console.log("datosI = "+ datosI)
 
-    this.gestionInstalacionesService.crearInstalacion(datosI).subscribe(
+/*     this.gestionInstalacionesService.crearInstalacion(datosI).subscribe(
       data => {
         if(data['Retcode'] === 0){
           console.log("creado ok");
@@ -109,7 +118,7 @@ export class CrearInstalacionComponent implements OnInit {
           this.toastr.error("No se ha podido crear la instalación!");
         }
         this.formulario.reset();
-      })
+      }) */
 
   }
 }

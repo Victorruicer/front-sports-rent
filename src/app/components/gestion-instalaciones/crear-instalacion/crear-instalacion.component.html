@@ -1,6 +1,6 @@
 <div class="cont">
     <div class="col">
-        <form autocomplete="off" [formGroup]="formulario"  (ngSubmit)="actualizar()">
+        <form autocomplete="off" [formGroup]="formulario" (ngSubmit)="actualizar()">
 
             <!-- Nombre -->
             <div class="form-group">
@@ -31,10 +31,10 @@
             <!-- Horario -->
             <div class="form-group">
                 <label><b style="color: red;">* </b> HORARIO</label>
-                <!-- <select class="form-control" formControlName="horario" id="horario" [class.is-invalid]="horarioNoValido">
+                <select class="form-control" formControlName="horario" id="horario" [class.is-invalid]="horarioNoValido">
                   <option value="0" disabled>Selecciona un horario</option>
-                  <option *ngFor="let horario of horarios" value="{{horario.Id_Horario}}">{{horario.Nombre}}</option>
-                </select> -->
+                  <option *ngFor="let horario of horarios" value="{{horario.Id_horario}}">{{horario.Nombre}}</option>
+                </select>
                 <small *ngIf="horarioNoValido" class="text-danger">Se ha de especificar un horario para la instalación</small>
             </div>
 
@@ -51,13 +51,11 @@
             <div class="row" *ngIf="Imagen">
                 <img [src]="Imagen" alt="Imagen de la instalación" class="imageninstalacion">
             </div>
-            
+
             <br>
             <div class="form-group text-center">
-                <button type="submit"
-                        class="btn btn-primary"
-                        style="letter-spacing: 2px; padding-left: 50px;">
-                    CONFIRMAR                    
+                <button type="submit" class="btn btn-primary" style="letter-spacing: 2px; padding-left: 50px;">
+                    CONFIRMAR
                     <i class="fas fa-play" style="margin-left: 50px;"></i>
                 </button>
             </div>

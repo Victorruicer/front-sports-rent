@@ -5,6 +5,8 @@ import { PistaReservaModel } from '../models/pistaReservaModel';
 import { AppState } from '../../../app.reducer';
 import { ReservasService } from '../reservas.service';
 import { ToastrService } from 'ngx-toastr';
+import { EnReserva } from '../redux/store/reserva.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-reserva',
@@ -25,7 +27,8 @@ export class CardReservaComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private store: Store<AppState>,
               private reservasService: ReservasService,
-              private toastr: ToastrService) {
+              private toastr: ToastrService,
+              private router: Router) {
     this.crearFormulario();
    }
 
@@ -127,6 +130,7 @@ export class CardReservaComponent implements OnInit {
       Fecha: this.datosPista.Fecha,
       H_ini: h_ini,
       H_fin: h_fin,
+      Pista: this.datosPista.Pista,
       Id_pista: this.datosPista.Id_pista,
       Id_usuario: datosUser.user.Id_Usuario,
       Id_estado: 1,
@@ -134,7 +138,12 @@ export class CardReservaComponent implements OnInit {
       Horas: this.totalHoras,
     }
 
-    console.log(datosR);
+    this.store.dispatch(new EnReserva({reserva: datosR}));
+    this.router.navigate(['gestionPago/resumen']);
+
+    //RESERVA DE PRUEBA , DEBE RESERVARSE DESDE LA PASARELA DE PAGO
+
+/*     console.log(datosR);
     this.reservasService.createReserva(datosR).subscribe(
       reserva => {
         if(reserva['Retcode'] === 0){
@@ -142,8 +151,7 @@ export class CardReservaComponent implements OnInit {
         }else{
           this.toastr.error("Error: la reserva con solicitada no se generó => " + reserva['Mensaje']);
         }
-      }
-    )
+      }) */
   }
 
 }

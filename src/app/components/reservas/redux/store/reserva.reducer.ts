@@ -6,12 +6,14 @@ import { ReservaActions, ReservaActionTypes } from './reserva.actions';
 export interface ReservaState {
   pistasDisponibles: PistaReservaModel[] | null;
   horasDisponibles: string[] | null;
+  enReserva: PistaReservaModel | null;
 }
 
 //set the initial state with localStorage
 export const initialState: ReservaState = {
   pistasDisponibles: null,
-  horasDisponibles: null
+  horasDisponibles: null,
+  enReserva:  null
 };
 
 export function reservaReducer(state = initialState, action: ReservaActions): ReservaState {
@@ -26,6 +28,12 @@ export function reservaReducer(state = initialState, action: ReservaActions): Re
       return {
         ...state,
         horasDisponibles: action.payload.lista
+      };
+    }
+    case ReservaActionTypes.EN_RESERVA: {
+      return {
+        ...state,
+        enReserva: action.payload.reserva
       };
     }
     default: {

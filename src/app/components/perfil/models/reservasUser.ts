@@ -5,4 +5,5 @@ export class ReservasUser{
     Fecha: string;
     H_ini: string;
     H_fin: string;
+    Estado: string;
 }
