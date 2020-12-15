@@ -14,29 +14,19 @@ import { EliminarInstalacion } from '../redux/store/instalaciones.actions';
 })
 export class ListaInstalacionesComponent implements OnInit {
 
-  instalaciones: InstalacionModel[] = [];
-//  horarios: HorarioModel[] = [];
+  horarios: HorarioModel[] = [];
   resultado: any;
 
   constructor(public gestionInstalacionesService: GestionInstalacionesService,
               private store: Store<AppState>,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService,
+              private gestionhorariosservice: GestionInstalacionesService) {
+              this.gestionInstalacionesService.getListaInstalaciones();
+              }
 
   ngOnInit(): void {
-     this.gestionInstalacionesService.getListaInstalaciones();
-     /*
-    this.store.select('horario').subscribe(
-      horarios => {
-        if(horarios.horario.length > 0){
-          this.horarios = horarios.horario
-        }
-      }) */
-      this.store.subscribe(
-        store => {
-//          this.horarios = store.horario.horario,
-          this.instalaciones = store.instalacion.instalaciones
-        }
-      )
+
+      this.gestionhorariosservice.getHorarios().subscribe(horarios => { this.horarios = horarios})
   }
 
   delInstalacion(id: number){
@@ -44,13 +34,13 @@ export class ListaInstalacionesComponent implements OnInit {
     if(confirm('¿Estás seguro de que quieres eliminar esta instalación?')){
       this.gestionInstalacionesService.borrarInstalacion(id).subscribe(data => {
         this.resultado = data;
-        this.gestionInstalacionesService.getListaInstalaciones();
         if(data['Retcode'] === 0){
           this.store.dispatch(new EliminarInstalacion({id: id}));
           this.toastr.success("La instalación se ha eliminado correctamente");
         }else{
-          this.toastr.error("No se ha podido eliminar la instalación!");
+          this.toastr.error("No se ha podido eliminar la instalación: ", "Posiblemente queden pistas asociadas a esta instalación!");
         }
+        this.gestionInstalacionesService.getListaInstalaciones();
       })
     }
   }

@@ -53,12 +53,12 @@ export class CrearInstalacionComponent implements OnInit, OnDestroy {
     )
     this.subscription = this.gestionInstalacionesService.obtenerInstalacion$().subscribe(data =>{
       this.upInstalacion = data;
-
+      console.log("instalaciones = "+this.upInstalacion.Id_horario)
       this.formulario.patchValue({
-        nombre: this.upInstalacion.Instalacion,
+        nombre: this.upInstalacion.Nombre,
         direccion: this.upInstalacion.Direccion,
         op: this.upInstalacion.Operativa,
-        horario: this.upInstalacion.Id_Horario,
+        horario: this.upInstalacion.Id_horario,
         imagen: this.upInstalacion.Imagen
       });
       this.idInstalacion = this.upInstalacion.Id_instalacion;

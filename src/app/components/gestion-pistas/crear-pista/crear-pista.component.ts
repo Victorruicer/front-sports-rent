@@ -30,7 +30,7 @@ export class CrearPistaComponent implements OnInit {
               public gestionInstalacionesService: GestionInstalacionesService,
               public gestionTarifasService: GestionTarifasService,
               public gestionActividadesService: GestionActividadesService,
-              private toastr: ToastrService) 
+              private toastr: ToastrService)
   {
     this.formulario = this.fb.group({
       id          : 0,
@@ -45,6 +45,7 @@ export class CrearPistaComponent implements OnInit {
     this.gestionInstalacionesService.getListaInstalaciones();
     this.gestionTarifasService.getListaTarifas();
     this.gestionActividadesService.getListaActividades();
+    this.gestionPistasService.getListaPistas();
     this.subscription = this.gestionPistasService.obtenerPista$().subscribe(data =>{
       this.upPista = data;
 
@@ -95,10 +96,11 @@ export class CrearPistaComponent implements OnInit {
 
     //Cargar datos del formulario
     const datosP: PistaModel = {
-      Nombre: this.formulario.get('nombre')?.value,
-      Instalacion: this.formulario.get('instalacion')?.value,
-      Tarifa: this.formulario.get('tarifa')?.value,
-      Actividad: this.formulario.get('actividad')?.value,
+      Nombre: this.formulario.get('nombre').value,
+      Id_instalacion: this.formulario.get('instalacion').value,
+      Id_tarifa: this.formulario.get('tarifa').value,
+      Id_actividad: this.formulario.get('actividad')?.value,
+      Operativa: false,
     }
 
     if(this.idPista === undefined){
@@ -107,7 +109,7 @@ export class CrearPistaComponent implements OnInit {
       this.editar(datosP);
     }
   }
-    
+
   crear(datosP: PistaModel){
     this.gestionPistasService.crearPista(datosP).subscribe(
       data => {
@@ -125,7 +127,7 @@ export class CrearPistaComponent implements OnInit {
   }
 
   editar(datosP: PistaModel){
-    datosP.Id_tarifa = this.idPista;
+    datosP.Id_pista = this.idPista;
     this.gestionPistasService.actualizarPista(datosP).subscribe(data =>{
       if(data['Retcode'] === 0){
         this.toastr.success("Pista modificada correctamente");
@@ -134,6 +136,9 @@ export class CrearPistaComponent implements OnInit {
         this.toastr.error("No se ha podido modificar la pista!");
       }
       this.gestionPistasService.getListaPistas();
+    this.gestionInstalacionesService.getListaInstalaciones();
+    this.gestionTarifasService.getListaTarifas();
+    this.gestionActividadesService.getListaActividades();
       this.formulario.reset();
       this.idPista = undefined;
     });

@@ -1,6 +1,6 @@
 <div class="cont">
     <div class="col">
-        <form autocomplete="off" [formGroup]="formulario"  (ngSubmit)="actualizar()">
+        <form autocomplete="off" [formGroup]="formulario" (ngSubmit)="actualizar()">
 
             <!-- Nombre -->
             <div class="form-group">
@@ -14,21 +14,21 @@
                 <label><b style="color: red;">* </b> INSTALACIÓN</label>
                 <select class="form-control" formControlName="instalacion" id="instalacion" [class.is-invalid]="instalacionNoValido">
                     <option value="0" disabled>Selecciona una instalación</option>
-                    <option *ngFor="let inst of gestionInstalacionesService.lista" value="{{inst.Id_Instalacion}}">{{inst.Instalacion}}</option>
+                    <option *ngFor="let inst of gestionInstalacionesService.lista" value="{{inst.Id_instalacion}}">{{inst.Instalacion}}</option>
                 </select>
                 <small *ngIf="instalacionNoValido" class="text-danger">Es necesario especificar una instalación</small>
             </div>
-            
+
             <!-- Tarifa -->
             <div class="form-group">
                 <label><b style="color: red;">* </b> TARIFA</label>
                 <select class="form-control" formControlName="tarifa" id="tarifa" [class.is-invalid]="tarifaNoValido">
                     <option value="0" disabled>Selecciona una tarifa</option>
-                    <option *ngFor="let tarifa of gestionTarifasService.lista" value="{{inst.Id_tarifa}}">{{inst.Tarifa}}</option>
+                    <option *ngFor="let tarifa of gestionTarifasService.lista" value="{{tarifa.Id_tarifa}}">{{tarifa.Tarifa}}</option>
                 </select>
                 <small *ngIf="tarifaNoValido" class="text-danger">Es necesario especificar una tarifa</small>
             </div>
-            
+
             <!-- Actividad -->
             <div class="form-group">
                 <label><b style="color: red;">* </b> ACTIVIDAD</label>
@@ -38,13 +38,11 @@
                 </select>
                 <small *ngIf="actividadNoValido" class="text-danger">Es necesario especificar una actividad</small>
             </div>
-            
+
             <br>
             <div class="form-group text-center">
-                <button type="submit"
-                        class="btn btn-primary"
-                        style="letter-spacing: 2px; padding-left: 50px;">
-                    CONFIRMAR                    
+                <button type="submit" class="btn btn-primary" style="letter-spacing: 2px; padding-left: 50px;">
+                    CONFIRMAR
                     <i class="fas fa-play" style="margin-left: 50px;"></i>
                 </button>
             </div>

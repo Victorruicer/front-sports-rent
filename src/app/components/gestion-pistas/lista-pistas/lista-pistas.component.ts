@@ -48,7 +48,16 @@ export class ListaPistasComponent implements OnInit {
 
   //Habilitar o deshabilitar la pista
   habilitar(pista: PistaModel){
+    console.log(pista)
     pista.Operativa = !pista.Operativa;
-    this.gestionPistasService.actualizar(pista);
+    this.gestionPistasService.actualizarPista(pista).subscribe(
+      datos => {
+        if(datos['Retcode'] === 0){
+          this.toastr.success("se ha puesto operativa la pista");
+        }else{
+          this.toastr.error("no se ha puesto operativa l pista")
+        }
+      }
+    );
   }
 }
