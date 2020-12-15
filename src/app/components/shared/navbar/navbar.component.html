@@ -1,3 +1,4 @@
+<!-- NAVBAR GENERAL PARA TODOS -->
 <div class="nav">
     <div class="row botones">
         <div class="box col">
@@ -11,6 +12,44 @@
         </div>
         <div class="box col">
             <a href="/home#contacto"><img src="../../../../assets/contactobtn.png" class="img-fluid" alt="Contacto"></a>
+        </div>
+    </div>
+</div>
+
+<!-- ADMINISTRADOR -->
+<div class="navAdmin" *ngIf="idPerfil === 1">
+    <h1 style="text-align: center;"> Menú administrador</h1>
+    <div class="row botonesAdmin">
+        <div class="box col">
+            <a href="/listadoReservas"><img src="../../../../assets/listado-reservasbtn.png" class="img-fluid" alt="Listado reservas"></a>
+        </div>
+        <div class="box col">
+            <a href="/gestionUsuarios"><img src="../../../../assets/gestion-usuariosbtn.png" class="img-fluid" alt="Gestión usuarios"></a>
+        </div>
+        <div class="box col">
+            <a href="/gestionInstalaciones"><img src="../../../../assets/gestion-instalacionesbtn.png" class="img-fluid" alt="Gestión instalaciones"></a>
+        </div>
+        <div class="box col">
+            <a href="/gestionPistas"><img src="../../../../assets/gestion-pistasbtn.png" class="img-fluid" alt="Gestión pistas"></a>
+        </div>
+        <div class="box col">
+            <a href="/gestionHorarios"><img src="../../../../assets/gestion-horariosbtn.png" class="img-fluid" alt="Gestión horarios"></a>
+        </div>
+        <div class="box col">
+            <a href="/gestionTarifas"><img src="../../../../assets/gestion-tarifasbtn.png" class="img-fluid" alt="Gestión tarifas"></a>
+        </div>
+        <div class="box col">
+            <a href="/gestionActividades"><img src="../../../../assets/gestion-actividadesbtn.png" class="img-fluid" alt="Gestión actividades"></a>
+        </div>
+    </div>
+</div>
+
+<!-- GESTOR -->
+<div class="navAdmin" *ngIf="idPerfil === 2">
+    <h1 style="text-align: center;"> Menú gestor</h1>
+    <div class="row botonesAdmin">
+        <div class="box col" style="text-align: center;">
+            <a href="/listadoReservas"><img src="../../../../assets/listado-reservasbtn.png" class="img-fluid" alt="Listado reservas"></a>
         </div>
     </div>
 </div>
