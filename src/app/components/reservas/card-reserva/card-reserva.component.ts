@@ -19,10 +19,11 @@ export class CardReservaComponent implements OnInit {
   horarios: string[];
   formulario: FormGroup;
   datosPista: PistaReservaModel;
-  precioFinal: number;
-  totalHoras: number;
+  precioFinal = 0;
+  totalHoras = 0 ;
   cambia = true;
   radios = false;
+
 
   constructor(private fb: FormBuilder,
               private store: Store<AppState>,
@@ -70,7 +71,11 @@ export class CardReservaComponent implements OnInit {
     });
   }
 
-  limpiar(){}
+  limpiar(){
+    this.precioFinal = 0;
+    this.radios = false;
+    this.formulario.reset();
+  }
 
   creaSelectHorario(horas: string[], opcion: boolean){
     var ini = 8;
@@ -114,12 +119,13 @@ export class CardReservaComponent implements OnInit {
 
   reservar(){
 
-    if(this.formulario.get('op') != null){
+    console.log("valor del radio "+this.formulario.get('radio').value)
+    if(this.formulario.get('radio').value === 'option1'
+     || this.formulario.get('radio').value === 'option2'){
 
     var datosUser = JSON.parse(sessionStorage.getItem('login'));
     var h_ini: string;
     var h_fin: string;
-    console.log(datosUser.user.Id_Usuario);
 
     if(this.formulario.get('radio').value == "option1"){
         var hora = this.formulario.get('horaUno').value;

@@ -3,12 +3,13 @@
         <img class="card-img-top" src="../../../../assets/0.png" alt="Card image cap">
         <div class="card-body">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><span class="titulo">Pista:</span> {{datosPista.Pista | uppercase}}</li>
+                <li class="list-group-item"><span class="titulo">Pista:</span> {{datosPista.Pista}}</li>
                 <li class="list-group-item">
                     <div><span class="titulo">Instalación:</span><br>{{datosPista.Instalacion}}</div>
                 </li>
                 <li class="list-group-item"><span class="titulo">Horario:</span><br> {{datosPista.Horario}}<br><span class="comment">(Reserva max. 2 horas)</span></li>
-                <li class="list-group-item"><span class="titulo">Precio/Hora: </span> {{datosPista.Precio}} euros</li>
+                <li class="list-group-item"><span class="titulo">Precio/Hora: </span> {{datosPista.Precio_hora}} euros</li>
+                <li class="list-group-item"><span class="titulo">Total: </span> {{precioFinal}} euros</li>
             </ul>
         </div>
 
@@ -49,9 +50,9 @@
                           </select>
                         </div>
                     </ng-template>
+                    <!-- BOTONES -->
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <!-- BOTONES -->
                             <div class="row">
                                 <div class="form-group text-center col-6">
                                     <button type="button" class="btn btn-warning" style="letter-spacing: 2px; padding-left: 10px;" (click)="limpiar()">
@@ -69,7 +70,6 @@
                         </li>
                     </ul>
                 </div>
-
             </form>
         </div>
     </div>
