@@ -28,6 +28,11 @@ const APP_ROUTES: Routes = [
      canActivate: [AuthServiceCanActivateGuard],
      data: { perfiles: [Perfil.administrador] } },
 
+    { path: 'gestionPistas', loadChildren: () => import('./components/gestion-pistas/gestion-pistas.module').then(m => m.GestionPistasModule),
+     canLoad: [AuthServiceCanloadGuard],
+     canActivate: [AuthServiceCanActivateGuard],
+     data: { perfiles: [Perfil.administrador] } },
+
     { path: 'gestionHorarios', loadChildren: () => import('./components/gestion-horarios/gestion-horarios.module').then(m => m.GestionHorariosModule),
      canLoad: [AuthServiceCanloadGuard],
      canActivate: [AuthServiceCanActivateGuard],
