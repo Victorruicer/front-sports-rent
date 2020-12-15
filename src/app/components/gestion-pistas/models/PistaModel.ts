@@ -12,6 +12,6 @@ export class PistaModel {
     Tarifa?:string;
     Tipo_pista?:string;
     Precio_hora?:number;
-    Operativa: boolean;
+    Operativa?: boolean;
     Mensaje?:string;
 }
