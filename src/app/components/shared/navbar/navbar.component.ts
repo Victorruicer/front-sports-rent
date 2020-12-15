@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.reducer';
+import { DatosLogin } from '../../ident/models/datosLogin';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  user: DatosLogin = null;
+  idPerfil: number;
+  isAuthenticated: boolean = false;
 
-  ngOnInit(): void {
+  constructor(private store: Store<AppState>){
+    this.store.select('login').subscribe(
+      login => {
+        this.isAuthenticated = login.isAuthenticated
+        if(this.isAuthenticated){
+          this.user = login.user
+        }
+      }
+    )
+  }
+  
+  ngOnInit(){
+    this.idPerfil = this.user.Id_Perfil;
+    
   }
 
 }
