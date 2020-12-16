@@ -1,8 +1,12 @@
 <div class="card">
-    <img class="card-img-top" src="../../../../assets/padel.jpg" alt="Imagen">
+    <img class="card-img-top" src="{{instalacion.Imagen}}" alt="Imagen">
     <div class="card-body">
-      <h5 class="card-title">Nombre de la pista</h5>
-      <p class="card-text">Detalles</p>
-      <p class="card-text"><small>Pistas</small></p>
+        <h5 class="card-title">{{instalacion.Nombre}}</h5>
+        <p class="card-text">{{instalacion.Direccion}}</p>
+        <p class="card-text">{{operativa}}</p>
+        <p class="card-text"><small>Pistas</small></p>
+        <div *ngFor="let pista of pistas">
+            <p class="card-text">{{pista.Pista}}</p>
+        </div>
     </div>
 </div>

@@ -10,6 +10,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+//STRIPE
+import { NgxStripeModule } from 'ngx-stripe';
+
 //TOASTR
 import { ToastrModule } from 'ngx-toastr';
 

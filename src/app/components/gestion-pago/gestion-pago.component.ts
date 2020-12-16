@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { loadStripe } from '@stripe/stripe-js';
 
 @Component({
   selector: 'app-gestion-pago',

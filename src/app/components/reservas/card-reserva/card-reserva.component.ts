@@ -120,6 +120,7 @@ export class CardReservaComponent implements OnInit {
   reservar(){
 
     console.log("valor del radio "+this.formulario.get('radio').value)
+
     if(this.formulario.get('radio').value === 'option1'
      || this.formulario.get('radio').value === 'option2'){
 
@@ -148,16 +149,8 @@ export class CardReservaComponent implements OnInit {
       Horas: this.totalHoras,
     }
 
-    this.store.dispatch(new EnReserva({reserva: datosR}));
-    this.router.navigate(['gestionPago/resumen']);
-
-    }else{
-      this.toastr.warning("debes seleccionar el tiempo de reserva");
-    }
-
     //RESERVA DE PRUEBA , DEBE RESERVARSE DESDE LA PASARELA DE PAGO
-
-/*     console.log(datosR);
+    console.log(datosR);
     this.reservasService.createReserva(datosR).subscribe(
       reserva => {
         if(reserva['Retcode'] === 0){
@@ -165,7 +158,16 @@ export class CardReservaComponent implements OnInit {
         }else{
           this.toastr.error("Error: la reserva con solicitada no se generó => " + reserva['Mensaje']);
         }
-      }) */
+      })
+
+
+    //PARA CUANDO SE USE RESUMEN
+    //this.store.dispatch(new EnReserva({reserva: datosR}));
+    //this.router.navigate(['gestionPago/resumen']);
+
+    }else{
+      this.toastr.warning("debes seleccionar el tiempo de reserva");
+    }
   }
 
 }
