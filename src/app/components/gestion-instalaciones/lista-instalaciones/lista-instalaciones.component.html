@@ -11,13 +11,13 @@
     </thead>
     <tbody>
         <tr *ngFor="let instalacion of gestionInstalacionesService.lista">
-            <!--         <tr *ngFor="let instalacion of instalaciones"> -->
             <td scope="row">{{instalacion.Id_instalacion}}</td>
             <td>{{instalacion.Nombre}}</td>
             <td>{{instalacion.Direccion}}</td>
             <td>{{instalacion.Operativa}}</td>
             <td>{{instalacion.Horario}}</td>
             <td>
+                <button style="margin: 10px;" class="btn btn-secondary" (click)="habilitar(instalacion)"><i class="fas fa-arrows-alt-v"></i></button>
                 <button style="margin: 10px;" class="btn btn-success" (click)="editar(instalacion)"><i class="fas fa-edit"></i></button>
                 <button style="margin: 10px;" class="btn btn-danger" (click)="delInstalacion(instalacion.Id_instalacion)"><i class="fas fa-trash-alt"></i></button>
             </td>

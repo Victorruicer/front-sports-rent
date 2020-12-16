@@ -20,6 +20,7 @@ export class CrearInstalacionComponent implements OnInit, OnDestroy {
   formulario: FormGroup;
   resultado: string;
   Imagen: any;
+  ImagenCargada: string;
   instalacion: InstalacionModel;
   mensaje: string = null;
   horarios: HorarioModel[];
@@ -35,7 +36,6 @@ export class CrearInstalacionComponent implements OnInit, OnDestroy {
     this.formulario = this.fb.group({
       nombre    : ['', [Validators.required, Validators.minLength(4)]],
       direccion : ['', Validators.required],
-      op        : ['', Validators.required],
       horario   : [0, Validators.required],
       imagen    : ['']
     });
@@ -57,11 +57,11 @@ export class CrearInstalacionComponent implements OnInit, OnDestroy {
       this.formulario.patchValue({
         nombre: this.upInstalacion.Nombre,
         direccion: this.upInstalacion.Direccion,
-        op: this.upInstalacion.Operativa,
         horario: this.upInstalacion.Id_horario,
         imagen: this.upInstalacion.Imagen
       });
       this.idInstalacion = this.upInstalacion.Id_instalacion;
+      this.ImagenCargada = this.upInstalacion.Imagen;
 
       //Para la primera vez que carga el formulario
       if(this.idInstalacion === undefined){
@@ -131,11 +131,9 @@ export class CrearInstalacionComponent implements OnInit, OnDestroy {
     const datosI: InstalacionModel = {
       Instalacion: this.formulario.get('nombre')?.value,
       Direccion: this.formulario.get('direccion')?.value,
-      Operativa: this.formulario.get('op')?.value,
       Id_Horario: this.formulario.get('horario').value,
       Imagen: this.Imagen
     }
-    console.log("id "+ datosI.Operativa)
     if(this.idInstalacion === undefined){
       this.crear(datosI);
     }else{

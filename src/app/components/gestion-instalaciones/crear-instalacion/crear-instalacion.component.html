@@ -16,22 +16,6 @@
                 <small *ngIf="direccionNoValido" class="text-danger">La dirección es necesaria</small>
             </div>
 
-            <!-- Operativa -->
-            <div class="radios form-group" style="padding-right: 20px;">
-                <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" value="true" name='op' formControlName="op" id="operativa">
-                    <label class="form-check-label" for="operativa">
-                      Operativa
-                    </label>
-                </div>
-                <div class="form-check-inline" style="padding-left: 20px;">
-                    <input class="form-check-input" type="radio" value="false" name='op' formControlName="op" id="inoperativa">
-                    <label class="form-check-label" for="inoperativa">
-                      No operativa
-                    </label>
-                </div>
-            </div>
-
             <!-- Horario -->
             <div class="form-group" style="padding-bottom: 20px;">
                 <label><b style="color: red;">* </b> HORARIO</label>
@@ -51,9 +35,16 @@
                 <span *ngIf="mensaje" class="errormsg">{{mensaje}}</span>
             </div>
 
-            <!-- IMAGEN -->
+            <!-- IMAGEN PREVIEW -->
             <div class="row" *ngIf="Imagen">
+                <b>Imagen seleccionada</b>
                 <img [src]="Imagen" alt="Imagen de la instalación" class="imageninstalacion">
+            </div>
+
+            <!-- IMAGEN CARGADA -->
+            <div class="row" *ngIf="ImagenCargada">
+                <b>Imagen a editar</b>
+                <img [src]="ImagenCargada" alt="Imagen de la instalación" class="imageninstalacion">
             </div>
 
             <br>

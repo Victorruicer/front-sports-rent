@@ -53,9 +53,9 @@ export class ListaPistasComponent implements OnInit {
     this.gestionPistasService.actualizarPista(pista).subscribe(
       datos => {
         if(datos['Retcode'] === 0){
-          this.toastr.success("se ha puesto operativa la pista");
+          this.toastr.success("Pista habilitada");
         }else{
-          this.toastr.error("no se ha puesto operativa l pista")
+          this.toastr.error("Pista no habilitada")
         }
       }
     );

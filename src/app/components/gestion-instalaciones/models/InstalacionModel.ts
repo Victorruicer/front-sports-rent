@@ -8,5 +8,5 @@ export class InstalacionModel {
     Mensaje?: string;
     Instalacion: string;
     Nombre?: string;
-    Operativa: boolean;
+    Operativa?: boolean;
 }

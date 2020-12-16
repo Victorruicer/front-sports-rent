@@ -20,13 +20,13 @@ export class ListaInstalacionesComponent implements OnInit {
   constructor(public gestionInstalacionesService: GestionInstalacionesService,
               private store: Store<AppState>,
               private toastr: ToastrService,
-              private gestionhorariosservice: GestionInstalacionesService) {
-              this.gestionInstalacionesService.getListaInstalaciones();
-              }
+              private gestionhorariosservice: GestionInstalacionesService) 
+  {
+    this.gestionInstalacionesService.getListaInstalaciones();
+  }
 
   ngOnInit(): void {
-
-      this.gestionhorariosservice.getHorarios().subscribe(horarios => { this.horarios = horarios})
+    this.gestionhorariosservice.getHorarios().subscribe(horarios => { this.horarios = horarios})
   }
 
   delInstalacion(id: number){
@@ -47,5 +47,20 @@ export class ListaInstalacionesComponent implements OnInit {
 
   editar(instalacion: InstalacionModel){
     this.gestionInstalacionesService.actualizar(instalacion);
+  }
+
+  //Habilitar o deshabilitar la instalacion
+  habilitar(instalacion: InstalacionModel){
+    console.log(instalacion)
+    instalacion.Operativa = !instalacion.Operativa;
+    this.gestionInstalacionesService.actualizarInstalacion(instalacion).subscribe(
+      datos => {
+        if(datos['Retcode'] === 0){
+          this.toastr.success("Instalación habilitada");
+        }else{
+          this.toastr.error("Instalación no habilitada")
+        }
+      }
+    );
   }
 }
