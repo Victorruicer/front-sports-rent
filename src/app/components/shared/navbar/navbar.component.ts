@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';
 import { DatosLogin } from '../../ident/models/datosLogin';
@@ -14,20 +15,22 @@ export class NavbarComponent implements OnInit {
   idPerfil: number;
   isAuthenticated: boolean = false;
 
-  constructor(private store: Store<AppState>){
+  constructor(private store: Store<AppState>, private router: Router){
+    
+  }
+  
+  ngOnInit(){
     this.store.select('login').subscribe(
       login => {
         this.isAuthenticated = login.isAuthenticated
         if(this.isAuthenticated){
           this.user = login.user
+          this.idPerfil = this.user.Id_Perfil
+        }else{
+          this.idPerfil = -1;
         }
       }
     )
-  }
-  
-  ngOnInit(){
-    this.idPerfil = this.user.Id_Perfil;
-    
   }
 
 }

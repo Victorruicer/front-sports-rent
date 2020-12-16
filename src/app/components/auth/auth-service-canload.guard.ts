@@ -35,7 +35,7 @@ export class AuthServiceCanloadGuard implements CanLoad {
               if(this.user.Id_Perfil != 1){
                 console.log("no tiene permiso");
                 setTimeout(() => {this.toastr.warning("acceso restringido a este contenido CL")}, 100);
-                this.router.navigate(['home']);
+                this.router.navigate(['/home']);
                 return false;
               }
               break;

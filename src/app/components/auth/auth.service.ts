@@ -51,6 +51,7 @@ export class AuthService {
     this.store.dispatch(new InicializaHorarios());
     this.store.dispatch(new InicializaTarifas());
     this.router.navigate(['/home']);
+    
   }
 
 }
