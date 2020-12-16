@@ -45,6 +45,7 @@ export class ListaInstalacionesComponent implements OnInit {
     }
   }
 
+  //Editar campos de la instalación
   editar(instalacion: InstalacionModel){
     this.gestionInstalacionesService.actualizar(instalacion);
   }
@@ -56,9 +57,13 @@ export class ListaInstalacionesComponent implements OnInit {
     this.gestionInstalacionesService.actualizarInstalacion(instalacion).subscribe(
       datos => {
         if(datos['Retcode'] === 0){
-          this.toastr.success("Instalación habilitada");
+          if(instalacion.Operativa){
+            this.toastr.success("Instalación habilitada");
+          }else{
+            this.toastr.success("Instalación deshabilitada");
+          }
         }else{
-          this.toastr.error("Instalación no habilitada")
+          this.toastr.error("No se ha podido cambiar el estado de la instalación")
         }
       }
     );
