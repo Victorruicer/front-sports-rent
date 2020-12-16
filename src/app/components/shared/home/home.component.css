@@ -51,10 +51,26 @@ body{
     padding-right: 40px;
 }
 
+h2{
+    color: #FF671F;
+}
+
 h3{
     color: white;
 }
 
 input, textarea{
     background-color: rgba(255, 255, 255, 0.61);
+}
+
+.linea{
+    border: 1px solid #FF671F; 
+    text-align: center; 
+    width: 50%;
+}
+
+.cara{
+    background-color: white;
+    margin: 15px;
+    padding: 15px;
 }

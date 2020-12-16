@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { ToastrService } from 'ngx-toastr';
 import { AppState } from '../../../app.reducer';
 import { GestionUsuariosService } from '../../gestion-usuarios/gestion-usuarios.service';
 import { CargaUsers } from '../../gestion-usuarios/redux/store/usuario.actions';
@@ -17,7 +18,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private fb:FormBuilder,
               private store: Store<AppState>,
-              private gestionUsuariosService: GestionUsuariosService) {
+              private gestionUsuariosService: GestionUsuariosService,
+              private toastr: ToastrService) {
 
     this.formulario = this.fb.group({
       nombre   : ['', [Validators.required, Validators.minLength(4)]],
@@ -73,5 +75,7 @@ export class HomeComponent implements OnInit {
       Mensaje: this.formulario.get('mensaje')?.value
     }
 
+    this.toastr.success("¡Mensaje enviado!");
+    this.formulario.reset();
   }
 }
