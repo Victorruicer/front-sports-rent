@@ -51,7 +51,8 @@ const APP_ROUTES: Routes = [
     { path: 'listadoReservas', loadChildren: () => import('./components/listado-reservas/listado-reservas.module').then(m => m.ListadoReservasModule),
      canLoad: [AuthServiceCanloadGuard],
      canActivate: [AuthServiceCanActivateGuard],
-     data: { perfiles: [Perfil.administrador] } },
+     data: { perfiles: [Perfil.administrador] } 
+    },
 
     { path: 'reservas', loadChildren: () => import('./components/reservas/reservas.module').then(m => m.ReservasModule),
      canLoad: [AuthServiceCanloadGuard],

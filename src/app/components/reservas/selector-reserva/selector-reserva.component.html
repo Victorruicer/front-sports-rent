@@ -1,14 +1,14 @@
 <!-- FORMULARIO DEL LOGIN -->
-<div class="cont row animate__animated animate__fadeIn">
-    <div class="col-12">
+<div class="cont">
+    <div class="row" style="margin-left: 25%;">
         <form autocomplete="off" [formGroup]="formulario" (ngSubmit)="buscaPistas()">
-            <div class="d-inline-flex">
+            <div class="form-row">
                 <!--Actividades-->
-                <div class="form group col-md-4">
+                <div class="form-group col-md-4">
                     <select class="form-control" formControlName="selectActividad">
-                    <option value="0" disabled selected>Selecciona una actividad</option>
-                    <option *ngFor="let actividad of actividades" value="{{actividad.Id_actividad}}-{{actividad.Actividad}}">{{actividad.Actividad}}</option>
-                </select>
+                        <option value="0" disabled selected>Selecciona una actividad</option>
+                        <option *ngFor="let actividad of actividades" value="{{actividad.Id_actividad}}-{{actividad.Actividad}}">{{actividad.Actividad}}</option>
+                    </select>
                 </div>
 
                 <!--Fecha-->
@@ -22,13 +22,15 @@
                 <br>
                 <div class="form-group col-md-4 text-center">
                     <button type="submit" class="btn btn-primary" style="letter-spacing: 2px; padding-left: 50px;">
-                    BUSCAR
+                        BUSCAR
                     <i class="fas fa-play" style="margin-left: 50px;"></i>
-                </button> {{fechaddmmyy}}
+                    </button> {{fechaddmmyy}}
                 </div>
             </div>
         </form>
     </div>
+
+    <!-- CARDS PISTAS RESERVAS -->
     <div *ngFor="let pista of pistas">
         <app-card-reserva [pista]="pista.Pista"></app-card-reserva>
     </div>

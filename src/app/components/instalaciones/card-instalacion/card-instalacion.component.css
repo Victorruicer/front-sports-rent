@@ -1,1 +1,5 @@
-/* Estilo */
+hr{
+    border: 1px solid #FF671F; 
+    text-align: center; 
+    width: 50%;
+}

@@ -1,0 +1,21 @@
+.titulo{
+    text-align: center;
+    letter-spacing: 4px;
+}
+
+hr{
+    border: 1px solid;
+    width: 300px;
+}
+
+.cont{
+    margin-left:120px;
+    margin-right:120px;
+    margin-bottom:100px;
+    margin-top:60px;
+}
+
+thead{
+    background-color: #0C2340;
+    color: white;
+}

@@ -5,8 +5,8 @@
         <hr>
     </div>
     <br>
-    <div class="row row-cols-1 row-cols-md-2" *ngFor="let instalacion of gestionInstalacionesService.lista">
-        <div class="col mb-4 animate__animated animate__fadeIn">
+    <div class="row row-cols-1 row-cols-md-2">
+        <div *ngFor="let instalacion of gestionInstalacionesService.lista" class="col mb-4 animate__animated animate__fadeIn">
             <app-card-instalacion [instalacion]="instalacion"></app-card-instalacion>
         </div>
     </div>

@@ -1,10 +1,11 @@
 <div class="card">
     <img class="card-img-top" src="{{instalacion.Imagen}}" alt="Imagen">
     <div class="card-body">
-        <h5 class="card-title">{{instalacion.Nombre}}</h5>
-        <p class="card-text">{{instalacion.Direccion}}</p>
-        <p class="card-text">{{operativa}}</p>
-        <p class="card-text"><small>Pistas</small></p>
+        <h3 class="card-title" style="text-align: center;">{{instalacion.Nombre}}</h3>
+        <hr>
+        <p class="card-text"><b>Dirección: </b>{{instalacion.Direccion}}</p>
+        <p class="card-text"><b>Disponibilidad: </b>{{operativa}}</p>
+        <p class="card-text"><b>Pistas</b></p>
         <div *ngFor="let pista of pistas">
             <p class="card-text">{{pista.Pista}}</p>
         </div>

@@ -10,6 +10,7 @@ export class ListadoReservasComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }
