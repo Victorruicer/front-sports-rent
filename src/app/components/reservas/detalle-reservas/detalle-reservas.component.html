@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" id="pago">
     <div class="col-6">
         <h2 style="text-align: center;">Detalles de la reserva</h2>
         <hr style="border: 1px solid #FF671F; width: 50%; text-align: center; margin-bottom: 35px;">
@@ -13,31 +13,35 @@
     <div class="col-6">
         <h2 style="text-align: center;">Datos de la tarjeta</h2>
         <hr style="border: 1px solid #FF671F; width: 50%; text-align: center; margin-bottom: 35px;">
-        <form name="ccForm">
+        <form autocomplete="off" [formGroup]="formulario"  (ngSubmit)="pagar()">
             <div class="form-group">
-                <label for="card-number">Número de Tarjeta</label>
-                <input type="text" class="form-control" id="cardNumber" cc-number cc-eager-type name="ccNumber" ng-model="card.number">
+                <label>Número de Tarjeta</label>
+                <input type="text" class="form-control" formControlName="numTarjeta" [class.is-invalid]="numTarjetaNoValido">
+                <small *ngIf="numTarjetaNoValido" class="text-danger">El número de la tarjeta ha de tener 12 dígitos</small>
             </div>
             <div class="form-group">
-                <label for="cvc">CVC</label>
-                <input type="text" class="form-control" id="cvc" cc-cvc cc-type="ccForm.ccNumber.$ccType" name="ccCvc" ng-model="card.cvc">
+                <label>CVC</label>
+                <input type="text" class="form-control" formControlName="cvc" [class.is-invalid]="cvcNoValido">
+                <small *ngIf="cvcNoValido" class="text-danger">El cvc es de 3 dígitos</small>
             </div>
             <div class="form-group">
-                <label for="card-number">Fecha de expiración</label>
+                <label>Fecha de expiración</label>
                 <div class="row" cc-exp>
                     <div class="col-3">
-                        <input placeholder="MM" type="text" class="form-control" cc-exp-month name="ccExpMonth" ng-model="card.expiration.month">
+                        <input placeholder="MM" type="text" class="form-control" formControlName="mes" [class.is-invalid]="mesNoValido">
+                        <small *ngIf="mesNoValido" class="text-danger">Se deben introducir 2 dígitos, si es en Enero sería 01</small>
                     </div>
                     <div class="col-3">
-                        <input placeholder="YY" type="text" class="form-control" cc-exp-year name="ccExpYear" ng-model="card.expiration.year">
+                        <input placeholder="YY" type="text" class="form-control" formControlName="year" [class.is-invalid]="yearNoValido">
+                        <small *ngIf="yearNoValido" class="text-danger">Se deben introducir 2 dígitos</small>
                     </div>
                 </div>
             </div>
             <div class="form-group text-center" style="margin-top: 50px;">
-                <button type="button" class="btn btn-primary" (click)="pagar()">
-                PAGAR
-                <i class="fas fa-credit-card" style="margin-left: 20px;"></i>
-            </button>
+                <button type="submit" class="btn btn-primary">
+                    PAGAR
+                    <i class="fas fa-credit-card" style="margin-left: 25px;"></i>
+                </button>
             </div>
         </form>
     </div>
