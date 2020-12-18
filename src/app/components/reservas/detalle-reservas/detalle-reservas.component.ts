@@ -1,10 +1,11 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { AppState } from '../../../app.reducer';
 import { PistaReservaModel } from '../models/pistaReservaModel';
+import { EnReserva } from '../redux/store/reserva.actions';
 import { ReservasService } from '../reservas.service';
 
 @Component({
@@ -16,14 +17,13 @@ export class DetalleReservasComponent implements OnInit {
 
   formulario: FormGroup;
   datosReserva: PistaReservaModel;
-  @Output() pagada: boolean;
 
   constructor(private store: Store<AppState>,
               private reservasService: ReservasService,
               private toastr: ToastrService,
               private router: Router,
-              private fb: FormBuilder) 
-  { 
+              private fb: FormBuilder)
+  {
     this.formulario = this.fb.group({
       numTarjeta   : ['', [Validators.required, Validators.minLength(12), Validators.maxLength(12)]],
       cvc    : ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
@@ -82,6 +82,21 @@ export class DetalleReservasComponent implements OnInit {
     this.reservasService.updateReserva(confirmacion).subscribe(
       confirmado =>{
         if(confirmado["Retcode"] === 0){
+
+           const datosR: PistaReservaModel = {
+            Fecha: this.datosReserva.Fecha,
+            H_ini: this.datosReserva.H_ini,
+            H_fin: this.datosReserva.H_fin,
+            Pista: this.datosReserva.Pista,
+            Id_pista: this.datosReserva.Id_pista,
+            Id_usuario: this.datosReserva.Id_usuario,
+            Id_reserva: this.datosReserva.Id_reserva,
+            Instalacion: this.datosReserva.Instalacion,
+            Id_estado: 2,
+            Precio: 0,
+            Horas: 0,
+          }
+          this.store.dispatch(new EnReserva({reserva: datosR}));
           this.router.navigate(['/reservas/confirmacion']);
         }
       }
