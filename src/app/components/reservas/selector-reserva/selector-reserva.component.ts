@@ -7,7 +7,7 @@ import { ReservasService } from '../reservas.service';
 import { PistaReservaModel } from '../models/pistaReservaModel';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducer';
-import { PistasDisponibles } from '../redux/store/reserva.actions';
+import { EnReservaNull, PistasDisponibles } from '../redux/store/reserva.actions';
 
 @Component({
   selector: 'app-selector-reserva',
@@ -21,6 +21,7 @@ export class SelectorReservaComponent implements OnInit {
   resultado: any;
   actividades: ActividadModel[];
   pistas: PistaReservaModel[];
+  fechaReserva: string;
 
   fechaddmmyy: any;
   displayMonths = 1;
@@ -28,6 +29,8 @@ export class SelectorReservaComponent implements OnInit {
   showWeekNumbers = false;
   outsideDays = 'visible'
   @ViewChild('dp') dp: NgbDatepicker;
+  verDetalleReserva: boolean;
+  hayPistas: boolean;
 
   constructor(private fb: FormBuilder,
               private reservasService: ReservasService,
@@ -37,6 +40,9 @@ export class SelectorReservaComponent implements OnInit {
       selectActividad: ['', Validators.required],
       dp: ''
     });
+    this.verDetalleReserva = false;
+    this.hayPistas = false;
+    this.store.dispatch(new EnReservaNull());
    }
 
   ngOnInit(): void {
@@ -46,11 +52,21 @@ export class SelectorReservaComponent implements OnInit {
             this.actividades = actividades;
             console.log(actividades)
         }
-      }
-    )
+      });
+      this.store.select('reserva').subscribe(
+        enreserva => {
+          if(enreserva.enReserva != null){
+            this.verDetalleReserva = true;
+          }
+        }
+      )
   }
 
-  get aelectActividadNoValido(){
+  resetPistas(){
+    this.hayPistas = false;
+  }
+
+  get selectActividadNoValido(){
     return this.formulario.get('selectActividad').invalid && this.formulario.get('selectActividad').touched;
   }
 
@@ -66,21 +82,21 @@ export class SelectorReservaComponent implements OnInit {
 
   buscaPistas(){
     var objetoFecha = this.formulario.get('dp').value;
-    var fecha = objetoFecha.day+"/"+objetoFecha.month+"/"+objetoFecha.year;
+    this.fechaReserva = objetoFecha.day+"/"+objetoFecha.month+"/"+objetoFecha.year;
     var actividadID = (this.formulario.get('selectActividad').value).split('-');
     var actividad = actividadID[1];
-    console.log(actividad + " " + fecha);
-    this.reservasService.getPistasReserva(actividad, fecha).subscribe(
+    this.reservasService.getPistasReserva(actividad, this.fechaReserva).subscribe(
       pistas => {
         if(pistas.length > 0){
                 console.log(pistas);
           this.pistas = pistas;
           this.store.dispatch(new PistasDisponibles({lista: pistas}));
+          this.hayPistas = true;
         }else{
-          this.toastr.warning("No hay pistas disponibles para " + actividad + " el " + fecha);
+          this.toastr.warning("No hay pistas disponibles para " + actividad + " el " + this.fechaReserva);
         }
-      }
-    )
+      })
+
    }
 
 

@@ -21,7 +21,11 @@ export class GestionUsuariosService {
   constructor(private http: HttpClient) { }
 
   getListaUsuarios(){
-    this.http.get<UserModel[]>(environment.apiUrl + this.listUrl).toPromise().then(data => {this.lista = data as UserModel[]});
+    this.http.get<UserModel[]>(environment.apiUrl + this.listUrl).toPromise().then(
+      data => {
+        this.lista = data as UserModel[]
+        console.log(this.lista)
+    });
   }
 
   getUsuarios(){

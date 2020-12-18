@@ -5,8 +5,9 @@ import { PistaReservaModel } from '../models/pistaReservaModel';
 import { AppState } from '../../../app.reducer';
 import { ReservasService } from '../reservas.service';
 import { ToastrService } from 'ngx-toastr';
-import { EnReserva } from '../redux/store/reserva.actions';
 import { Router } from '@angular/router';
+import { timer } from 'rxjs';
+import { EnReserva } from '../redux/store/reserva.actions';
 
 @Component({
   selector: 'app-card-reserva',
@@ -16,6 +17,7 @@ import { Router } from '@angular/router';
 export class CardReservaComponent implements OnInit {
 
   @Input() pista: string;
+  @Input() fecha: string;
   horarios: string[];
   formulario: FormGroup;
   datosPista: PistaReservaModel;
@@ -23,6 +25,7 @@ export class CardReservaComponent implements OnInit {
   totalHoras = 0 ;
   cambia = true;
   radios = false;
+  verDetalleReserva = false;
 
 
   constructor(private fb: FormBuilder,
@@ -150,21 +153,36 @@ export class CardReservaComponent implements OnInit {
     }
 
     //RESERVA DE PRUEBA , DEBE RESERVARSE DESDE LA PASARELA DE PAGO
+    /*
     console.log(datosR);
     this.reservasService.createReserva(datosR).subscribe(
       reserva => {
         if(reserva['Retcode'] === 0){
           this.toastr.success("La reserva con ID: "+ reserva['Id_Reserva'] + " se ha creado correctamente");
+          const source = timer(20000);
+          const subscribe = source.subscribe(val => {
+            const cancela: PistaReservaModel = {Id_reserva: reserva['Id_Reserva'], Id_estado: 3}
+            this.reservasService.updateReserva(cancela).subscribe(
+              cancelada => {
+                if(cancelada['Retcode'] == 0){
+                  console.log("reserva cancelada")
+                }else{
+                  console.log(cancelada['Mensaje'])
+                }
+              }
+            )
+            this.toastr.success("la reserva ha caducado");
+          });
         }else{
           this.toastr.error("Error: la reserva con solicitada no se generó => " + reserva['Mensaje']);
         }
       })
-
+*/
 
     //PARA CUANDO SE USE RESUMEN
-    //this.store.dispatch(new EnReserva({reserva: datosR}));
+    this.store.dispatch(new EnReserva({reserva: datosR}));
     //this.router.navigate(['gestionPago/resumen']);
-
+    console.log(datosR)
     }else{
       this.toastr.warning("debes seleccionar el tiempo de reserva");
     }

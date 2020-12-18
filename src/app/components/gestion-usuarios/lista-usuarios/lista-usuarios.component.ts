@@ -21,10 +21,6 @@ export class ListaUsuariosComponent implements OnInit {
               private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    // this.store.select('users').subscribe(
-      //   listaUsers =>{
-      //     this.usuarios = listaUsers.users
-    //   })
     this.gestionUsuariosService.getListaUsuarios();
   }
 

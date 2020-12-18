@@ -5,7 +5,7 @@
             <div class="form-row">
                 <!--Actividades-->
                 <div class="form-group col-md-4">
-                    <select class="form-control" formControlName="selectActividad">
+                    <select class="form-control" formControlName="selectActividad" (change)="resetPistas()">
                         <option value="0" disabled selected>Selecciona una actividad</option>
                         <option *ngFor="let actividad of actividades" value="{{actividad.Id_actividad}}-{{actividad.Actividad}}">{{actividad.Actividad}}</option>
                     </select>
@@ -30,8 +30,16 @@
         </form>
     </div>
 
-    <!-- CARDS PISTAS RESERVAS -->
-    <div *ngFor="let pista of pistas">
-        <app-card-reserva [pista]="pista.Pista"></app-card-reserva>
+    <div *ngIf="hayPistas">
+        <!-- CARDS PISTAS RESERVAS -->
+        <div *ngFor="let pista of pistas">
+            <app-card-reserva [pista]="pista.Pista" [fecha]="fechaReserva"></app-card-reserva>
+        </div>
+        <div *ngIf="verDetalleReserva">
+            No hay reservas
+        </div>
     </div>
+
+
+
 </div>

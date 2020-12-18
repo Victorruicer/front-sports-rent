@@ -33,7 +33,13 @@ export function reservaReducer(state = initialState, action: ReservaActions): Re
     case ReservaActionTypes.EN_RESERVA: {
       return {
         ...state,
-        enReserva: action.payload.reserva
+        enReserva: action.payload.lista
+      };
+    }
+    case ReservaActionTypes.EN_RESERVA_NULL: {
+      return {
+        ...state,
+        enReserva: null
       };
     }
     default: {

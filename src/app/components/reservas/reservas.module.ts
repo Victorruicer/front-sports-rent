@@ -6,6 +6,7 @@ import { CardReservaComponent } from './card-reserva/card-reserva.component';
 import { SelectorReservaComponent } from './selector-reserva/selector-reserva.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DetalleReservasComponent } from './detalle-reservas/detalle-reservas.component';
 
 
 
@@ -14,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReservasComponent,
     CardReservaComponent,
     SelectorReservaComponent,
+    DetalleReservasComponent,
     ],
   imports: [
     CommonModule,
