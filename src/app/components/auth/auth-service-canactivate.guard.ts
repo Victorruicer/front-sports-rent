@@ -29,7 +29,7 @@ export class AuthServiceCanActivateGuard implements CanActivate{
           if(this.user.Id_Perfil != 1){//dejamos pasar siempre al admin
             if(route.data.perfiles && route.data.perfiles.indexOf(this.user.Id_Perfil) === -1){
                 //existe restriccion de perfil en la ruta y no coincide con el perfil que intenta acceder
-                setTimeout(() => {this.toastr.warning("Acceso restringido a este contenido CA")}, 100);
+                setTimeout(() => {this.toastr.warning("Acceso restringido a este contenido")}, 100);
                 this.router.navigate(['/home']);
                 //Si no esta autorizado devuelve false
                 return false;
@@ -40,7 +40,7 @@ export class AuthServiceCanActivateGuard implements CanActivate{
             //Si esta autorizado devuelve true
             return true;
         }
-        setTimeout(() => {this.toastr.warning("Debes iniciar sesión para acceder al contenido CA")}, 100);
+        setTimeout(() => {this.toastr.warning("Debes iniciar sesión para acceder al contenido")}, 100);
 
         console.log("no hay usuario logado canActivate");
         this.router.navigate(['/home'], {queryParams: {returnUrl: state.url} });

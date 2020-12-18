@@ -34,7 +34,7 @@ export class AuthServiceCanloadGuard implements CanLoad {
             case "gestionUsuarios":
               if(this.user.Id_Perfil != 1){
                 console.log("no tiene permiso");
-                setTimeout(() => {this.toastr.warning("acceso restringido a este contenido CL")}, 100);
+                setTimeout(() => {this.toastr.warning("acceso restringido a este contenido")}, 100);
                 this.router.navigate(['/home']);
                 return false;
               }
@@ -45,7 +45,7 @@ export class AuthServiceCanloadGuard implements CanLoad {
         return true;
       }
     // Si no se logeado se redirecciona
-    setTimeout(() => {this.toastr.warning("Debes iniciar sesión para acceder al contenido CL")}, 100);
+    setTimeout(() => {this.toastr.warning("Debes iniciar sesión para acceder al contenido")}, 100);
 
     console.log("no hay usuario logado canLoad");
     this.router.navigate(['/login']);

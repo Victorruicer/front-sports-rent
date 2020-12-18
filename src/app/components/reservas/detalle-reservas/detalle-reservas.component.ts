@@ -35,6 +35,7 @@ export class DetalleReservasComponent implements OnInit {
     this.store.select('reserva').subscribe(
       datos =>{
         this.datosReserva = datos.enReserva
+        console.log("datos reserva "+this.datosReserva.Precio)
       })
   }
 
