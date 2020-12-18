@@ -16,7 +16,11 @@ export class ListadoReservasService {
   constructor(private http: HttpClient) { }
 
   historicoReservas(){
-    this.http.post<ReservaModel[]>(environment.apiUrl+this.historicoUrl, {Email: "todos", Estado: "en reserva"}).toPromise().then(data => {this.lista = data as ReservaModel[]});
+    this.http.post<ReservaModel[]>(environment.apiUrl+this.historicoUrl, {Email: "todos", Estado: "en reserva"}).toPromise().then(
+      data => {
+        console.log("historico "+data[0].Email)
+        this.lista = data as ReservaModel[]
+      });
   }
 
   borrarReserva(id: number): Observable<ReservaModel>{

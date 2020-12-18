@@ -26,7 +26,7 @@ export class ActivosAlquilerComponent implements OnInit {
     var currentUser = JSON.parse(sessionStorage.getItem('login'));
     if(currentUser.isAuthenticated){
       //recuperamos historico del usuario y las cargamos en el store
-      this.perfilService.historicoReservas(currentUser.user.Email, "en reserva").subscribe(
+      this.perfilService.historicoReservas(currentUser.user.Email, "confirmada").subscribe(
         listaReservas => {
           if(listaReservas.length > 0){
             this.store.dispatch(new ReservasActivas({lista: listaReservas}));
@@ -49,7 +49,7 @@ export class ActivosAlquilerComponent implements OnInit {
         //Borramos la reserva
         this.perfilService.borrarReserva(idReserva).subscribe(data => {
           //Refrescamos la lista de reservas
-          this.perfilService.historicoReservas(currentUser.user.Email, "en reserva").subscribe(
+          this.perfilService.historicoReservas(currentUser.user.Email, "confirmada").subscribe(
             listaReservas => {
               if(listaReservas.length > 0){
                 this.store.dispatch(new ReservasActivas({lista: listaReservas}));

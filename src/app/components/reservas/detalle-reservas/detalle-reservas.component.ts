@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< Updated upstream
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+=======
+>>>>>>> Stashed changes
 import {Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
@@ -8,6 +11,10 @@ import { PistaReservaModel } from '../models/pistaReservaModel';
 import { EnReserva } from '../redux/store/reserva.actions';
 import { ReservasService } from '../reservas.service';
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 @Component({
   selector: 'app-detalle-reservas',
   templateUrl: './detalle-reservas.component.html',
@@ -17,7 +24,10 @@ export class DetalleReservasComponent implements OnInit {
 
   formulario: FormGroup;
   datosReserva: PistaReservaModel;
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
   constructor(private store: Store<AppState>,
               private reservasService: ReservasService,
               private toastr: ToastrService,
@@ -82,8 +92,7 @@ export class DetalleReservasComponent implements OnInit {
     this.reservasService.updateReserva(confirmacion).subscribe(
       confirmado =>{
         if(confirmado["Retcode"] === 0){
-
-           const datosR: PistaReservaModel = {
+          const datosR: PistaReservaModel = {
             Fecha: this.datosReserva.Fecha,
             H_ini: this.datosReserva.H_ini,
             H_fin: this.datosReserva.H_fin,

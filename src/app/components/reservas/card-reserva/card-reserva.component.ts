@@ -179,18 +179,19 @@ export class CardReservaComponent implements OnInit {
             this.store.select('reserva').subscribe(
               pagada => {
                 this.pagada = pagada.enReserva.Id_estado
-              })
-            const cancela: PistaReservaModel = {Id_reserva: reserva['Id_Reserva'], Id_estado: 3}
-            this.reservasService.updateReserva(cancela).subscribe(
-              cancelada => {
-                if(cancelada['Retcode'] == 0){
-                  console.log("reserva cancelada")
-                }else{
-                  console.log(cancelada['Mensaje'])
+                if(this.pagada != 2){
+                  const cancela: PistaReservaModel = {Id_reserva: reserva['Id_Reserva'], Id_estado: 3}
+                  this.reservasService.updateReserva(cancela).subscribe(
+                    cancelada => {
+                      if(cancelada['Retcode'] == 0){
+                        console.log("reserva cancelada")
+                      }else{
+                        console.log(cancelada['Mensaje'])
+                      }
+                    })
+                  this.toastr.success("la reserva ha caducado");
                 }
               })
-            this.toastr.success("la reserva ha caducado");
-
           });
         }else{
           this.toastr.error("Error: la reserva con solicitada no se generó => " + reserva['Mensaje']);
