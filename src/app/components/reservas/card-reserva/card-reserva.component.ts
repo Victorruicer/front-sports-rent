@@ -174,7 +174,7 @@ export class CardReservaComponent implements OnInit {
             Horas: this.totalHoras,
           }
           this.store.dispatch(new EnReserva({reserva: datosReserva}));
-          const source = timer(120000);
+          const source = timer(1200000);
           const subscribe = source.subscribe(val => {
             this.store.select('reserva').subscribe(
               pagada => {
