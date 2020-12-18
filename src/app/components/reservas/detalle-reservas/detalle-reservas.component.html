@@ -1,17 +1,21 @@
 <div class="row">
     <div class="col-6">
-        <p><span>Id Reserva: </span> {{datosReserva.Id_reserva}}</p>
-        <p><span>Fecha: </span>{{datosReserva.Fecha}}</p>
-        <p><span>Instalación: </span>{{datosReserva.Instalacion}}</p>
-        <p><span>Pista: </span>{{datosReserva.Pista}}</p>
-        <p><span>Hora de Inicio: </span>{{datosReserva.H_ini}}</p>
-        <p><span>Hora de Fin: </span>Hora de Fin: {{datosReserva.H_fin}}</p>
-        <p><span>Total: </span>{{datosReserva.Precio}}<span> euros</span></p>
+        <h2 style="text-align: center;">Detalles de la reserva</h2>
+        <hr style="border: 1px solid #FF671F; width: 50%; text-align: center; margin-bottom: 35px;">
+        <p><b>Id Reserva: </b> {{datosReserva.Id_reserva}}</p>
+        <p><b>Fecha: </b>{{datosReserva.Fecha}}</p>
+        <p><b>Instalación: </b>{{datosReserva.Instalacion}}</p>
+        <p><b>Pista: </b>{{datosReserva.Pista}}</p>
+        <p><b>Hora de Inicio: </b>{{datosReserva.H_ini}}</p>
+        <p><b>Hora de Fin: </b>Hora de Fin: {{datosReserva.H_fin}}</p>
+        <p><b>Total: </b>{{datosReserva.Precio}}€</p>
     </div>
     <div class="col-6">
+        <h2 style="text-align: center;">Datos de la tarjeta</h2>
+        <hr style="border: 1px solid #FF671F; width: 50%; text-align: center; margin-bottom: 35px;">
         <form name="ccForm">
             <div class="form-group">
-                <label for="card-number">Card Number</label>
+                <label for="card-number">Número de Tarjeta</label>
                 <input type="text" class="form-control" id="cardNumber" cc-number cc-eager-type name="ccNumber" ng-model="card.number">
             </div>
             <div class="form-group">
@@ -19,12 +23,12 @@
                 <input type="text" class="form-control" id="cvc" cc-cvc cc-type="ccForm.ccNumber.$ccType" name="ccCvc" ng-model="card.cvc">
             </div>
             <div class="form-group">
-                <label for="card-number">Expiration</label>
+                <label for="card-number">Fecha de expiración</label>
                 <div class="row" cc-exp>
-                    <div class="col-xs-3">
+                    <div class="col-3">
                         <input placeholder="MM" type="text" class="form-control" cc-exp-month name="ccExpMonth" ng-model="card.expiration.month">
                     </div>
-                    <div class="col-xs-3">
+                    <div class="col-3">
                         <input placeholder="YY" type="text" class="form-control" cc-exp-year name="ccExpYear" ng-model="card.expiration.year">
                     </div>
                 </div>
@@ -32,7 +36,7 @@
             <div class="form-group text-center" style="margin-top: 50px;">
                 <button type="button" class="btn btn-primary" (click)="pagar()">
                 PAGAR
-                <i class="fas fa-edit" style="margin-left: 20px;"></i>
+                <i class="fas fa-credit-card" style="margin-left: 20px;"></i>
             </button>
             </div>
         </form>

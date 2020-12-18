@@ -32,8 +32,8 @@
 
     <div *ngIf="hayPistas">
         <!-- CARDS PISTAS RESERVAS -->
-        <div *ngFor="let pista of pistas">
-            <app-card-reserva [pista]="pista.Pista" [fecha]="fechaReserva"></app-card-reserva>
+        <div class="card-deck">
+            <app-card-reserva *ngFor="let pista of pistas" [pista]="pista.Pista" [fecha]="fechaReserva"></app-card-reserva>
         </div>
         <div *ngIf="verDetalleReserva">
             <app-detalle-reservas></app-detalle-reservas>

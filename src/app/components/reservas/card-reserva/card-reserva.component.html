@@ -1,77 +1,75 @@
-<div class="container">
-    <div class="card mx-2 my-5" style="width: 20rem; ">
-        <img class="card-img-top" src="../../../../assets/0.png" alt="Card image cap">
-        <div class="card-body">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"><span class="titulo">Fecha de la reserva:</span> {{fecha}}</li>
-                <li class="list-group-item"><span class="titulo">Pista:</span> {{datosPista.Pista}}</li>
-                <li class="list-group-item">
-                    <div><span class="titulo">Instalación:</span><br>{{datosPista.Instalacion}}</div>
-                </li>
-                <li class="list-group-item"><span class="titulo">Horario:</span><br> {{datosPista.Horario}}<br><span class="comment">(Reserva max. 2 horas)</span></li>
-                <li class="list-group-item"><span class="titulo">Precio/Hora: </span> {{datosPista.Precio_hora}} euros</li>
-                <li class="list-group-item"><span class="titulo">Total: </span> {{precioFinal}} euros</li>
-            </ul>
-        </div>
+<div class="card mx-2 my-5" style="width: 20rem; ">
+    <img class="card-img-top" src="../../../../assets/0.png" alt="Card image cap">
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><span class="titulo">Fecha de la reserva:</span> {{fecha}}</li>
+            <li class="list-group-item"><span class="titulo">Pista:</span> {{datosPista.Pista}}</li>
+            <li class="list-group-item">
+                <div><span class="titulo">Instalación:</span><br>{{datosPista.Instalacion}}</div>
+            </li>
+            <li class="list-group-item"><span class="titulo">Horario:</span><br> {{datosPista.Horario}}<br><span class="comment">(Reserva max. 2 horas)</span></li>
+            <li class="list-group-item"><span class="titulo">Precio/Hora: </span> {{datosPista.Precio_hora}} euros</li>
+            <li class="list-group-item"><span class="titulo">Total: </span> {{precioFinal}} euros</li>
+        </ul>
+    </div>
 
-        <div class="row mx-2 px-3">
-            <form autocomplete="off" [formGroup]="formulario" (ngSubmit)="reservar()">
-                <div class="row text-center">
-                    <!-- TEXTO -->
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><span class="titulo">¿Cuantas horas quieres reservar?</span></li>
-                        <li class="list-group-item">
-                            <!-- SELECCION HORAS -->
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" id="inlineCheckbox1" formControlName="radio" value="option1" (change)="cambiaHora($event)">
-                                <label class="form-check-label" for="inlineCheckbox1">1</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" id="inlineCheckbox2" formControlName="radio" value="option2" (change)="cambiaHora($event)">
-                                <label class="form-check-label" for="inlineCheckbox2">2</label>
-                            </div>
-                        </li>
-                    </ul>
-                    <ul class="list-group list-group-flush" *ngIf="radios">
-                        <li class="list-group-item">
-                            <div class="container form-group" *ngIf="cambia; else doshoras">
-                                <select class="form-control" formControlName="horaUno" id="horaUno">
-                                  <option value="0" selected>Selecciona una hora</option>
-                                  <option *ngFor="let hora of horarios">{{hora}}</option>
-                                </select>
-                            </div>
-                        </li>
-                    </ul>
-
-                    <ng-template #doshoras>
-                        <div class="container form-group">
-                            <select class="form-control" formControlName="horaDos" id="horaDos">
-                            <option value="0" selected>Selecciona una hora</option>
-                            <option *ngFor="let hora of horarios">{{hora}}</option>
-                          </select>
+    <div class="row mx-2 px-3">
+        <form autocomplete="off" [formGroup]="formulario" (ngSubmit)="reservar()">
+            <div class="row text-center">
+                <!-- TEXTO -->
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><span class="titulo">¿Cuantas horas quieres reservar?</span></li>
+                    <li class="list-group-item">
+                        <!-- SELECCION HORAS -->
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="inlineCheckbox1" formControlName="radio" value="option1" (change)="cambiaHora($event)">
+                            <label class="form-check-label" for="inlineCheckbox1">1</label>
                         </div>
-                    </ng-template>
-                    <!-- BOTONES -->
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="form-group text-center col-6">
-                                    <button type="button" class="btn btn-warning" style="letter-spacing: 2px; padding-left: 10px;" (click)="limpiar()">
-                                        LIMPIAR
-                                        <i class="fas fa-play" style="margin-left: 10px;"></i>
-                                    </button>
-                                </div>
-                                <div class="form-group text-center col-6">
-                                    <button type="submit" class="btn btn-primary" style="letter-spacing: 2px; padding-left: 10px;">
-                                        CONTINUAR
-                                        <i class="fas fa-play" style="margin-left: 10px;"></i>
-                                    </button>
-                                </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="inlineCheckbox2" formControlName="radio" value="option2" (change)="cambiaHora($event)">
+                            <label class="form-check-label" for="inlineCheckbox2">2</label>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="list-group list-group-flush" *ngIf="radios">
+                    <li class="list-group-item">
+                        <div class="container form-group" *ngIf="cambia; else doshoras">
+                            <select class="form-control" formControlName="horaUno" id="horaUno">
+                                <option value="0" selected>Selecciona una hora</option>
+                                <option *ngFor="let hora of horarios">{{hora}}</option>
+                            </select>
+                        </div>
+                    </li>
+                </ul>
+
+                <ng-template #doshoras>
+                    <div class="container form-group">
+                        <select class="form-control" formControlName="horaDos" id="horaDos">
+                        <option value="0" selected>Selecciona una hora</option>
+                        <option *ngFor="let hora of horarios">{{hora}}</option>
+                        </select>
+                    </div>
+                </ng-template>
+                <!-- BOTONES -->
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="form-group text-center col-6">
+                                <button type="button" class="btn btn-warning" style="letter-spacing: 2px; padding-left: 10px;" (click)="limpiar()">
+                                    LIMPIAR
+                                    <i class="fas fa-play" style="margin-left: 10px;"></i>
+                                </button>
                             </div>
-                        </li>
-                    </ul>
-                </div>
-            </form>
-        </div>
+                            <div class="form-group text-center col-6">
+                                <button type="submit" class="btn btn-primary" style="letter-spacing: 2px; padding-left: 10px;">
+                                    CONTINUAR
+                                    <i class="fas fa-play" style="margin-left: 10px;"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </form>
     </div>
 </div>
