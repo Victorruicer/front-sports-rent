@@ -26,7 +26,7 @@ export class CardReservaComponent implements OnInit {
   cambia = true;
   radios = false;
   verDetalleReserva = false;
-
+  pagada: boolean;
 
   constructor(private fb: FormBuilder,
               private store: Store<AppState>,
@@ -34,6 +34,7 @@ export class CardReservaComponent implements OnInit {
               private toastr: ToastrService,
               private router: Router) {
     this.crearFormulario();
+    this.pagada = false;
    }
 
   ngOnInit(): void {
@@ -46,7 +47,8 @@ export class CardReservaComponent implements OnInit {
               this.horarios = this.creaSelectHorario(this.datosPista.LibresReservadas, this.cambia);
             }
           })
-        })
+        }
+        )
     }
 
     //al cambiar la seleccion del radio cambiamos los valores del select que se mostrará
@@ -122,7 +124,6 @@ export class CardReservaComponent implements OnInit {
 
   reservar(){
 
-    console.log("valor del radio "+this.formulario.get('radio').value)
 
     if(this.formulario.get('radio').value === 'option1'
      || this.formulario.get('radio').value === 'option2'){
@@ -147,20 +148,36 @@ export class CardReservaComponent implements OnInit {
       Pista: this.datosPista.Pista,
       Id_pista: this.datosPista.Id_pista,
       Id_usuario: datosUser.user.Id_Usuario,
+      Instalacion: this.datosPista.Instalacion,
       Id_estado: 1,
       Precio: this.precioFinal,
       Horas: this.totalHoras,
     }
 
     //RESERVA DE PRUEBA , DEBE RESERVARSE DESDE LA PASARELA DE PAGO
-    /*
+
     console.log(datosR);
     this.reservasService.createReserva(datosR).subscribe(
       reserva => {
         if(reserva['Retcode'] === 0){
-          this.toastr.success("La reserva con ID: "+ reserva['Id_Reserva'] + " se ha creado correctamente");
+          this.toastr.success("La reserva con ID: "+ reserva['Id_Reserva'] + " se debe hacer efectiva en 5 minutos");
+          const datosReserva: PistaReservaModel = {
+            Fecha: this.datosPista.Fecha,
+            H_ini: h_ini,
+            H_fin: h_fin,
+            Pista: this.datosPista.Pista,
+            Id_pista: this.datosPista.Id_pista,
+            Id_usuario: datosUser.user.Id_Usuario,
+            Id_reserva: reserva['Id_Reserva'],
+            Instalacion: this.datosPista.Instalacion,
+            Id_estado: 1,
+            Precio: this.precioFinal,
+            Horas: this.totalHoras,
+          }
+          this.store.dispatch(new EnReserva({reserva: datosReserva}));
           const source = timer(20000);
           const subscribe = source.subscribe(val => {
+
             const cancela: PistaReservaModel = {Id_reserva: reserva['Id_Reserva'], Id_estado: 3}
             this.reservasService.updateReserva(cancela).subscribe(
               cancelada => {
@@ -169,15 +186,15 @@ export class CardReservaComponent implements OnInit {
                 }else{
                   console.log(cancelada['Mensaje'])
                 }
-              }
-            )
+              })
             this.toastr.success("la reserva ha caducado");
+
           });
         }else{
           this.toastr.error("Error: la reserva con solicitada no se generó => " + reserva['Mensaje']);
         }
       })
-*/
+
 
     //PARA CUANDO SE USE RESUMEN
     this.store.dispatch(new EnReserva({reserva: datosR}));

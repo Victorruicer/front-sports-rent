@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import {Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { ToastrService } from 'ngx-toastr';
+import { AppState } from '../../../app.reducer';
+import { PistaReservaModel } from '../models/pistaReservaModel';
+import { EnReserva } from '../redux/store/reserva.actions';
+import { ReservasService } from '../reservas.service';
+
 
 @Component({
   selector: 'app-detalle-reservas',
@@ -7,9 +15,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetalleReservasComponent implements OnInit {
 
-  constructor() { }
+  datosReserva: PistaReservaModel;
+  constructor(private store: Store<AppState>,
+              private reservasService: ReservasService,
+              private toastr: ToastrService,
+              private router: Router) { }
 
   ngOnInit(): void {
+      this.store.select('reserva').subscribe(
+        datos =>{
+          this.datosReserva = datos.enReserva
+        })
+  }
+
+  pagar(){
+
+    //this.toastr.success("La reserva con ID: "+ this.datosReserva.Id_reserva + " se ha confirmado");
+    const confirmacion: PistaReservaModel = {Id_reserva: this.datosReserva.Id_reserva, Id_estado: 2}
+    this.reservasService.updateReserva(confirmacion).subscribe(
+      confirmado =>{
+        if(confirmado["Retcode"] === 0){
+          this.datosReserva.Id_estado = 2;
+          this.store.dispatch(new EnReserva({reserva: this.datosReserva}));
+          this.router.navigate(['/reservas/confirmacion']);
+        }
+      }
+    )
   }
 
 }
+

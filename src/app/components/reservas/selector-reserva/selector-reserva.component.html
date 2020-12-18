@@ -36,7 +36,7 @@
             <app-card-reserva [pista]="pista.Pista" [fecha]="fechaReserva"></app-card-reserva>
         </div>
         <div *ngIf="verDetalleReserva">
-            No hay reservas
+            <app-detalle-reservas></app-detalle-reservas>
         </div>
     </div>
 

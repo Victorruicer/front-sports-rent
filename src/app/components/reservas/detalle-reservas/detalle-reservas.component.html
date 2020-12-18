@@ -1,1 +1,40 @@
-<p>detalle-reservas works!</p>
+<div class="row">
+    <div class="col-6">
+        <p><span>Id Reserva: </span> {{datosReserva.Id_reserva}}</p>
+        <p><span>Fecha: </span>{{datosReserva.Fecha}}</p>
+        <p><span>Instalación: </span>{{datosReserva.Instalacion}}</p>
+        <p><span>Pista: </span>{{datosReserva.Pista}}</p>
+        <p><span>Hora de Inicio: </span>{{datosReserva.H_ini}}</p>
+        <p><span>Hora de Fin: </span>Hora de Fin: {{datosReserva.H_fin}}</p>
+        <p><span>Total: </span>{{datosReserva.Precio}}<span> euros</span></p>
+    </div>
+    <div class="col-6">
+        <form name="ccForm">
+            <div class="form-group">
+                <label for="card-number">Card Number</label>
+                <input type="text" class="form-control" id="cardNumber" cc-number cc-eager-type name="ccNumber" ng-model="card.number">
+            </div>
+            <div class="form-group">
+                <label for="cvc">CVC</label>
+                <input type="text" class="form-control" id="cvc" cc-cvc cc-type="ccForm.ccNumber.$ccType" name="ccCvc" ng-model="card.cvc">
+            </div>
+            <div class="form-group">
+                <label for="card-number">Expiration</label>
+                <div class="row" cc-exp>
+                    <div class="col-xs-3">
+                        <input placeholder="MM" type="text" class="form-control" cc-exp-month name="ccExpMonth" ng-model="card.expiration.month">
+                    </div>
+                    <div class="col-xs-3">
+                        <input placeholder="YY" type="text" class="form-control" cc-exp-year name="ccExpYear" ng-model="card.expiration.year">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group text-center" style="margin-top: 50px;">
+                <button type="button" class="btn btn-primary" (click)="pagar()">
+                PAGAR
+                <i class="fas fa-edit" style="margin-left: 20px;"></i>
+            </button>
+            </div>
+        </form>
+    </div>
+</div>

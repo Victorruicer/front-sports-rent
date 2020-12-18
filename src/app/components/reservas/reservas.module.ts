@@ -7,8 +7,7 @@ import { SelectorReservaComponent } from './selector-reserva/selector-reserva.co
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetalleReservasComponent } from './detalle-reservas/detalle-reservas.component';
-
-
+import { ConfirmacionComponent } from './confirmacion/confirmacion.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +15,7 @@ import { DetalleReservasComponent } from './detalle-reservas/detalle-reservas.co
     CardReservaComponent,
     SelectorReservaComponent,
     DetalleReservasComponent,
+    ConfirmacionComponent,
     ],
   imports: [
     CommonModule,
