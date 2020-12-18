@@ -26,7 +26,7 @@ export class CardReservaComponent implements OnInit {
   cambia = true;
   radios = false;
   verDetalleReserva = false;
-  pagada: boolean;
+  pagada: number;
 
   constructor(private fb: FormBuilder,
               private store: Store<AppState>,
@@ -34,7 +34,7 @@ export class CardReservaComponent implements OnInit {
               private toastr: ToastrService,
               private router: Router) {
     this.crearFormulario();
-    this.pagada = false;
+    this.pagada = 1;
    }
 
   ngOnInit(): void {
@@ -124,7 +124,6 @@ export class CardReservaComponent implements OnInit {
 
   reservar(){
 
-
     if(this.formulario.get('radio').value === 'option1'
      || this.formulario.get('radio').value === 'option2'){
 
@@ -177,7 +176,10 @@ export class CardReservaComponent implements OnInit {
           this.store.dispatch(new EnReserva({reserva: datosReserva}));
           const source = timer(20000);
           const subscribe = source.subscribe(val => {
-
+            this.store.select('reserva').subscribe(
+              pagada => {
+                this.pagada = pagada.enReserva.Id_estado
+              })
             const cancela: PistaReservaModel = {Id_reserva: reserva['Id_Reserva'], Id_estado: 3}
             this.reservasService.updateReserva(cancela).subscribe(
               cancelada => {

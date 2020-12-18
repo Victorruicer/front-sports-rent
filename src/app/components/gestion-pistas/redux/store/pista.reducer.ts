@@ -4,9 +4,11 @@ import { PistaModel } from '../../models/PistaModel';
 
 export interface PistaState{
   pistas: PistaModel[] | null;
+  pagada: boolean;
 }
 export const initialState: PistaState = {
-  pistas: null
+  pistas: null,
+  pagada: false
 };
 
 
@@ -43,6 +45,12 @@ export function pistaReducer(state = initialState, action: PistaActions): PistaS
     }
     case PistaActionTypes.INICIALIZA: {
       return initialState
+    }
+    case PistaActionTypes.PAGADA: {
+      return {
+        ...state,
+        pagada: action.payload
+      }
     }
     default: {
       return state;

@@ -5,7 +5,8 @@ export enum PistaActionTypes {
   ELIMINAR = '[Pista] Eliminar Pista',
   EDITAR = '[Pista] Editar Pista',
   CARGA_PISTAS = '[Pista] Carga Pistas',
-  INICIALIZA = '[Pista] reset Pistas'
+  INICIALIZA = '[Pista] reset Pistas',
+  PAGADA = '[Pista] estado pista reservada'
 }
 
 export class CrearPista implements Action {
@@ -20,6 +21,11 @@ export class EliminarPista implements Action {
 
 export class EditarPista implements Action {
   readonly type = PistaActionTypes.EDITAR;
+  constructor(public payload: any) {}
+}
+
+export class PistaPagada implements Action {
+  readonly type = PistaActionTypes.PAGADA;
   constructor(public payload: any) {}
 }
 
@@ -38,4 +44,5 @@ export type PistaActions =
   | EditarPista
   | EliminarPista
   | CargaPistas
+  | PistaPagada
   | InicializaPistas;
