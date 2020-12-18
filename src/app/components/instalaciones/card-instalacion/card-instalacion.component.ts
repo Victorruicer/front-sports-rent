@@ -39,6 +39,9 @@ export class CardInstalacionComponent implements OnInit {
             }
           })
       })
+      this.actividades = this.actividades.filter((item,index)=>{
+      return this.actividades.indexOf(item) === index;
+      })
       console.log(this.actividades)
   }
 
