@@ -24,7 +24,7 @@
                 <td>{{reserva.Fecha}}</td>
                 <td>{{reserva.H_ini}}</td>
                 <td>{{reserva.H_fin}}</td>
-                <td><button class="btn btn-danger"><i class="fas fa-window-close"></i></button></td>
+                <td><button class="btn btn-danger" (click)="cancelarReserva(reserva.Id_Reserva)"><i class="fas fa-window-close"></i></button></td>
             </tr>
         </tbody>
     </table>

@@ -40,7 +40,7 @@ export class PerfilComponent implements OnInit {
       })
     }else{
       //Si no hay ningún usuario logado se vuelve al home
-      this.router.navigateByUrl('#');
+      this.router.navigateByUrl('/home');
     }
   }
 }

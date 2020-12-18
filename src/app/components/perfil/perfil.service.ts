@@ -13,12 +13,18 @@ export class PerfilService {
 
   updatePerfilUrl = "/api/usuario/updateUser";
   historicoUrl = "/api/reserva/historico";
+  deleteUrl = "/api/reserva/deleteReserva";
   cambioPassUrl = "/api/usuario/changePass";
 
   constructor(private http: HttpClient) { }
 
   updateUser(datos: DatosLogin): Observable<DatosLogin>{
     return this.http.post<DatosLogin>(environment.apiUrl+this.updatePerfilUrl, datos);
+  }
+
+  borrarReserva(id: number): Observable<ReservasUser>{
+    const reservaID = { ID_Reserva: id };
+    return this.http.post<ReservasUser>(environment.apiUrl + this.deleteUrl, reservaID);
   }
 
   cambioPassword(datos: ResetPass): Observable<DatosLogin>{
