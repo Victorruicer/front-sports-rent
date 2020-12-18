@@ -17,7 +17,7 @@
             <td>{{usuario.Apellido1}} {{usuario.Apellido2}}</td>
             <td>{{usuario.Perfil}}</td>
             <td>{{usuario.Email}}</td>
-            <td>{{usuario.Activo}}</td>
+            <td><p *ngIf="usuario.Activo; else inactivo" class="text-success">Activo</p><ng-template #inactivo><p class="text-danger">De baja</p></ng-template></td>
             <td>
                 <button style="margin: 10px;" class="btn btn-success" (click)="editar(usuario)"><i class="fas fa-edit"></i></button>
                 <button style="margin: 10px;" class="btn btn-danger" (click)="delUsuario(usuario.Id_Usuario)"><i class="fas fa-trash-alt"></i></button>

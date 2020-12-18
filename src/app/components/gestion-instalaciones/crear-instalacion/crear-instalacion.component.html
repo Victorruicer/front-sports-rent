@@ -36,15 +36,23 @@
             </div>
 
             <!-- IMAGEN PREVIEW -->
-            <div class="row" *ngIf="Imagen">
-                <b>Imagen seleccionada</b>
-                <img [src]="Imagen" alt="Imagen de la instalación" class="imageninstalacion">
+            <div class="m-3" *ngIf="Imagen">
+                <div class="row">
+                    <b>Imagen seleccionada: </b>
+                </div>
+                <div class="row">
+                    <img [src]="Imagen" alt="Imagen de la instalación" class="imageninstalacion">
+                </div>
             </div>
 
             <!-- IMAGEN CARGADA -->
-            <div class="row" *ngIf="ImagenCargada">
-                <b>Imagen a editar</b>
-                <img [src]="ImagenCargada" alt="Imagen de la instalación" class="imageninstalacion">
+            <div class="m-3" *ngIf="ImagenCargada">
+                <div class="row">
+                    <b>Imagen a editar: </b><br>
+                </div>
+                <div class="row">
+                    <img [src]="ImagenCargada" alt="Imagen de la instalación" class="imageninstalacion">
+                </div>
             </div>
 
             <br>

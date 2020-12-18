@@ -18,7 +18,7 @@
             <td>{{pista.Instalacion}}</td>
             <td>{{pista.Tarifa}}</td>
             <td>{{pista.Actividad}}</td>
-            <td><p *ngIf="pista.Operativa; else inoperativa" class="text-success">Operativa</p><ng-template #inoperativa class="text-danger">inoperativa</ng-template></td>
+            <td><p *ngIf="pista.Operativa; else inoperativa" class="text-success">Operativa</p><ng-template #inoperativa><p class="text-danger">Inoperativa</p></ng-template></td>
             <td>{{pista.Precio_hora}}</td>
             <td>
                 <button style="margin: 10px;" class="btn btn-secondary" (click)="habilitar(pista)"><i class="fas fa-arrows-alt-v"></i></button>

@@ -14,7 +14,7 @@
             <td scope="row">{{instalacion.Id_instalacion}}</td>
             <td>{{instalacion.Nombre}}</td>
             <td>{{instalacion.Direccion}}</td>
-            <td>{{instalacion.Operativa}}</td>
+            <td><p *ngIf="instalacion.Operativa; else inoperativa" class="text-success">Operativa</p><ng-template #inoperativa><p class="text-danger">Inoperativa</p></ng-template></td>
             <td>{{instalacion.Horario}}</td>
             <td>
                 <button style="margin: 10px;" class="btn btn-secondary" (click)="habilitar(instalacion)"><i class="fas fa-arrows-alt-v"></i></button>
