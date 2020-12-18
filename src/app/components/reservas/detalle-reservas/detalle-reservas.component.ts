@@ -24,7 +24,7 @@ export class DetalleReservasComponent implements OnInit {
               private fb: FormBuilder)
   {
     this.formulario = this.fb.group({
-      numTarjeta   : ['', [Validators.required, Validators.minLength(12), Validators.maxLength(12)]],
+      numTarjeta   : ['', [Validators.required, Validators.minLength(16), Validators.maxLength(16)]],
       cvc    : ['', [Validators.required, Validators.minLength(3), Validators.maxLength(3)]],
       mes    : ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
       year    : ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],

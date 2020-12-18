@@ -1,4 +1,4 @@
-<div class="row" id="pago">
+<div class="row">
     <div class="col-6">
         <h2 style="text-align: center;">Detalles de la reserva</h2>
         <hr style="border: 1px solid #FF671F; width: 50%; text-align: center; margin-bottom: 35px;">
@@ -16,23 +16,23 @@
         <form autocomplete="off" [formGroup]="formulario"  (ngSubmit)="pagar()">
             <div class="form-group">
                 <label>Número de Tarjeta</label>
-                <input type="text" class="form-control" formControlName="numTarjeta" [class.is-invalid]="numTarjetaNoValido">
-                <small *ngIf="numTarjetaNoValido" class="text-danger">El número de la tarjeta ha de tener 12 dígitos</small>
+                <input type="text" class="form-control" formControlName="numTarjeta" maxlength="16" [class.is-invalid]="numTarjetaNoValido">
+                <small *ngIf="numTarjetaNoValido" class="text-danger">El número de la tarjeta ha de tener 16 dígitos</small>
             </div>
             <div class="form-group">
                 <label>CVC</label>
-                <input type="text" class="form-control" formControlName="cvc" [class.is-invalid]="cvcNoValido">
+                <input type="text" class="form-control" formControlName="cvc" maxlength="3" [class.is-invalid]="cvcNoValido">
                 <small *ngIf="cvcNoValido" class="text-danger">El cvc es de 3 dígitos</small>
             </div>
             <div class="form-group">
                 <label>Fecha de expiración</label>
                 <div class="row" cc-exp>
                     <div class="col-3">
-                        <input placeholder="MM" type="text" class="form-control" formControlName="mes" [class.is-invalid]="mesNoValido">
+                        <input placeholder="MM" type="text" class="form-control" formControlName="mes" maxlength="2" [class.is-invalid]="mesNoValido">
                         <small *ngIf="mesNoValido" class="text-danger">Se deben introducir 2 dígitos, si es en Enero sería 01</small>
                     </div>
                     <div class="col-3">
-                        <input placeholder="YY" type="text" class="form-control" formControlName="year" [class.is-invalid]="yearNoValido">
+                        <input placeholder="YY" type="text" class="form-control" formControlName="year" maxlength="2" [class.is-invalid]="yearNoValido">
                         <small *ngIf="yearNoValido" class="text-danger">Se deben introducir 2 dígitos</small>
                     </div>
                 </div>

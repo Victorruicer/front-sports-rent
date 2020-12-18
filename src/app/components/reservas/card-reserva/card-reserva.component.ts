@@ -174,7 +174,7 @@ export class CardReservaComponent implements OnInit {
             Horas: this.totalHoras,
           }
           this.store.dispatch(new EnReserva({reserva: datosReserva}));
-          const source = timer(120000);
+          const source = timer(1200000);
           const subscribe = source.subscribe(val => {
             this.store.select('reserva').subscribe(
               pagada => {
@@ -189,7 +189,7 @@ export class CardReservaComponent implements OnInit {
                         console.log(cancelada['Mensaje'])
                       }
                     })
-                  this.toastr.success("la reserva ha caducado");
+                  this.toastr.success("La reserva ha caducado");
                 }
               })
           });
@@ -204,7 +204,7 @@ export class CardReservaComponent implements OnInit {
     //this.router.navigate(['gestionPago/resumen']);
     console.log(datosR)
     }else{
-      this.toastr.warning("debes seleccionar el tiempo de reserva");
+      this.toastr.warning("Debes seleccionar el tiempo de reserva");
     }
   }
 
